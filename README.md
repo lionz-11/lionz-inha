@@ -2,7 +2,7 @@
 
 본 프로젝트는 인하대학교 멋쟁이 사자처럼 소규모 프로젝트입니다.
 
-### Project Stack
+## Project Stack
 
 **Front-end**
 
@@ -11,7 +11,7 @@
 - React Router
 - 추후에 추가로 작성
 
-### Branch Strategy
+## Branch Strategy
 
 Github flow 전략을 사용합니다.
 
@@ -33,6 +33,6 @@ type(file name): commit message
 - `comment` : 필요한 주석 추가 및 변경의 경우
 - `chore` : 위의 경우에 포함되지 않는 경우
 
-### Contributors
+## Contributors
 
 - 추후 작성 예정
