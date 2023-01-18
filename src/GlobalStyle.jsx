@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     outline: none;
     margin: 0;
-    padding: 40px;
+    padding: 0;
   }
 `;
 
