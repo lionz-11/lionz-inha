@@ -14,5 +14,9 @@ module.exports = {
     'jsx-quotes': ['error', 'prefer-single'],
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/prop-types': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'operator-linebreak': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };
