@@ -1,10 +1,12 @@
-import styled from 'styled-components';
+import Typography from '../../component/Typography/Typography';
 
-const TempCom = styled.div`
-  ${(props) => props.theme.font.header};
-  color: ${(props) => props.theme.colors.red};
-`;
-
-const Home = () => <TempCom>home페이지 입니다</TempCom>;
+const Home = () => (
+  <>
+    <Typography header>hi</Typography>
+    <Typography semiHeader>hi</Typography>
+    <Typography contentTitle>hi</Typography>
+    <Typography small>hi</Typography>
+  </>
+);
 
 export default Home;
