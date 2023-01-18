@@ -19,8 +19,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
   
-
-  
   * {
     font-family: 'Pretendard';
     box-sizing: border-box;
