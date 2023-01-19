@@ -26,14 +26,12 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
   
-
-  
   * {
     font-family: 'Pretendard';
     box-sizing: border-box;
     outline: none;
     margin: 0;
-    padding: 40px;
+    padding: 0;
   }
 `;
 

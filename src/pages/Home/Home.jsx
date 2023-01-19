@@ -1,10 +1,27 @@
-import styled from 'styled-components';
+import Button from '../../component/Button/Button';
+import Flex from '../../component/Flex/Flex';
+import Typography from '../../component/Typography/Typography';
 
-const TempCom = styled.div`
-  ${(props) => props.theme.font.header};
-  color: ${(props) => props.theme.colors.red};
-`;
-
-const Home = () => <TempCom>home페이지 입니다</TempCom>;
+const Home = () => (
+  <>
+    <Typography header>hi</Typography>
+    <Typography semiHeader>hi</Typography>
+    <Typography contentTitle>hi</Typography>
+    <Typography small>hi</Typography>
+    <Flex justify='space-between'>
+      <h1>h1</h1>
+      <h1>h1</h1>
+    </Flex>
+    <Button>🙏 새 글 작성</Button>
+    <Button color='darkGray'>🙏 새 글 작성</Button>
+    <Button small>✔️ Today</Button>
+    <Button textButton color='red'>
+      작성
+    </Button>
+    <Button textButtonSmall color='blue'>
+      추가
+    </Button>
+  </>
+);
 
 export default Home;
