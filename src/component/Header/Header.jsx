@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiSearch, BiMenu } from 'react-icons/bi';
 import { BsPersonFill } from 'react-icons/bs';
 import Typography from '../Typography/Typography';
@@ -8,7 +8,7 @@ import MenuBar from './components/menuBar';
 
 const Container = styled.div`
   width: 100%;
-  max-width: 1213px;
+  max-width: 1312px;
   height: 50px;
   background-color: ${(props) => props.theme.colors.backgroundBlue};
   position: fixed;
@@ -36,11 +36,11 @@ const ProfileWrapper = styled.div`
 `;
 
 const Header = () => {
-  const [menuButtonClicked, setMenuButtonClicked] = useState();
+  const [menuButton, setMenuButton] = useState(false);
 
-  useEffect(() => {
-    setMenuButtonClicked(false);
-  }, []);
+  const menuButtonClicked = () => {
+    setMenuButton(!menuButton);
+  };
 
   return (
     <Container>
@@ -49,12 +49,12 @@ const Header = () => {
       </Typography>
       <RightWrapper>
         <BiSearch size='29px' style={{ cursor: 'pointer' }} />
-        <BiMenu size='29px' style={{ cursor: 'pointer' }} />
+        <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
         <ProfileWrapper>
           <BsPersonFill size='31px' color={theme.colors.darkGray} />
         </ProfileWrapper>
       </RightWrapper>
-      <MenuBar />
+      <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />
     </Container>
   );
 };
