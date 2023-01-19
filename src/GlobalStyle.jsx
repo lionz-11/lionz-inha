@@ -5,7 +5,8 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   html, body, #root {
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
   }
 
   @font-face {

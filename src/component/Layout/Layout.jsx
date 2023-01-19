@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const Width = styled.div`
   margin: 0 auto;
-  min-width: 1312px;
+  width: 100%;
+  max-width: 1312px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +12,7 @@ const Width = styled.div`
 
 const BackColor = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
