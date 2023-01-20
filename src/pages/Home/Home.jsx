@@ -13,7 +13,7 @@ const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
 
 const Home = () => (
   <Layout>
-    <PhotoContentContainer data={a} />
+    <PhotoContentContainer haveProfile data={a} />
   </Layout>
 );
 
