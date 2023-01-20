@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 import { BiX } from 'react-icons/bi';
+import { motion, AnimatePresence } from 'framer-motion';
 import Flex from '../../Flex/Flex';
 import Margin from '../../Margin/Margin';
 import Typography from '../../Typography/Typography';
 
-const Background = styled.div`
+const Background = styled(motion.div)`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -15,13 +16,6 @@ const Background = styled.div`
   z-index: 1;
   overflow: hidden;
   transition: 0.5s;
-  ${(props) =>
-    !props.menuButton &&
-    css`
-      background: none;
-      backdrop-filter: blur(0);
-      z-index: -1;
-    `}
 `;
 
 const MenuWrapper = styled.div`
@@ -58,7 +52,16 @@ const StyledTypo = styled(Typography)`
 
 const MenuBar = ({ menuButton, menuButtonClicked }) => (
   <>
-    <Background menuButton={menuButton} onClick={menuButtonClicked} />
+    <AnimatePresence>
+      {menuButton && (
+        <Background
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={menuButtonClicked}
+        />
+      )}
+    </AnimatePresence>
     <MenuWrapper menuButton={menuButton}>
       <Margin height={12} />
       <Flex flexCenter>
