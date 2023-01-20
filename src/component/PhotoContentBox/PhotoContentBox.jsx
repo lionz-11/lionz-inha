@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
+import Flex from '../Flex/Flex';
 
 const Container = styled.article`
   margin: 1rem; // 박스들 사이를 띄우기 위함
@@ -25,6 +26,10 @@ const SideContent = styled.div`
   ${(props) => props.theme.flex.flexCenter}
   justify-content: space-between;
   padding: 1rem 1.5rem;
+
+  p {
+    height: 1rem;
+  }
 `;
 
 const Separator = styled.div`
@@ -40,9 +45,25 @@ const Title = styled.h2`
 const Contents = styled(Typography)`
   height: 2.3rem;
   overflow: hidden;
+
+  ${(props) =>
+    props.haveProfile &&
+    css`
+      height: 3.5rem;
+    `}
 `;
 
-const PhotoContentBox = ({ data }) => {
+const Profile = styled.img`
+  height: 1.7rem;
+  width: 1.7rem;
+  background-color: ${(props) => props.theme.colors.blue};
+  border-radius: 100%;
+  margin-right: 1rem;
+`;
+
+const ProfileWrapper = styled(Flex)``;
+
+const PhotoContentBox = ({ data, haveProfile }) => {
   const { title, contents, writer, date } = data;
 
   return (
@@ -50,11 +71,20 @@ const PhotoContentBox = ({ data }) => {
       <Photo />
       <MainContent>
         <Title>{title}</Title>
-        <Contents contentText>{contents}</Contents>
+        <Contents haveProfile={haveProfile} contentText>
+          {contents}
+        </Contents>
       </MainContent>
       <Separator />
       <SideContent>
-        <Typography contentText>{writer}</Typography>
+        {haveProfile ? (
+          <ProfileWrapper>
+            <Profile />
+            <Typography contentText>{writer}</Typography>
+          </ProfileWrapper>
+        ) : (
+          <Typography contentText>{writer}</Typography>
+        )}
         <Typography sideContentSmall color='gray'>
           {date}
         </Typography>
