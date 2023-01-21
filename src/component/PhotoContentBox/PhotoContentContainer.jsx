@@ -8,9 +8,9 @@ const List = styled.div`
   justify-content: center;
   gap: 2rem;
 
-  /* @media (max-width: 1312px) {
+  @media (max-width: 930px) {
     flex-wrap: wrap;
-  } */
+  }
 `;
 
 const PhotoContentContainer = ({ data, haveProfile }) => (
