@@ -8,7 +8,7 @@ const Box = styled(motion.article)`
   width: 416px; // 뭐로 바꾸던..
   border-radius: 10px;
   ${(props) => props.theme.shadow.componentShadow}
-  box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);x
+  box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
 `;
