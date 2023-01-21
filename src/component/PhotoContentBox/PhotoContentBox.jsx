@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
 import Flex from '../Flex/Flex';
+import theme from '../../assets/theme/Theme';
 
 const Box = styled(motion.article)`
   margin: 1rem; // 박스들 사이를 띄우기 위함
@@ -68,13 +69,8 @@ const ProfileWrapper = styled(Flex)``;
 const PhotoContentBox = ({ data, haveProfile }) => {
   const { title, contents, writer, date } = data;
 
-  const hoverAnimation = {
-    scale: 1.03,
-    transition: { duration: 0.3 },
-  };
-
   return (
-    <Box whileHover={hoverAnimation}>
+    <Box whileHover={theme.animation.box}>
       <Photo />
       <MainContent>
         <Title>{title}</Title>
