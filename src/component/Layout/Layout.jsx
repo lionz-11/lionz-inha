@@ -6,6 +6,10 @@ const Width = styled.div`
   width: 100%;
   max-width: 1312px;
   ${(props) => props.theme.flex.flexCenterColumn};
+
+  @media (max-width: 1312px) {
+    padding: 0 1rem;
+  }
 `;
 
 const BackColor = styled.div`
