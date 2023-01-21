@@ -6,11 +6,11 @@ const List = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
 
-  @media (max-width: 960px) {
+  /* @media (max-width: 1312px) {
     flex-wrap: wrap;
-  }
+  } */
 `;
 
 const PhotoContentContainer = ({ data, haveProfile }) => (
