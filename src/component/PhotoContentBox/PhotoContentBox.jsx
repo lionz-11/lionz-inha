@@ -5,7 +5,6 @@ import Flex from '../Flex/Flex';
 import theme from '../../assets/theme/Theme';
 
 const Box = styled(motion.article)`
-  margin: 1rem; // 박스들 사이를 띄우기 위함
   width: 416px; // 뭐로 바꾸던..
   border-radius: 10px;
   ${(props) => props.theme.shadow.componentShadow}
