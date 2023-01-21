@@ -3,11 +3,12 @@ import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
 import Flex from '../Flex/Flex';
 
-const Container = styled(motion.article)`
+const Box = styled(motion.article)`
   margin: 1rem; // 박스들 사이를 띄우기 위함
   width: 416px; // 뭐로 바꾸던..
   border-radius: 10px;
-  box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);
+  ${(props) => props.theme.shadow.componentShadow}
+  box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);x
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
 `;
@@ -73,7 +74,7 @@ const PhotoContentBox = ({ data, haveProfile }) => {
   };
 
   return (
-    <Container whileHover={hoverAnimation}>
+    <Box whileHover={hoverAnimation}>
       <Photo />
       <MainContent>
         <Title>{title}</Title>
@@ -95,7 +96,7 @@ const PhotoContentBox = ({ data, haveProfile }) => {
           {date}
         </Typography>
       </SideContent>
-    </Container>
+    </Box>
   );
 };
 
