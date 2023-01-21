@@ -3,10 +3,12 @@ import PhotoContentBox from './PhotoContentBox';
 
 const List = styled.div`
   width: 100%;
-  ${(props) => props.theme.flex.flexCenter};
+  display: flex;
   align-items: flex-start;
-  // 브라우저 폭이 800보다 작아지면 포토박스가 구겨지지않게 wrap해주기
-  @media (max-width: 1060px) {
+  justify-content: center;
+  gap: 1rem;
+
+  @media (max-width: 960px) {
     flex-wrap: wrap;
   }
 `;
