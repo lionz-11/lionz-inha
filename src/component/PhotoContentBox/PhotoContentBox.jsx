@@ -4,8 +4,9 @@ import Typography from '../Typography/Typography';
 import Flex from '../Flex/Flex';
 import theme from '../../assets/theme/Theme';
 
+// 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(motion.article)`
-  width: 416px; // 뭐로 바꾸던..
+  max-width: 415px;
   border-radius: 10px;
   ${(props) => props.theme.shadow.componentShadow}
   background-color: ${(props) => props.theme.colors.white};
