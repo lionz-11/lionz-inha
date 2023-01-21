@@ -1,13 +1,14 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
 import Flex from '../Flex/Flex';
 
-const Container = styled.article`
+const Container = styled(motion.article)`
   margin: 1rem; // 박스들 사이를 띄우기 위함
   width: 416px; // 뭐로 바꾸던..
   border-radius: 10px;
   box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
 `;
 
@@ -66,8 +67,13 @@ const ProfileWrapper = styled(Flex)``;
 const PhotoContentBox = ({ data, haveProfile }) => {
   const { title, contents, writer, date } = data;
 
+  const hoverAnimation = {
+    scale: 1.03,
+    transition: { duration: 0.3 },
+  };
+
   return (
-    <Container>
+    <Container whileHover={hoverAnimation}>
       <Photo />
       <MainContent>
         <Title>{title}</Title>
