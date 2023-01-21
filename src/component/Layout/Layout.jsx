@@ -5,17 +5,14 @@ const Width = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 1312px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flex.flexCenterColumn};
 `;
 
 const BackColor = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flex.flexCenter};
+  align-items: flex-start;
   background-color: ${(props) => props.theme.colors.backgroundBlue};
 `;
 
