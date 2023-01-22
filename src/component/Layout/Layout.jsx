@@ -12,7 +12,7 @@ const Width = styled.div`
   }
 `;
 
-const BackColor = styled.div`
+const Background = styled.div`
   width: 100%;
   height: 100%;
   ${(props) => props.theme.flex.flexCenter};
@@ -21,9 +21,9 @@ const BackColor = styled.div`
 `;
 
 const Layout = ({ children }) => (
-  <BackColor>
+  <Background>
     <Width>{children}</Width>
-  </BackColor>
+  </Background>
 );
 
 Layout.propTypes = {
