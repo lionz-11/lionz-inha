@@ -91,27 +91,35 @@ const Profile = styled.img`
 
 const ProfileWrapper = styled(Flex)``;
 
-const BarContentBox = ({ title, tag, maximum, current, date, end, writer }) => (
-  <Box whileHover={theme.animation.box}>
-    <LeftBox>
-      <Tag tag={tag} end={end}>
-        {tag}
-      </Tag>
-      <Title>{title}</Title>
-    </LeftBox>
-    <RightBox>
-      <Typography sideContent color='darkGray'>
-        {current}/{maximum}
-      </Typography>
-      <Typography sideContent color='darkGray'>
-        {date}
-      </Typography>
-      <ProfileWrapper>
-        <Profile />
-        <Typography contentText>{writer}</Typography>
-      </ProfileWrapper>
-    </RightBox>
-  </Box>
-);
+const BarContentBox = (props) => {
+  const { title, tag, date, assignment } = props;
+
+  return (
+    <Box whileHover={theme.animation.box}>
+      <LeftBox>
+        <Tag tag={tag} end={props.end}>
+          {tag}
+        </Tag>
+        <Title>{title}</Title>
+      </LeftBox>
+      {assignment ? (
+        <h1>j</h1>
+      ) : (
+        <RightBox>
+          <Typography sideContent color='darkGray'>
+            {props.current}/{props.maximum}
+          </Typography>
+          <Typography sideContent color='darkGray'>
+            {date}
+          </Typography>
+          <ProfileWrapper>
+            <Profile />
+            <Typography contentText>{props.writer}</Typography>
+          </ProfileWrapper>
+        </RightBox>
+      )}
+    </Box>
+  );
+};
 
 export default BarContentBox;
