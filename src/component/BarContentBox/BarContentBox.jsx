@@ -139,7 +139,9 @@ const BarContentBox = (props) => {
           </Typography>
           <ProfileWrapper>
             <Profile />
-            <Typography contentText>{props.writer}</Typography>
+            <Typography contentText style={{ width: '3.5rem' }}>
+              {props.writer}
+            </Typography>
           </ProfileWrapper>
         </RightBox>
       )}
