@@ -1,19 +1,29 @@
+import BarContentBox from '../../component/BarContentBox/BarContentBox';
 import Layout from '../../component/Layout/Layout';
-import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
+import Flex from '../../component/Flex/Flex';
+import Margin from '../../component/Margin/Margin';
 
 const dummy = {
-  title: '이건 과제 제목입니다',
-  contents:
-    '이건 과제 소개 입니다.이건 과제 소개 입니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 소개 입니다.이건 과제 소개 입니다.이건',
-  writer: 'FE',
-  date: '마감일: 2001년 03월 24일',
+  title: '이건 바컨텐츠박스의 제목입니다',
+  tag: 'FE',
+  maximum: 8,
+  current: 3,
+  date: '03월 24일 18시',
+  writer: '박사자',
+  end: false,
 };
-
-const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
 
 const Home = () => (
   <Layout>
-    <PhotoContentContainer haveProfile data={a} />
+    <Margin height='50px' />
+    <Flex column style={{ width: '100%' }}>
+      <BarContentBox {...dummy} />
+      <BarContentBox {...dummy} assignment />
+      <BarContentBox
+        {...dummy}
+        title='이건 overflow 테스트를 위한 긴 글입니다. 이건 overflow 테스트를 위한 긴 글입니다. 이건 overflow 테스트를 위한 긴 글입니다.'
+      />
+    </Flex>
   </Layout>
 );
 
