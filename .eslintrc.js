@@ -20,5 +20,6 @@ module.exports = {
     'operator-linebreak': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'react/destructuring-assignment': 'off', // 임시
   },
 };
