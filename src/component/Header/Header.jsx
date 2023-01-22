@@ -48,7 +48,7 @@ const Header = () => {
         LIKE LION
       </Typography>
       <RightWrapper>
-        <BiSearch size='29px' style={{ cursor: 'pointer' }} />
+        <BiSearch size='26px' style={{ cursor: 'pointer' }} />
         <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
         <ProfileWrapper>
           <BsPersonFill size='31px' color={theme.colors.darkGray} />

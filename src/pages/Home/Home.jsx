@@ -1,4 +1,6 @@
 import Layout from '../../component/Layout/Layout';
+import Header from '../../component/Header/Header';
+import Footer from '../../component/Footer/Footer';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
 
 const dummy = {
@@ -13,7 +15,9 @@ const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
 
 const Home = () => (
   <Layout>
+    <Footer />
     <PhotoContentContainer haveProfile data={a} />
+    <Header />
   </Layout>
 );
 
