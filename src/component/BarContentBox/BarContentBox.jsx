@@ -125,11 +125,7 @@ const BarContentBox = (props) => {
           <Typography sideContent color='darkGray'>
             마감일: {date}
           </Typography>
-          <Submission
-            submissionStatus={props.submissionStatus}
-            sideContentBold
-            style={{ width: '6rem', textAlign: 'center' }}
-          >
+          <Submission submissionStatus={props.submissionStatus} sideContentBold>
             {props.submissionStatus}
           </Submission>
         </RightBox>
