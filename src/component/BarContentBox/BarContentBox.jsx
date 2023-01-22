@@ -91,11 +91,29 @@ const Profile = styled.img`
 
 const ProfileWrapper = styled(Flex)``;
 
+const Submission = styled(Typography)`
+  width: 7rem;
+  text-align: center;
+
+  color: ${(props) => {
+    switch (props.submissionStatus) {
+      case '제출 완료':
+        return `${props.theme.colors.blue}`;
+      case '대상 아님':
+        return `${props.theme.colors.darkGray}`;
+      case '미제출':
+        return `${props.theme.colors.red}`;
+      default:
+        return '';
+    }
+  }};
+`;
+
 const BarContentBox = (props) => {
   const { title, tag, date, assignment } = props;
 
   return (
-    <Box whileHover={theme.animation.box}>
+    <Box whileHover={theme.animation.box} onClick={props.onClick}>
       <LeftBox>
         <Tag tag={tag} end={props.end}>
           {tag}
@@ -103,7 +121,18 @@ const BarContentBox = (props) => {
         <Title>{title}</Title>
       </LeftBox>
       {assignment ? (
-        <h1>j</h1>
+        <RightBox>
+          <Typography sideContent color='darkGray'>
+            마감일: {date}
+          </Typography>
+          <Submission
+            submissionStatus={props.submissionStatus}
+            sideContentBold
+            style={{ width: '6rem', textAlign: 'center' }}
+          >
+            {props.submissionStatus}
+          </Submission>
+        </RightBox>
       ) : (
         <RightBox>
           <Typography sideContent color='darkGray'>
