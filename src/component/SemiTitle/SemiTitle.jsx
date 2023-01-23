@@ -5,9 +5,9 @@ const Wrapper = styled.h2`
   border-bottom: 2.5px solid black;
   padding: 0.2rem 0.5rem;
 `;
-const SemiTitle = () => (
+const SemiTitle = ({ children }) => (
   <Wrapper>
-    <Typography buttonText>나의 과제</Typography>
+    <Typography buttonText>{children}</Typography>
   </Wrapper>
 );
 
