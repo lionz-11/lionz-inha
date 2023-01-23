@@ -138,7 +138,7 @@ const BarContentBox = (props) => {
             {date}
           </Typography>
           <ProfileWrapper>
-            <Profile />
+            <Profile src={props.img} alt='img' />
             <Typography contentText style={{ width: '3.5rem' }}>
               {props.writer}
             </Typography>
