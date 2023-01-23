@@ -5,6 +5,7 @@ import Profile from '../Profile/Profile';
 import Typography from '../Typography/Typography';
 
 const Box = styled(motion.article)`
+  cursor: pointer;
   margin: 0 10px;
   max-width: 1312px;
   width: 100%;
