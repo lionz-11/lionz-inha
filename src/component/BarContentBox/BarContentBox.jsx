@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import theme from '../../assets/theme/Theme';
-import Flex from '../Flex/Flex';
+import Profile from '../Profile/Profile';
 import Typography from '../Typography/Typography';
 
 const Box = styled(motion.article)`
@@ -81,16 +81,6 @@ const RightBox = styled.div`
   }
 `;
 
-const Profile = styled.img`
-  height: 1.7rem;
-  width: 1.7rem;
-  background-color: ${(props) => props.theme.colors.blue};
-  border-radius: 100%;
-  margin-right: 1rem;
-`;
-
-const ProfileWrapper = styled(Flex)``;
-
 const Submission = styled(Typography)`
   width: 7rem;
   text-align: center;
@@ -137,12 +127,7 @@ const BarContentBox = (props) => {
           <Typography sideContent color='darkGray'>
             {date}
           </Typography>
-          <ProfileWrapper>
-            <Profile src={props.img} alt='img' />
-            <Typography contentText style={{ width: '3.5rem' }}>
-              {props.writer}
-            </Typography>
-          </ProfileWrapper>
+          <Profile name={props.writer} img={props.img} />
         </RightBox>
       )}
     </Box>
