@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
-import Flex from '../Flex/Flex';
 import theme from '../../assets/theme/Theme';
+import Profile from '../Profile/Profile';
 
 // 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(motion.article)`
@@ -16,8 +16,17 @@ const Box = styled(motion.article)`
 // 사진을 넣을 컴포넌트! 임시로 만들어놨다.
 const Photo = styled.div`
   width: 100%;
+  position: relative;
   padding-top: 56%;
-  background-color: #a7bdc1;
+
+  img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const MainContent = styled.div`
@@ -55,22 +64,14 @@ const Contents = styled(Typography)`
     `}
 `;
 
-const Profile = styled.img`
-  height: 1.7rem;
-  width: 1.7rem;
-  background-color: ${(props) => props.theme.colors.blue};
-  border-radius: 100%;
-  margin-right: 1rem;
-`;
-
-const ProfileWrapper = styled(Flex)``;
-
 const PhotoContentBox = ({ data, haveProfile }) => {
-  const { title, contents, writer, date } = data;
+  const { title, contents, writer, date, profileImg } = data;
 
   return (
     <Box whileHover={theme.animation.box}>
-      <Photo />
+      <Photo>
+        <img src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg' alt='img' />
+      </Photo>
       <MainContent>
         <Title>{title}</Title>
         <Contents haveProfile={haveProfile} contentText>
@@ -79,14 +80,7 @@ const PhotoContentBox = ({ data, haveProfile }) => {
       </MainContent>
       <Separator />
       <SideContent>
-        {haveProfile ? (
-          <ProfileWrapper>
-            <Profile />
-            <Typography contentText>{writer}</Typography>
-          </ProfileWrapper>
-        ) : (
-          <Typography contentText>{writer}</Typography>
-        )}
+        {haveProfile ? <Profile name={writer} img={profileImg} /> : <Typography contentText>{writer}</Typography>}
         <Typography sideContentSmall color='gray'>
           {date}
         </Typography>
