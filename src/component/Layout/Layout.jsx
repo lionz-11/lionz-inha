@@ -5,17 +5,19 @@ const Width = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 1312px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flex.flexCenterColumn};
+
+  @media (max-width: 1312px) {
+    padding: 0 1rem;
+  }
 `;
 
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${(props) => props.theme.flex.flexCenter};
+  align-items: flex-start;
+  background-color: ${(props) => props.theme.colors.backgroundBlue};
 `;
 
 const Layout = ({ children }) => (

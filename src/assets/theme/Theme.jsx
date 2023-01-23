@@ -111,11 +111,16 @@ const flex = {
   `,
 };
 
+const animation = {
+  box: { scale: 1.03, transition: { duration: 0.3 } },
+};
+
 const theme = {
   colors,
   shadow,
   font,
   flex,
+  animation,
 };
 
 export default theme;

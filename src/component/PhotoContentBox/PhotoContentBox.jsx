@@ -1,13 +1,15 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
 import Flex from '../Flex/Flex';
+import theme from '../../assets/theme/Theme';
 
-const Container = styled.article`
-  margin: 1rem; // 박스들 사이를 띄우기 위함
-  width: 416px; // 뭐로 바꾸던..
+// 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
+const Box = styled(motion.article)`
+  max-width: 415px;
   border-radius: 10px;
-  box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);
-  background-color: white;
+  ${(props) => props.theme.shadow.componentShadow}
+  background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
 `;
 
@@ -67,7 +69,7 @@ const PhotoContentBox = ({ data, haveProfile }) => {
   const { title, contents, writer, date } = data;
 
   return (
-    <Container>
+    <Box whileHover={theme.animation.box}>
       <Photo />
       <MainContent>
         <Title>{title}</Title>
@@ -89,7 +91,7 @@ const PhotoContentBox = ({ data, haveProfile }) => {
           {date}
         </Typography>
       </SideContent>
-    </Container>
+    </Box>
   );
 };
 

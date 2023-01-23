@@ -11,9 +11,11 @@ const Container = styled.div`
   max-width: 1312px;
   height: 50px;
   background-color: ${(props) => props.theme.colors.backgroundBlue};
-  position: fixed;
-  top: 0;
-  ${(props) => props.theme.flex.flexCenter}
+  ${(props) => props.theme.flex.flexCenter};
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
 `;
 
 const RightWrapper = styled.div`
