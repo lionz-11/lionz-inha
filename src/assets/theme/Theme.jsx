@@ -111,6 +111,12 @@ const flex = {
   `,
 };
 
+const hover = `
+  :hover {
+    box-shadow: 2px 4px 12px 1px rgba(49, 76, 145, 0.2);
+  }
+`;
+
 const animation = {
   box: { scale: 1.03, transition: { duration: 0.3 } },
 };
@@ -120,6 +126,7 @@ const theme = {
   shadow,
   font,
   flex,
+  hover,
   animation,
 };
 
