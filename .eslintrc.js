@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'max-len': ['error', { code: 140 }],
     'object-curly-newline': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
     'react/react-in-jsx-scope': 'off',
