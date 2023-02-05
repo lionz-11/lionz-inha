@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import Layout from '../../component/Layout/Layout';
+import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
-import Typography from '../../component/Typography/Typography';
 
 const dummy = {
   title: '이건 과제 제목입니다',
@@ -11,15 +12,23 @@ const dummy = {
 };
 
 const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
+const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const Home = () => (
-  <Layout>
-    <Typography pageTitle>이건 헤더</Typography>
-    <Typography sideContent>hi</Typography>
-    <Typography header>LIKELION</Typography>
-    <PhotoContentContainer data={a} />
-    <PhotoContentContainer haveProfile data={a} />
-  </Layout>
-);
+  return (
+    <Layout>
+      <PhotoContentContainer data={a} />
+      <AssignmentBox
+        date='3월 24일 13시 59분'
+        src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg'
+        name='박세현'
+        detail='sss'
+        link='https://www.naver.com'
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </Layout>
+  );
+};
 
 export default Home;
