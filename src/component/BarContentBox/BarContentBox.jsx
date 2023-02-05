@@ -35,7 +35,7 @@ const Tag = styled.h4`
         return `${props.theme.colors.blue}`;
       case 'BE':
         return `${props.theme.colors.lightRed}`;
-      case 'PD':
+      case 'ALL':
         return `${props.theme.colors.yellow}`;
       default:
         return '';
@@ -98,7 +98,7 @@ const Submission = styled(Typography)`
 `;
 
 const BarContentBox = (props) => {
-  const { title, tag, date } = props;
+  const { title, tag, date, notification, submissionStatus } = props;
 
   return (
     <Box whileHover={theme.animation.box} onClick={props.onClick}>
@@ -108,14 +108,22 @@ const BarContentBox = (props) => {
         </Tag>
         <Title>{title}</Title>
       </LeftBox>
-      <RightBox>
-        <Typography sideContent color='darkGray'>
-          마감일: {date}
-        </Typography>
-        <Submission submissionStatus={props.submissionStatus} sideContentBold>
-          {props.submissionStatus}
-        </Submission>
-      </RightBox>
+      {notification ? (
+        <RightBox>
+          <Typography sideContent color='darkGray'>
+            작성일: {date}
+          </Typography>
+        </RightBox>
+      ) : (
+        <RightBox>
+          <Typography sideContent color='darkGray'>
+            마감일: {date}
+          </Typography>
+          <Submission submissionStatus={submissionStatus} sideContentBold>
+            {submissionStatus}
+          </Submission>
+        </RightBox>
+      )}
     </Box>
   );
 };
