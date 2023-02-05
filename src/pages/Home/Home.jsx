@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Layout from '../../component/Layout/Layout';
 import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
+import TextButton from '../../component/TextButton/TextButton';
 
 const dummy = {
   title: '이건 과제 제목입니다',
@@ -27,6 +28,8 @@ const Home = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
+      <TextButton haveDelete />
+      <TextButton />
     </Layout>
   );
 };
