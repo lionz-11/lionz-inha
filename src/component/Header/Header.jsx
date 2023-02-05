@@ -4,8 +4,8 @@ import { BiSearch, BiMenu } from 'react-icons/bi';
 import { BsPersonFill } from 'react-icons/bs';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
-import MenuBar from './components/menuBar';
-import SearchBar from './components/searchBar';
+import MenuBar from './components/MenuBar';
+import SearchBar from './components/SearchBar';
 
 const Container = styled.div`
   width: 100%;
