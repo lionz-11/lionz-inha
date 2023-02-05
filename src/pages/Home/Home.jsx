@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Layout from '../../component/Layout/Layout';
 import LikeAndShare from '../../component/LikeAndShare/LikeAndShare';
-
+import Typography from '../../component/Typography/Typography';
+import Header from '../../component/Header/Header';
 // const dummy = {
 //   title: '이건 과제 제목입니다',
 //   contents:
@@ -11,11 +12,16 @@ import LikeAndShare from '../../component/LikeAndShare/LikeAndShare';
 // };
 
 // const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
+
 const Home = () => {
   const [like, setLike] = useState(false);
 
   return (
     <Layout>
+      <Header />
+      <Typography pageTitle>이건 헤더</Typography>
+      <Typography sideContent>hi</Typography>
+      <Typography header>LIKELION</Typography>
       <LikeAndShare like={like} setLike={() => setLike(!like)} />
     </Layout>
   );
