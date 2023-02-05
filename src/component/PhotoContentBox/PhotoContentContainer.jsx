@@ -13,10 +13,10 @@ const List = styled.div`
   }
 `;
 
-const PhotoContentContainer = ({ data, haveProfile }) => (
+const PhotoContentContainer = ({ data }) => (
   <List>
     {data.map((d) => (
-      <PhotoContentBox key={d.id} data={d} haveProfile={haveProfile} />
+      <PhotoContentBox key={d.id} data={d} />
     ))}
   </List>
 );

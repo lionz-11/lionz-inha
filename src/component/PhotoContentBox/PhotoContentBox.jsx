@@ -1,14 +1,13 @@
 import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
-import Profile from '../Profile/Profile';
 
 // 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(motion.article)`
   max-width: 415px;
   border-radius: 10px;
-  ${(props) => props.theme.shadow.componentShadow}
+  ${(props) => props.theme.box}
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
 `;
@@ -45,7 +44,7 @@ const SideContent = styled.div`
 
 const Separator = styled.div`
   margin: 0 1.5rem;
-  border-top: 1px solid ${(props) => props.theme.colors.lightGray};
+  border-top: 1px solid ${(props) => props.theme.colors.skyBlue};
 `;
 
 const Title = styled.h2`
@@ -56,16 +55,10 @@ const Title = styled.h2`
 const Contents = styled(Typography)`
   height: 2.3rem;
   overflow: hidden;
-
-  ${(props) =>
-    props.haveProfile &&
-    css`
-      height: 3.5rem;
-    `}
 `;
 
-const PhotoContentBox = ({ data, haveProfile }) => {
-  const { title, contents, writer, date, profileImg } = data;
+const PhotoContentBox = ({ data }) => {
+  const { title, contents, writer, date } = data;
 
   return (
     <Box whileHover={theme.animation.box}>
@@ -74,13 +67,11 @@ const PhotoContentBox = ({ data, haveProfile }) => {
       </Photo>
       <MainContent>
         <Title>{title}</Title>
-        <Contents haveProfile={haveProfile} contentText>
-          {contents}
-        </Contents>
+        <Contents contentText>{contents}</Contents>
       </MainContent>
       <Separator />
       <SideContent>
-        {haveProfile ? <Profile name={writer} img={profileImg} /> : <Typography contentText>{writer}</Typography>}
+        <Typography contentText>{writer}</Typography>
         <Typography sideContentSmall color='gray'>
           {date}
         </Typography>
