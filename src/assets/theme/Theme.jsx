@@ -50,7 +50,7 @@ const font = {
     font-family: 'pretendard-semibold';
     font-size: 20px;
     line-height: 24px;
-    letter-spacing: 0.055em;
+    letter-spacing: 0.025em;
   `,
   contentText: `
     font-family: 'pretendard-regular';
