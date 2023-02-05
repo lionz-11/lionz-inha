@@ -1,9 +1,11 @@
 import Layout from '../../component/Layout/Layout';
-import SemiTitle from '../../component/SemiTitle/SemiTitle';
+import Typography from '../../component/Typography/Typography';
 
 const Home = () => (
   <Layout>
-    <SemiTitle>나의 과제</SemiTitle>
+    <Typography pageTitle>이건 헤더</Typography>
+    <Typography sideContent>hi</Typography>
+    <Typography header>LIKELION</Typography>
   </Layout>
 );
 

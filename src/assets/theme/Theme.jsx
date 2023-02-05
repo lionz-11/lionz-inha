@@ -24,76 +24,88 @@ const shadow = {
 
 const font = {
   header: `
-    font-weight: 700;
+    font-family: 'pretendard-bold';
     font-size: 32px;
     line-height: 38px;
     letter-spacing: 0.105em;
   `,
   semiHeader: `
-    font-weight: 700;
+    font-family: 'pretendard-bold';
     font-size: 24px;
     line-height: 29px;
     letter-spacing: 0.105em;
   `,
   semiBold: `
-    font-weight: 600;
+    font-family: 'pretendard-semibold';
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 0.185em;
   `,
   small: `
-    font-weight: 400;
+    font-family: 'pretendard-regular';
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.185em;
   `,
   contentTitle: `
-    font-weight: 600;
+    font-family: 'pretendard-semibold';
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 0.055em;
   `,
   contentText: `
-    font-weight: 400;
+    font-family: 'pretendard-regular';
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.04em;
   `,
   sideContent: `
-    font-weight: 400;
+    font-family: 'pretendard-regular';
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.095em;
   `,
   sideContentBold: `
-    font-weight: 700;
+    font-family: 'pretendard-bold';
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.055em;
   `,
   sideContentSmall: `
-    font-weight: 400;
+    font-family: 'pretendard-regular';
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
   `,
   pageTitle: `
-    font-weight: 600;
+    font-family: 'pretendard-semibold';
     font-size: 40px;
     line-height: 48px;
     letter-spacing: 0.025em;
   `,
   buttonText: `
-    font-weight: 600;
+    font-family: 'pretendard-semibold';
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 0.055em;
   `,
-  name: `
-    font-weight: 600;
+  tinyText: `
+    font-family: 'pretendard-semibold';
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+  `,
+  loginText: `
+    font-family: 'pretendard-medium';
     font-size: 20px;
     line-height: 24px;
-    letter-spacing: 0.185em;
+    letter-spacing: 0.055em;
+  `,
+  calenderTitle: `
+    font-family: 'pretendard-semibold';
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.015em;
   `,
 };
 
