@@ -13,14 +13,13 @@ const colors = {
   darkYellow: '#ecb834',
 };
 
-const shadow = {
-  componentShadow: `
-    box-shadow: 0px 4px 12px -1px rgba(0, 0, 0, 0.25);
-  `,
-  homeBoxShadow: `
-    box-shadow: 0px 4px 7px -1px rgba(0, 0, 0, 0.25);
-  `,
-};
+const box = `
+  border: 1px solid ${colors.skyBlue};
+  
+  :hover {
+    box-shadow: 2px 4px 8px -1px rgba(49, 76, 145, 0.15);
+  }
+`;
 
 const font = {
   header: `
@@ -129,7 +128,7 @@ const animation = {
 
 const theme = {
   colors,
-  shadow,
+  box,
   font,
   flex,
   animation,

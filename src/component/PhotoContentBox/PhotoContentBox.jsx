@@ -8,7 +8,7 @@ import Profile from '../Profile/Profile';
 const Box = styled(motion.article)`
   max-width: 415px;
   border-radius: 10px;
-  ${(props) => props.theme.shadow.componentShadow}
+  ${(props) => props.theme.box};
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
 `;
@@ -45,7 +45,7 @@ const SideContent = styled.div`
 
 const Separator = styled.div`
   margin: 0 1.5rem;
-  border-top: 1px solid ${(props) => props.theme.colors.lightGray};
+  border-top: 1px solid ${(props) => props.theme.colors.skyBlue};
 `;
 
 const Title = styled.h2`
@@ -73,7 +73,7 @@ const PhotoContentBox = ({ data, haveProfile }) => {
         <img src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg' alt='img' />
       </Photo>
       <MainContent>
-        <Title>{title}</Title>
+        <Title contentTitle>{title}</Title>
         <Contents haveProfile={haveProfile} contentText>
           {contents}
         </Contents>
