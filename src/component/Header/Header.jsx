@@ -5,6 +5,7 @@ import { BsPersonFill } from 'react-icons/bs';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
 import MenuBar from './components/menuBar';
+import SearchBar from './components/searchBar';
 
 const Container = styled.div`
   width: 100%;
@@ -39,9 +40,14 @@ const ProfileWrapper = styled.div`
 
 const Header = () => {
   const [menuButton, setMenuButton] = useState(false);
+  const [searchButton, setSearchButton] = useState(false);
 
   const menuButtonClicked = () => {
     setMenuButton(!menuButton);
+  };
+
+  const searchButtonClicked = () => {
+    setSearchButton(!searchButton);
   };
 
   return (
@@ -50,13 +56,14 @@ const Header = () => {
         LIKE LION
       </Typography>
       <RightWrapper>
-        <BiSearch size='26px' style={{ cursor: 'pointer' }} />
+        <BiSearch size='26px' style={{ cursor: 'pointer', marginTop: '2px' }} onClick={() => searchButtonClicked()} />
         <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
         <ProfileWrapper>
           <BsPersonFill size='31px' color={theme.colors.darkGray} />
         </ProfileWrapper>
       </RightWrapper>
       <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />
+      <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
     </Container>
   );
 };
