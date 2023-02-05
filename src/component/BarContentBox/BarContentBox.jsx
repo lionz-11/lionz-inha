@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import theme from '../../assets/theme/Theme';
-import Profile from '../Profile/Profile';
 import Typography from '../Typography/Typography';
 
 const Box = styled(motion.article)`
@@ -12,7 +11,7 @@ const Box = styled(motion.article)`
   height: 97px;
   background-color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
-  ${(props) => props.theme.shadow.componentShadow};
+  ${(props) => props.theme.box};
   ${(props) => props.theme.flex.flexCenter};
 
   overflow: hidden;
@@ -22,10 +21,9 @@ const Box = styled(motion.article)`
 `;
 
 const Tag = styled.h4`
-  min-width: 100px;
-  width: 100px;
+  min-width: 90px;
   border-radius: 57px;
-  padding: 1.2rem 1.4rem 1rem 1.4rem;
+  padding: 0.7rem 0rem 0.6rem 0rem;
   color: white;
   ${(props) => props.theme.flex.flexCenter}
   ${(props) => props.theme.font.contentTitle};
@@ -33,7 +31,6 @@ const Tag = styled.h4`
   // 모각코, FE, BE, PD 각각의 태그 컬러
   background-color: ${(props) => {
     switch (props.tag) {
-      case '모각코':
       case 'FE':
         return `${props.theme.colors.blue}`;
       case 'BE':
@@ -101,7 +98,7 @@ const Submission = styled(Typography)`
 `;
 
 const BarContentBox = (props) => {
-  const { title, tag, date, assignment } = props;
+  const { title, tag, date } = props;
 
   return (
     <Box whileHover={theme.animation.box} onClick={props.onClick}>
@@ -111,26 +108,14 @@ const BarContentBox = (props) => {
         </Tag>
         <Title>{title}</Title>
       </LeftBox>
-      {assignment ? (
-        <RightBox>
-          <Typography sideContent color='darkGray'>
-            마감일: {date}
-          </Typography>
-          <Submission submissionStatus={props.submissionStatus} sideContentBold>
-            {props.submissionStatus}
-          </Submission>
-        </RightBox>
-      ) : (
-        <RightBox>
-          <Typography sideContent color='darkGray'>
-            {props.current}/{props.maximum}
-          </Typography>
-          <Typography sideContent color='darkGray'>
-            {date}
-          </Typography>
-          <Profile name={props.writer} img={props.img} />
-        </RightBox>
-      )}
+      <RightBox>
+        <Typography sideContent color='darkGray'>
+          마감일: {date}
+        </Typography>
+        <Submission submissionStatus={props.submissionStatus} sideContentBold>
+          {props.submissionStatus}
+        </Submission>
+      </RightBox>
     </Box>
   );
 };
