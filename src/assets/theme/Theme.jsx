@@ -62,7 +62,7 @@ const font = {
     font-family: 'pretendard-regular';
     font-size: 16px;
     line-height: 19px;
-    letter-spacing: 0.095em;
+    letter-spacing: 0.04em;
   `,
   sideContentBold: `
     font-family: 'pretendard-bold';
