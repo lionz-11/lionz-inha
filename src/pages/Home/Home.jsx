@@ -3,6 +3,7 @@ import Layout from '../../component/Layout/Layout';
 import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
 import TextButton from '../../component/TextButton/TextButton';
+import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';
 
 const dummy = {
   title: '이건 과제 제목입니다',
@@ -30,9 +31,9 @@ const Home = () => {
       />
       <TextButton haveDelete />
       <TextButton />
+      <SelectCategoryButton />
     </Layout>
   );
 };
-
 
 export default Home;
