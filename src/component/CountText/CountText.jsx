@@ -2,6 +2,8 @@ import Typography from '../Typography/Typography';
 import Flex from '../Flex/Flex';
 import Margin from '../Margin/Margin';
 
+// 하단 정렬을 해보려고 했는데, 숫자가 말썽이라 숫자에 마진 주는걸로 해결했습니다.
+// 좋은 방법 생각나시면 추천해주세요.
 const CountText = ({ unit, count }) => (
   <Flex flexCenter>
     <Typography contentText color='darkGray'>
