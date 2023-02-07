@@ -4,6 +4,7 @@ import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
 import TextButton from '../../component/TextButton/TextButton';
 import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';
+import ArrowButton from '../../component/ArrowButton/ArrowButton';
 
 const dummy = {
   title: '이건 과제 제목입니다',
@@ -32,6 +33,8 @@ const Home = () => {
       <TextButton haveDelete />
       <TextButton />
       <SelectCategoryButton />
+      <ArrowButton text='시작하기' />
+      <ArrowButton text='완료' size='small' />
     </Layout>
   );
 };
