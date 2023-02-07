@@ -4,6 +4,7 @@ import Flex from '../Flex/Flex';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
 
+// 각 버튼에 해당하는 컴포넌트
 const StyledButton = styled.button`
   width: 50px;
   height: 29px;
@@ -14,6 +15,7 @@ const StyledButton = styled.button`
   ${(props) => props.theme.flex.flexCenter};
 `;
 
+// state로 버튼 클릭 여부 확인과 컬러 변경
 const SelectCategoryButton = () => {
   const [buttonClicked, setButtonClicked] = useState([true, false, false]);
 
