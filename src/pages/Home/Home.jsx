@@ -6,6 +6,7 @@ import TextButton from '../../component/TextButton/TextButton';
 import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import TitleSet from '../../component/TitleSet/TitleSet';
+import CountText from '../../component/CountText/CountText';
 
 const dummy = {
   title: '이건 과제 제목입니다',
@@ -50,6 +51,8 @@ const Home = () => {
         size='small'
         alert='red'
       />
+      <CountText unit='ea' count='1' />
+      <CountText count='8' />
     </Layout>
   );
 };
