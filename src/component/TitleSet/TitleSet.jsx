@@ -14,7 +14,7 @@ const TitleSet = ({ title, subtitle, size, alert }) => (
     <StyledTypo pageTitle size={size} alert={alert}>
       {title}
     </StyledTypo>
-    <Margin height={9} />
+    <Margin height={size === 'small' ? 6 : 9} />
     <Typography contentText color='darkGray'>
       {subtitle}
     </Typography>
