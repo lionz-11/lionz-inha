@@ -47,7 +47,7 @@ const types = {
       height: 54px;
     `,
 
-  title: `
+  mainTitle: `
     width: 853px;
     height: 54px;
   `,
@@ -95,7 +95,7 @@ const InputWrapper = styled(Flex)`
   padding-right: 19px;
   ${(props) => props.login && types.login};
   ${(props) => props.search && types.search};
-  ${(props) => props.title && types.title};
+  ${(props) => props.mainTitle && types.mainTitle};
   ${(props) => props.link && types.link};
   ${(props) => props.editPassword && types.editPassword};
   ${(props) => props.alert && types.alert};
@@ -140,7 +140,7 @@ const StyledButton = styled.button`
   ${(props) => props.theme.flex.flexCenter};
 `;
 
-const InputBox = ({ input, login, pw, search, title, link, editPassword, text, detail, homework, alert, placeholder }) => {
+const InputBox = ({ input, login, pw, search, mainTitle, link, editPassword, text, detail, homework, alert, placeholder }) => {
   const textRef = useRef(null);
   const inputRef = useRef(null);
   const [viewPassword, setViewPassword] = useState(true);
@@ -167,13 +167,13 @@ const InputBox = ({ input, login, pw, search, title, link, editPassword, text, d
   return (
     <>
       {input ? (
-        <InputWrapper flexCenter login={login} search={search} title={title} link={link} editPassword={editPassword} alert={alert}>
+        <InputWrapper flexCenter login={login} search={search} mainTitle={mainTitle} link={link} editPassword={editPassword} alert={alert}>
           <Input
             ref={inputRef}
             login={login}
             pw={pw}
             search={search}
-            title={title}
+            mainTitle={mainTitle}
             link={link}
             editPassword={editPassword}
             alert={alert}

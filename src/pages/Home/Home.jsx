@@ -31,14 +31,14 @@ const Home = () => {
       <ArrowButton text='시작하기' />
       <ArrowButton text='완료' small />
       <TitleSet
-        maintitle={['검색 페이지입니다.']}
-        subtitle={['찾아보고 싶은 공지나 과제를 검색해서 간편하게 확인할 수 있어요.', '태그로도 검색할 수 있어요.']}
+        mainTitle={['검색 페이지입니다.']}
+        subTitle={['찾아보고 싶은 공지나 과제를 검색해서 간편하게 확인할 수 있어요.', '태그로도 검색할 수 있어요.']}
       />
       <TitleSet
         small
         alert
-        maintitle={['과제 설명']}
-        subtitle={['이 곳에는 단톡방에 과제를 공지할 때 작성한 내용을 적어도 됩니다.', '격려의 말이나 도움을 주는 말을 더해도 되구요.']}
+        mainTitle={['과제 설명']}
+        subTitle={['이 곳에는 단톡방에 과제를 공지할 때 작성한 내용을 적어도 됩니다.', '격려의 말이나 도움을 주는 말을 더해도 되구요.']}
       />
       <CountText unit='ea' count='1' />
       <CountText count='8' />
@@ -48,7 +48,7 @@ const Home = () => {
       <Margin height='10' />
       <InputBox input search placeholder='검색어 입력' />
       <Margin height='10' />
-      <InputBox input title />
+      <InputBox input mainTitle />
       <Margin height='10' />
       <InputBox input link />
       <Margin height='10' />
