@@ -31,18 +31,14 @@ const Home = () => {
       <ArrowButton text='시작하기' />
       <ArrowButton text='완료' small />
       <TitleSet
-        title='검색 페이지입니다.'
-        subtitle={['찾아보고 싶은 공지나 과제를 검색해서 간편하게 확인할 수 있어요.', <br />, '태그로도 검색할 수 있어요.']}
+        maintitle={['검색 페이지입니다.']}
+        subtitle={['찾아보고 싶은 공지나 과제를 검색해서 간편하게 확인할 수 있어요.', '태그로도 검색할 수 있어요.']}
       />
       <TitleSet
-        title='과제 설명'
-        subtitle={[
-          '이 곳에는 단톡방에 과제를 공지할 때 작성한 내용을 적어도 됩니다.',
-          <br />,
-          '격려의 말이나 도움을 주는 말을 더해도 되구요.',
-        ]}
-        size='small'
-        alert='red'
+        small
+        alert
+        maintitle={['과제 설명']}
+        subtitle={['이 곳에는 단톡방에 과제를 공지할 때 작성한 내용을 적어도 됩니다.', '격려의 말이나 도움을 주는 말을 더해도 되구요.']}
       />
       <CountText unit='ea' count='1' />
       <CountText count='8' />
