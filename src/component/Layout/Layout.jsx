@@ -17,7 +17,7 @@ const Background = styled.div`
   height: 100%;
   ${(props) => props.theme.flex.flexCenter};
   align-items: flex-start;
-  background-color: ${(props) => props.theme.colors.backgroundBlue};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Layout = ({ children }) => (

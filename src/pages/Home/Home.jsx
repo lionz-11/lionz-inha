@@ -7,6 +7,8 @@ import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCat
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import TitleSet from '../../component/TitleSet/TitleSet';
 import CountText from '../../component/CountText/CountText';
+import InputBox from '../../component/InputBox/InputBox';
+import Margin from '../../component/Margin/Margin';
 
 const dummy = {
   title: '이건 과제 제목입니다',
@@ -53,6 +55,17 @@ const Home = () => {
       />
       <CountText unit='ea' count='1' />
       <CountText count='8' />
+      <InputBox input login placeholder='아이디' />
+      <Margin height='10' />
+      <InputBox input login alert placeholder='비밀번호' />
+      <Margin height='10' />
+      <InputBox input search placeholder='검색어 입력' />
+      <Margin height='10' />
+      <InputBox input title />
+      <Margin height='10' />
+      <InputBox input link />
+      <Margin height='10' />
+      <InputBox text detail />
     </Layout>
   );
 };
