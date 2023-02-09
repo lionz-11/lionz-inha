@@ -33,17 +33,17 @@ const SelectCategoryButton = () => {
 
   return (
     <Flex flexCenter justify='space-between' style={{ width: '168px' }}>
-      <StyledButton onClick={AllClicked} color={buttonClicked[0] ? theme.colors.yellow : false}>
+      <StyledButton onClick={AllClicked} color={buttonClicked[0] ? theme.colors.yellow : undefined}>
         <Typography contentText color={buttonClicked[0] ? 'yellow' : 'lightGray'}>
           ALL
         </Typography>
       </StyledButton>
-      <StyledButton onClick={FEClicked} color={buttonClicked[1] ? theme.colors.blue : false}>
+      <StyledButton onClick={FEClicked} color={buttonClicked[1] ? theme.colors.blue : undefined}>
         <Typography contentText color={buttonClicked[1] ? 'blue' : 'lightGray'}>
           FE
         </Typography>
       </StyledButton>
-      <StyledButton onClick={BEClicked} color={buttonClicked[2] ? theme.colors.lightRed : false}>
+      <StyledButton onClick={BEClicked} color={buttonClicked[2] ? theme.colors.lightRed : undefined}>
         <Typography contentText color={buttonClicked[2] ? 'lightRed' : 'lightGray'}>
           BE
         </Typography>
