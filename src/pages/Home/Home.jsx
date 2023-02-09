@@ -29,7 +29,7 @@ const Home = () => {
       <TextButton />
       <SelectCategoryButton />
       <ArrowButton text='시작하기' />
-      <ArrowButton text='완료' size='small' />
+      <ArrowButton text='완료' small />
       <TitleSet
         title='검색 페이지입니다.'
         subtitle={['찾아보고 싶은 공지나 과제를 검색해서 간편하게 확인할 수 있어요.', <br />, '태그로도 검색할 수 있어요.']}
