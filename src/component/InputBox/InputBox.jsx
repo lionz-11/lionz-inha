@@ -4,6 +4,28 @@ import styled from 'styled-components';
 import Flex from '../Flex/Flex';
 import theme from '../../assets/theme/Theme';
 
+// textarea와 input 모든 경우를 전부 몰어넣어 코드가 복잡합니다.
+// 아래의 예시를 참고하여 사용해주세요.
+
+/*
+      <InputBox input login placeholder='아이디' />
+      -> 로그인 아이디 입력창
+      <InputBox input login pw alert placeholder='비밀번호' />
+      -> 로그인 비밀번호 입력 + 테두리 빨강
+      <InputBox input search placeholder='검색어 입력' />
+      -> 검색어 입력창
+      <InputBox input title />
+      -> 제목 입력창
+      <InputBox input link />
+      -> 깃허브 링크 입력창창
+      <InputBox text detail />
+      -> 큰 텍스트 입력창
+      <InputBox text homework />
+      -> 과제 내용 입력창
+      <InputBox input editPassword />
+      -> 비밀번호 수정창
+*/
+
 const types = {
   loginText: `
       font-family: 'pretendard-medium';
