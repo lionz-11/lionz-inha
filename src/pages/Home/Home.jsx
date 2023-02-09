@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import Layout from '../../component/Layout/Layout';
-import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
-import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
 import TextButton from '../../component/TextButton/TextButton';
 import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
@@ -9,31 +7,24 @@ import TitleSet from '../../component/TitleSet/TitleSet';
 import CountText from '../../component/CountText/CountText';
 import InputBox from '../../component/InputBox/InputBox';
 import Margin from '../../component/Margin/Margin';
+import LikeAndShare from '../../component/LikeAndShare/LikeAndShare';
+import Header from '../../component/Header/Header';
+// const dummy = {
+//   title: '이건 과제 제목입니다',
+//   contents:
+//     '이건 과제 소개 입니다.이건 과제 소개 입니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 소개 입니다.이건 과제 소개 입니다.이건',
+//   writer: 'FE',
+//   date: '마감일: 2001년 03월 24일',
+// };
 
-const dummy = {
-  title: '이건 과제 제목입니다',
-  contents:
-    '이건 과제 소개 입니다.이건 과제 소개 입니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 니다.이건 과제 소개 입니다.이건 과제 소개 입니다.이건',
-  writer: 'FE',
-  date: '마감일: 2001년 03월 24일',
-};
+// const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
 
-const a = new Array(2).fill(0).map((_, i) => ({ ...dummy, id: i }));
 const Home = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [like, setLike] = useState(false);
 
   return (
     <Layout>
-      <PhotoContentContainer data={a} />
-      <AssignmentBox
-        date='3월 24일 13시 59분'
-        src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg'
-        name='박세현'
-        detail='sss'
-        link='https://www.naver.com'
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-      />
+      <Header />
       <TextButton haveDelete />
       <TextButton />
       <SelectCategoryButton />
@@ -57,7 +48,7 @@ const Home = () => {
       <CountText count='8' />
       <InputBox input login placeholder='아이디' />
       <Margin height='10' />
-      <InputBox input login alert placeholder='비밀번호' />
+      <InputBox input login pw alert placeholder='비밀번호' />
       <Margin height='10' />
       <InputBox input search placeholder='검색어 입력' />
       <Margin height='10' />
@@ -66,6 +57,11 @@ const Home = () => {
       <InputBox input link />
       <Margin height='10' />
       <InputBox text detail />
+      <Margin height='10' />
+      <InputBox text homework />
+      <Margin height='10' />
+      <InputBox input editPassword />
+      <LikeAndShare like={like} setLike={() => setLike(!like)} />
     </Layout>
   );
 };

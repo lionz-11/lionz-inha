@@ -12,6 +12,7 @@ const colors = {
   yellow: '#fad77e',
   darkYellow: '#ecb834',
   pointRed: '#de6775',
+  veryLightBlue: '#F4F7F9',
 };
 
 const box = `
