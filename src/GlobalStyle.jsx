@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #root {
       width: 100vw;
       height: 100vh;
-      background-color: ${(props) => props.theme.colors.backgroundBlue};
+      background-color: ${(props) => props.theme.colors.white};
   }
 
   @font-face {
@@ -43,6 +43,21 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+  }
+
+
+  input {
+    border: none;
+    outline: none;
+    background: white;
+    :focus {
+    outline: none;
+    }
+
+    textarea {
+      resize: none;
+      background: white;
+    }
   }
 `;
 
