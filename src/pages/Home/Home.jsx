@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Layout from '../../component/Layout/Layout';
 import TextButton from '../../component/TextButton/TextButton';
 import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';

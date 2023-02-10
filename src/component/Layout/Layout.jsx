@@ -10,6 +10,8 @@ const Width = styled.div`
   @media (max-width: 1312px) {
     padding: 0 1rem;
   }
+
+  ${({ size }) => size === 'small' && 'max-width: 852px'};
 `;
 
 const Background = styled.div`
@@ -20,9 +22,9 @@ const Background = styled.div`
   background-color: ${(props) => props.theme.colors.white};
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, size }) => (
   <Background>
-    <Width>{children}</Width>
+    <Width size={size}>{children}</Width>
   </Background>
 );
 
