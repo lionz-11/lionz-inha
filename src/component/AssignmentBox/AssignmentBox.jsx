@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AiFillGithub } from 'react-icons/ai';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
 
 const Box = styled(motion.article)`
+  // 단순 스타일링
   cursor: pointer;
   margin: 0 10px;
   max-width: 854px;
@@ -90,17 +92,17 @@ const LinkContainer = styled.div`
   align-items: center;
 `;
 
-const AssignmentBox = ({ isOpen, setIsOpen, detail, date, link, name, src }) => {
-  const openHandler = () => {
-    setIsOpen(!isOpen);
-  };
+const AssignmentBox = ({ detail, date, link, name, src }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openHandler = () => setIsOpen(!isOpen);
 
   return (
     <Box isOpen={isOpen} onClick={openHandler} whileHover={theme.animation.box}>
       <ContentTitle>
         <LeftBox>
           <Profile src={src} />
-          <Title>{name}의 과제입니다.</Title>
+          <Title>{name}의 과제입니다.adsfasdfsfadfadfasdfasdfasdfasdfsad</Title>
         </LeftBox>
         <RightBox>
           <Typography sideContent color='darkGray'>
