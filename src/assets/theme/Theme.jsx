@@ -11,6 +11,7 @@ const colors = {
   lightRed: 'rgba(231, 109, 123, 0.8)',
   yellow: '#fad77e',
   darkYellow: '#ecb834',
+  pointRed: '#de6775',
   veryLightBlue: '#F4F7F9',
 };
 
