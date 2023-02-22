@@ -23,5 +23,6 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/destructuring-assignment': 'off', // 임시
     'react/jsx-no-useless-fragment': 'off',
+    'linebreak-style': 0,
   },
 };
