@@ -11,7 +11,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 1312px;
   height: 50px;
-  background-color: ${(props) => props.theme.colors.backgroundBlue};
+  background-color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.flex.flexCenter};
   position: sticky;
   top: 0px;

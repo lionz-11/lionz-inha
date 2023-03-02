@@ -13,10 +13,10 @@ const StyledArrow = styled(BsChevronRight)`
   color: ${(props) => props.theme.colors.blue};
 `;
 
-const ArrowButton = ({ text, small }) => (
+const ArrowButton = ({ children, small }) => (
   <Flex flexCenter style={{ cursor: 'pointer' }}>
     <StyledTypo contentText color='blue' small={small}>
-      {text}
+      {children}
     </StyledTypo>
     <StyledArrow size={small ? '14px' : '16px'} />
   </Flex>
