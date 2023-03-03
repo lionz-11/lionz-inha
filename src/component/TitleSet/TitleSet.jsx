@@ -10,13 +10,13 @@ const StyledTypo = styled(Typography)`
 `;
 
 const TitleSet = ({ mainTitle, subTitle, small, alert }) => (
-  <Flex flexCenter column align='baseline'>
+  <Flex flexCenter column align='baseline' style={{ marginLeft: '13px' }}>
     {mainTitle.map((m) => (
       <StyledTypo key={m} pageTitle small={small} alert={alert}>
         {m}
       </StyledTypo>
     ))}
-    <Margin height={small ? 6 : 9} />
+    <Margin height={small ? 0 : 9} />
     {subTitle.map((s) => (
       <Typography key={s} contentText color='darkGray'>
         {s}
