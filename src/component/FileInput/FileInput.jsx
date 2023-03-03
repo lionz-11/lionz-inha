@@ -6,9 +6,6 @@ const Title = styled(Typography)`
   ${({ theme }) => theme.font.contentText};
   color: ${({ theme }) => theme.colors.gray};
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   &:hover {
     color: ${({ theme }) => theme.colors.blue};
@@ -20,13 +17,19 @@ const Input = styled.input.attrs({ type: 'file', id: 'file', accept: '.jpeg,.hei
   display: none;
 `;
 
-const FileInput = () => (
-  <>
-    <label htmlFor='file'>
-      <Title>사진 업로드</Title>
-    </label>
-    <Input />
-  </>
-);
+const FileInput = () => {
+  const handleFilePost = () => {
+    console.log('file');
+  };
+
+  return (
+    <div onClick={handleFilePost}>
+      <label htmlFor='file'>
+        <Title>사진 업로드</Title>
+      </label>
+      <Input />
+    </div>
+  );
+};
 
 export default FileInput;
