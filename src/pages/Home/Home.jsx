@@ -12,9 +12,9 @@ import s from '../../assets/svgs/logo192.png';
 
 const Home = () => (
   <Layout>
-    <img src='logo192.png' alt='temp' />
-    <img src={require('../../assets/svgs/logo192.png')} alt='temp' />
-    <img src={s} alt='temp' />
+    <img src='logo192.png' alt='public안에 사진두기' />
+    <img src={require('../../assets/svgs/logo192.png')} alt='src안에 사진두기1' />
+    <img src={s} alt='src안에 사진두가2' />
   </Layout>
 );
 
