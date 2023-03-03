@@ -11,7 +11,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'max-len': ['error', { code: 140 }],
+    // 'max-len': ['error', { code: 140 }],
+    'max-len': 'off',
     'object-curly-newline': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
     'react/react-in-jsx-scope': 'off',
@@ -25,5 +26,8 @@ module.exports = {
     'react/jsx-no-useless-fragment': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'global-require': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'react/jsx-wrap-multilines': 'off',
   },
 };
