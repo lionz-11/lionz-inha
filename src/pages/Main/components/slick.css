@@ -1,0 +1,34 @@
+/* slick.css */
+
+.dots_custom {
+  width: 113px;
+  display: flex;
+  vertical-align: middle;
+  justify-content: space-between;
+  margin: auto 0;
+  padding: 0;
+}
+
+.dots_custom li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 3px;
+  padding: 0;
+}
+
+.dots_custom li button {
+  border: none;
+  background: #d9d9d9;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 8px;
+  width: 8px;
+  border-radius: 100%;
+  padding: 0;
+}
+
+.dots_custom li.slick-active button {
+  background-color: #7c7c7c;
+}
