@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as MainImg } from './components/mainImg.svg';
+import { ReactComponent as MainImg } from './svgs/mainImg.svg';
 import Header from '../../component/Header/Header';
 import Layout from '../../component/Layout/Layout';
 import Flex from '../../component/Flex/Flex';
