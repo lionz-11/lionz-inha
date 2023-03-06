@@ -11,7 +11,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const TextButton = ({ haveDelete }) => (
+const TextButton = ({ haveDelete, children, color }) => (
   <>
     {haveDelete ? (
       <ButtonContainer>
@@ -23,8 +23,8 @@ const TextButton = ({ haveDelete }) => (
         </Typography>
       </ButtonContainer>
     ) : (
-      <Typography style={{ cursor: 'pointer' }} contentText color='gray'>
-        수정하기
+      <Typography style={{ cursor: 'pointer' }} contentText color={color}>
+        {children}
       </Typography>
     )}
   </>

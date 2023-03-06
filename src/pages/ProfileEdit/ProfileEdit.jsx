@@ -1,31 +1,85 @@
+import axios from 'axios';
+import styled from 'styled-components';
+import { useEffect } from 'react';
+import FileInput from '../../component/FileInput/FileInput';
 import Layout from '../../component/Layout/Layout';
-import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
-import BarComponentContainer from '../../component/BarComponentContainer/BarComponentContainer';
+import loveLock from './Love Lock.svg';
+import TextButton from '../../component/TextButton/TextButton';
+import InputBox from '../../component/InputBox/InputBox';
+import HeadLine from '../../component/HeadLine/HeadLine';
+import TitleContainer from '../../component/TitleContainer/TitleContainer';
+import Margin from '../../component/Margin/Margin';
+import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
+import Header from '../../component/Header/Header';
 
-// 과제 제출 현황을 props로 받아서 푼다.
-const a = new Array(4).fill(0);
+const TwinContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 
-const ProfileEdit = () => (
-  <Layout size='small'>
-    <div style={{ border: '1px solid black', width: '100%' }}>profile edit</div>
-    <BarComponentContainer
-      bars={a}
-      renderProp={() => (
-        <AssignmentBox
-          detail='안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요'
-          date='0324'
-          link='https://www.notion.so/7e8ac7301b034f3189cfb85749668cb8'
-          name='sehyun'
-          src='http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'
+const ProfileEdit = () => {
+  console.log('hi');
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API}/member`, {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3Nzk1NzI1MH0.7dYQK7mwK2YdNS5LjEYTY5P5_76YQoVH1cfes0yI0wqNiGBcIEF2eNjycdyX60VaIYhxMKW_ZBVdsW-AaaNeaw',
+        },
+      })
+      .then((r) => {
+        console.log(r);
+      });
+  }, []);
+
+  return (
+    <Layout size='small'>
+      <Header />
+      <Margin height='98' />
+
+      <HeadLine
+        src={loveLock}
+        mainTitle={['환영합니다 !']}
+        subTitle={['멋쟁이사자처럼 11기 활동을 이어나가기 이전에', '본인을 표현할 수 있는 프로필을 작성해봐요.']}
+      />
+      <Margin height='50' />
+      <TwinContainer>
+        <TitleContainer
+          small
+          mainTitle={['프로필 사진']}
+          subTitle={['자신을 잘 표현할 수 있는 사진을 선택해 봅시다.']}
+          component={
+            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+              <div style={{ backgroundColor: 'pink', height: '150px', width: '150px', borderRadius: '100px' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <FileInput />
+                <TextButton color='lightRed'>사진 삭제</TextButton>
+              </div>
+            </div>
+          }
         />
-      )}
-    />
-  </Layout>
-);
+        <TitleContainer
+          small
+          mainTitle={['비밀번호 설정']}
+          subTitle={['영어, 숫자로 구성된 비밀번호로 설정해주세요.']}
+          component={<InputBox input editPassword />}
+        />
+      </TwinContainer>
+
+      <Margin height='92' />
+
+      <TitleContainer
+        small
+        mainTitle={['한 줄 소개']}
+        subTitle={['인스타그램 계정, 블로그 링크 혹은 간단한 한 줄 소개를 적어주세요. ex) 고양이가 세상을 지배한다.']}
+        component={<InputBox input title />}
+      />
+      <ArrowButtonContainer text='멋쟁이 사자처럼 11기 활동 시작하기' />
+    </Layout>
+  );
+};
 
 export default ProfileEdit;
-
-// compound component + render props
-/**
- * Data 목록을 받아서 그냥 barComponentContainer에 꽂으면 그 안에서 map으로 펼쳐진다. 그리고 그 맵안에 들어갈걸 render prop 주는 부분에서 구현해야한다.
- */
+// text='멋쟁이 사자처럼 11기 활동 시작하기'
