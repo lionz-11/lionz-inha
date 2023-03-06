@@ -2,11 +2,14 @@
 
 .dots_custom {
   width: 113px;
+  height: 8px;
   display: flex;
   vertical-align: middle;
   justify-content: space-between;
   margin: auto 0;
   padding: 0;
+  position: fixed;
+  bottom: -25px;
 }
 
 .dots_custom li {

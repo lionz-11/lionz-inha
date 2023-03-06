@@ -14,33 +14,46 @@ const TopWrapper = styled(Flex)`
   justify-content: space-between;
   align-items: center;
   vertical-align: middle;
+  padding-left: 21px;
+  position: relative;
+  top: 20px;
 `;
 
 const BottomWrapper = styled(Flex)`
   width: 805px;
   justify-content: space-between;
+  position: relative;
+  top: -140px;
 `;
 
 const Main = () => (
   <Layout>
     <Header />
-    <TopWrapper flexCenter>
-      <Flex flexCenter column align='flex-start'>
-        <Typography pageTitle style={{ textAlign: 'left' }}>
-          모든건 당신의
-          <br />손 끝에서.
-        </Typography>
-        <Margin height='10' />
-        <Typography sideContent color='darkGray' style={{ textAlign: 'left' }}>
-          <span style={{ color: '#4A90E2' }}>FE 박사자</span>님, 환영합니다.
-        </Typography>
-      </Flex>
-      <MainImg />
-    </TopWrapper>
-    <BottomWrapper>
-      <NoticeSlick />
-      <Buttons />
-    </BottomWrapper>
+    <Flex
+      flexCenter
+      column
+      align='center'
+      justify='center'
+      style={{ width: '100vw', height: 'calc(100vh - 50px)', verticalAlign: 'middle' }}
+    >
+      <TopWrapper flexCenter>
+        <Flex flexCenter column align='flex-start'>
+          <Typography pageTitle style={{ textAlign: 'left' }}>
+            모든건 당신의
+            <br />손 끝에서.
+          </Typography>
+          <Margin height='10' />
+          <Typography sideContent color='darkGray' style={{ textAlign: 'left' }}>
+            <span style={{ color: '#4A90E2' }}>FE 박사자</span>님, 환영합니다.
+          </Typography>
+        </Flex>
+        <MainImg />
+      </TopWrapper>
+      <BottomWrapper>
+        <NoticeSlick />
+        <Buttons />
+      </BottomWrapper>
+    </Flex>
   </Layout>
 );
 
