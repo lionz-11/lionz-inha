@@ -7,10 +7,6 @@ const Width = styled.div`
   max-width: 1312px;
   ${(props) => props.theme.flex.flexCenterColumn};
 
-  @media (max-width: 1312px) {
-    padding: 0 1rem;
-  }
-
   ${({ size }) => size === 'small' && 'max-width: 852px'};
 `;
 
