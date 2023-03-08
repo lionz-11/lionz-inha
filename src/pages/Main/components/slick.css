@@ -5,11 +5,12 @@
   height: 8px;
   display: flex;
   vertical-align: middle;
-  justify-content: space-between;
+  justify-content: left;
   margin: auto 0;
   padding: 0;
   position: fixed;
-  bottom: -25px;
+  bottom: calc(50% - 1095px);
+  left: calc(50% - 400px);
 }
 
 .dots_custom li {

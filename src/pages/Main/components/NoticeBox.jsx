@@ -13,6 +13,7 @@ const Box = styled(Flex)`
   transition: 0.5s;
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
+  cursor: pointer;
 `;
 
 // 사진을 넣을 컴포넌트! 임시로 만들어놨다.

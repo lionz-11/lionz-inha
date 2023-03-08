@@ -23,6 +23,7 @@ const StyledButton = styled.div`
   ${(props) => props.theme.box}
   transition: 0.5s;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const NewAlert = styled(Typography)`

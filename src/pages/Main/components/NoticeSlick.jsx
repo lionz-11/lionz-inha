@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
 import ArrowButton from '../../../component/ArrowButton/ArrowButton';
+import Flex from '../../../component/Flex/Flex';
+import Margin from '../../../component/Margin/Margin';
 
 const StyledSlider = styled(Slider)`
   width: 582px;
@@ -40,7 +42,7 @@ const NoticeSlick = () => {
   };
 
   return (
-    <>
+    <Flex flexCenter column align='flex-end' style={{ marginTop: '30px' }}>
       <StyledSlider {...settings}>
         <NoticeBox data={dataSet} />
         <NoticeBox data={dataSet} />
@@ -49,10 +51,10 @@ const NoticeSlick = () => {
         <NoticeBox data={dataSet} />
         <NoticeBox data={dataSet} />
         <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
       </StyledSlider>
+      <Margin height='10' />
       <StyledArrow>공지 전체보기</StyledArrow>
-    </>
+    </Flex>
   );
 };
 
