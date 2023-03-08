@@ -1,15 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-// import ArrowButton from '../../../component/ArrowButton/ArrowButton';
 import NoticeBox from './NoticeBox';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './slick.css';
+import ArrowButton from '../../../component/ArrowButton/ArrowButton';
 
 const StyledSlider = styled(Slider)`
   width: 582px;
   height: 432px;
+  border-radius: 10px;
+  ${(props) => props.theme.box}
+  transition: 0.5s;
+`;
+
+const StyledArrow = styled(ArrowButton)`
+  position: fixed;
+  bottom: 100px;
 `;
 
 const NoticeSlick = () => {
@@ -32,16 +40,19 @@ const NoticeSlick = () => {
   };
 
   return (
-    <StyledSlider {...settings}>
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-      <NoticeBox data={dataSet} />
-    </StyledSlider>
+    <>
+      <StyledSlider {...settings}>
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+        <NoticeBox data={dataSet} />
+      </StyledSlider>
+      <StyledArrow>공지 전체보기</StyledArrow>
+    </>
   );
 };
 
