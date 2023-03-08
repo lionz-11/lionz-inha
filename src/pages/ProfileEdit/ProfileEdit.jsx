@@ -74,7 +74,7 @@ const ProfileEdit = () => {
         small
         mainTitle={['한 줄 소개']}
         subTitle={['인스타그램 계정, 블로그 링크 혹은 간단한 한 줄 소개를 적어주세요. ex) 고양이가 세상을 지배한다.']}
-        component={<InputBox input title />}
+        component={<InputBox input mainTitle />}
       />
       <ArrowButtonContainer text='멋쟁이 사자처럼 11기 활동 시작하기' />
     </Layout>

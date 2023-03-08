@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const ArrowButtonContainer = ({ text }) => (
   <Container>
-    <ArrowButton text={text} />
+    <ArrowButton>{text}</ArrowButton>
   </Container>
 );
 
