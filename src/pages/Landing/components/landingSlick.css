@@ -1,21 +1,22 @@
-.dots_custom {
+.dots_custom_landing {
   position: fixed;
-  top: calc(50% - 1700px);
-  left: calc(50% - 2000px);
-  display: flex;
+  top: calc(50% - 283px);
+  left: calc(50% - 21px);
   flex-direction: row;
-  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
   padding: 0;
+  width: 42px;
 }
 
-.dots_custom li {
+.dots_custom_landing li {
   list-style: none;
   cursor: pointer;
   display: inline-block;
   padding: 0 3px;
 }
 
-.dots_custom li button {
+.dots_custom_landing li button {
   border: none;
   background: #bfbfbf;
   color: transparent;
@@ -27,6 +28,6 @@
   padding: 0;
 }
 
-.dots_custom li.slick-active button {
+.dots_custom_landing li.slick-active button {
   background: #7c7c7c;
 }

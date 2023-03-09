@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import NoticeBox from './NoticeBox';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './slick.css';
+import './mainSlick.css';
 import ArrowButton from '../../../component/ArrowButton/ArrowButton';
 import Flex from '../../../component/Flex/Flex';
 import Margin from '../../../component/Margin/Margin';
@@ -38,7 +38,7 @@ const NoticeSlick = () => {
     arrows: false,
     slidesTosShow: 2,
     slidesToScroll: 1,
-    dotsClass: 'dots_custom',
+    dotsClass: 'dots_custom_main',
   };
 
   return (
