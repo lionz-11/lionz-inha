@@ -7,6 +7,9 @@ import theme from '../../assets/theme/Theme';
 import MenuBar from './components/MenuBar';
 import SearchBar from './components/SearchBar';
 
+// onlyTitle 추가.
+// header 사용 시에 onlyTitle 추가하면 상단 아이콘 숨겨짐.
+
 const Container = styled.div`
   width: 100%;
   max-width: 1312px;
@@ -38,7 +41,7 @@ const ProfileWrapper = styled.div`
   cursor: pointer;
 `;
 
-const Header = () => {
+const Header = ({ onlyTitle }) => {
   const [menuButton, setMenuButton] = useState(false);
   const [searchButton, setSearchButton] = useState(false);
 
@@ -55,15 +58,19 @@ const Header = () => {
       <Typography header style={{ cursor: 'pointer' }}>
         LIKE LION
       </Typography>
-      <RightWrapper>
-        <BiSearch size='26px' style={{ cursor: 'pointer', marginTop: '2px' }} onClick={() => searchButtonClicked()} />
-        <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
-        <ProfileWrapper>
-          <BsPersonFill size='31px' color={theme.colors.darkGray} />
-        </ProfileWrapper>
-      </RightWrapper>
-      <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />
-      <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
+      {!onlyTitle && (
+        <>
+          <RightWrapper>
+            <BiSearch size='26px' style={{ cursor: 'pointer', marginTop: '2px' }} onClick={() => searchButtonClicked()} />
+            <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
+            <ProfileWrapper>
+              <BsPersonFill size='31px' color={theme.colors.darkGray} />
+            </ProfileWrapper>
+          </RightWrapper>
+          <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />
+          <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
+        </>
+      )}
     </Container>
   );
 };

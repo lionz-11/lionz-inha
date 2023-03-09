@@ -64,7 +64,7 @@ const Landing = () => {
 
   return (
     <Layout>
-      <Header />
+      <Header onlyTitle />
       <Flex
         flexCenter
         column
