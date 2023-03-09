@@ -12,24 +12,8 @@ import Page3 from './components/Page3';
 import Flex from '../../component/Flex/Flex';
 
 const StyledSlider = styled(Slider)`
-  &,
-  .slick-track,
-  .slick-list,
-  .slick-slide > div {
-    width: 968px;
-    height: 566px;
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  &,
-  .slick-slide > div {
-    width: 968px;
-    height: 566px;
-  }
+  width: 920px;
+  height: 566px;
 `;
 
 const StyledLeftArrow = styled(BsChevronLeft)`

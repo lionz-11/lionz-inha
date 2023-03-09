@@ -1,12 +1,11 @@
 .dots_custom {
   position: fixed;
-  top: calc(50% - 283px);
-  left: calc(50% - 21px);
+  top: calc(50% - 1700px);
+  left: calc(50% - 2000px);
+  display: flex;
   flex-direction: row;
-  vertical-align: middle;
-  align-items: center;
+  justify-content: center;
   padding: 0;
-  width: 42px;
 }
 
 .dots_custom li {
