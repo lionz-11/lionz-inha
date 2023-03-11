@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Slider from 'react-slick';
-import './components/slick.css';
+import './components/landingSlick.css';
 import styled from 'styled-components';
 import Header from '../../component/Header/Header';
 import Layout from '../../component/Layout/Layout';
@@ -12,24 +12,8 @@ import Page3 from './components/Page3';
 import Flex from '../../component/Flex/Flex';
 
 const StyledSlider = styled(Slider)`
-  &,
-  .slick-track,
-  .slick-list,
-  .slick-slide > div {
-    width: 968px;
-    height: 566px;
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  &,
-  .slick-slide > div {
-    width: 968px;
-    height: 566px;
-  }
+  width: 920px;
+  height: 566px;
 `;
 
 const StyledLeftArrow = styled(BsChevronLeft)`
@@ -46,25 +30,15 @@ const Landing = () => {
     infinite: false,
     fade: true,
     speed: 500,
-    arrows: true,
+    arrows: false,
     slidesTosShow: 1,
     slidesToScroll: 1,
-    dotsClass: 'dots_custom',
-    prevArrow: (
-      <div>
-        <StyledLeftArrow style={{ cursor: 'pointer' }} />
-      </div>
-    ),
-    nextArrow: (
-      <div>
-        <StyledRightArrow style={{ cursor: 'pointer' }} />
-      </div>
-    ),
+    dotsClass: 'dots_custom_landing',
   };
 
   return (
     <Layout>
-      <Header />
+      <Header onlyTitle />
       <Flex
         flexCenter
         column
@@ -72,11 +46,15 @@ const Landing = () => {
         justify='center'
         style={{ width: '100vw', height: 'calc(100vh - 50px)', verticalAlign: 'middle' }}
       >
-        <StyledSlider {...settings}>
-          <Page1 />
-          <Page2 />
-          <Page3 />
-        </StyledSlider>
+        <Flex flexCenter>
+          <StyledLeftArrow style={{ cursor: 'pointer' }} />
+          <StyledSlider {...settings}>
+            <Page1 />
+            <Page2 />
+            <Page3 />
+          </StyledSlider>
+          <StyledRightArrow style={{ cursor: 'pointer' }} />
+        </Flex>
         <ArrowButton>시작하기</ArrowButton>
       </Flex>
     </Layout>
