@@ -74,7 +74,7 @@ const ProfileEdit = () => {
   return (
     <>
       <Layout size='small'>
-        <Header onlyTitle />
+        {welcome === '1' ? <Header onlyTitle /> : <Header />}
         <Margin height='98' />
         {welcome === '1' ? (
           <HeadLine
