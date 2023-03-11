@@ -14,7 +14,7 @@ import theme from '../../assets/theme/Theme';
       -> 로그인 비밀번호 입력 + 테두리 빨강
       <InputBox input search placeholder='검색어 입력' />
       -> 검색어 입력창
-      <InputBox input title />
+      <InputBox input mainTitle />
       -> 제목 입력창
       <InputBox input link />
       -> 깃허브 링크 입력창창
