@@ -6,6 +6,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
+
+  p {
+    margin-left: 13px;
+  }
 `;
 
 const TitleContainer = ({ width, mainTitle, subTitle, component, small }) => (
