@@ -20,8 +20,8 @@ const MenuButtonWrapper = styled.div`
   }
 `;
 
-const MenuButton = ({ title, subTitle }) => (
-  <MenuButtonWrapper>
+const MenuButton = ({ title, subTitle, onClick }) => (
+  <MenuButtonWrapper onClick={onClick}>
     <Typography loginText>{title}</Typography>
     <Margin height='4' />
     <Typography sideContentSmall color='darkGray'>
