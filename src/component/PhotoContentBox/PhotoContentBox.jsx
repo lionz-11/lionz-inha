@@ -6,10 +6,12 @@ import theme from '../../assets/theme/Theme';
 // 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(motion.article)`
   max-width: 415px;
+  width: 415px;
   border-radius: 10px;
   ${(props) => props.theme.box}
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
+  cursor: pointer;
 `;
 
 // 사진을 넣을 컴포넌트! 임시로 만들어놨다.

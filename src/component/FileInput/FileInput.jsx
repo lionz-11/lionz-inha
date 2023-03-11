@@ -19,7 +19,7 @@ const Input = styled.input.attrs({ type: 'file', id: 'file', accept: '.jpeg,.hei
 
 const FileInput = () => {
   const handleFilePost = () => {
-    console.log('file');
+    // console.log('file');
   };
 
   return (
