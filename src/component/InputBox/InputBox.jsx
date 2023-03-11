@@ -210,7 +210,7 @@ const InputBox = ({
           ) : (
             ''
           )}
-          {search && inputText ? (
+          {search && value ? (
             <StyledButton onClick={deleteText}>
               <BsFillXCircleFill size='20px' color={theme.colors.lightGray} />
             </StyledButton>
