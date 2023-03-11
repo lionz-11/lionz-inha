@@ -16,19 +16,22 @@ const StyledButton = styled.button`
 `;
 
 // state로 버튼 클릭 여부 확인과 컬러 변경
-const SelectCategoryButton = () => {
+const SelectCategoryButton = ({ setCategory }) => {
   const [buttonClicked, setButtonClicked] = useState([true, false, false]);
 
   const AllClicked = () => {
     setButtonClicked([true, false, false]);
+    setCategory('ALL');
   };
 
   const FEClicked = () => {
     setButtonClicked([false, true, false]);
+    setCategory('FE');
   };
 
   const BEClicked = () => {
     setButtonClicked([false, false, true]);
+    setCategory('BE');
   };
 
   return (
