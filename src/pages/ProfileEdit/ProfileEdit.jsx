@@ -11,6 +11,7 @@ import TitleContainer from '../../component/TitleContainer/TitleContainer';
 import Margin from '../../component/Margin/Margin';
 import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
 import Header from '../../component/Header/Header';
+import landing from './landing.jpg';
 
 const TwinContainer = styled.div`
   width: 100%;
@@ -20,7 +21,7 @@ const TwinContainer = styled.div`
 
 const ProfileEdit = () => {
   useEffect(() => {
-    // 한번 감싸줌
+    // 한번 감싸줘야함. 아래는 임시로 토큰을 얻기 위한 코드
     const login = async () => {
       const { data } = await axios.post(`${process.env.REACT_APP_API}/auth/login`, {
         email: 'ye@test.com',
@@ -30,7 +31,32 @@ const ProfileEdit = () => {
       console.log(data.accessToken);
     };
 
-    login();
+    const memberConfig = async () => {
+      const { data } = await axios.get(`${process.env.REACT_APP_API}/member`, {
+        email: 'ye@test.com',
+        password: '1234',
+      });
+
+      console.log(data);
+    };
+
+    const postImage = async () => {
+      const formData = new FormData();
+      formData.append('file', landing);
+
+      axios
+        .post(`${process.env.REACT_APP_API}/member/img`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+        })
+        .then((r) => console.log(r));
+
+      // console.log(response);
+    };
+
+    // memberConfig();
+
+    postImage();
+
     // axios
     //   .get(`${process.env.REACT_APP_API}/member`, {
     //     headers: {

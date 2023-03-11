@@ -30,5 +30,6 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/jsx-wrap-multilines': 'off',
     'react/jsx-no-constructed-context-values': 'off',
+    'no-unused-vars': 'off',
   },
 };
