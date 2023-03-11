@@ -10,6 +10,7 @@ import InputBox from '../../component/InputBox/InputBox';
 import TitleSet from '../../component/TitleSet/TitleSet';
 import NoResult from './NoResult';
 import Result from './Result';
+import { Toast } from '../../component/Toast/Toast';
 
 const InputSet = styled.div`
   display: flex;
@@ -36,6 +37,11 @@ const SearchResult = () => {
   };
 
   const handleKeyUp = (e) => {
+    if (anotherKeyword === '') {
+      Toast('키워드를 입력해주세요');
+      return;
+    }
+
     if (e.keyCode === 13) {
       navigate(`/search/${anotherKeyword}`);
     }

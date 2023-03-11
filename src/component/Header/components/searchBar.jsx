@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Margin from '../../Margin/Margin';
 import Typography from '../../Typography/Typography';
 import InputBox from '../../InputBox/InputBox';
+import { Toast } from '../../Toast/Toast';
 
 const Dimmer = styled(motion.div)`
   width: 100%;
