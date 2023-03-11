@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import Margin from '../../Margin/Margin';
 import Typography from '../../Typography/Typography';
+import InputBox from '../../InputBox/InputBox';
 
 const Dimmer = styled(motion.div)`
   width: 100%;
@@ -19,7 +20,6 @@ const Dimmer = styled(motion.div)`
 const SearchWrapper = styled.div`
   width: 696px;
   height: 227px;
-  padding-left: 34px;
   position: fixed;
   top: -227px;
   border-radius: 0px 0px 17px 17px;
@@ -32,8 +32,17 @@ const SearchWrapper = styled.div`
     css`
       top: 0;
     `}
+
+  p {
+    margin-left: 33px;
+  }
 `;
 
+const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 const SearchBar = ({ searchButton, searchButtonClicked }) => (
   <>
     <AnimatePresence>
@@ -47,6 +56,10 @@ const SearchBar = ({ searchButton, searchButtonClicked }) => (
         찾아보고 싶은 공지나 과제를 검색해서 간편하게 확인할 수 있어요. <br />
         글에 달린 태그로도 검색할 수 있답니다.
       </Typography>
+      <Margin height={20} />
+      <InputWrapper>
+        <InputBox input search placeholder='검색어 입력' />
+      </InputWrapper>
     </SearchWrapper>
   </>
 );
