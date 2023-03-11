@@ -19,24 +19,33 @@ const TwinContainer = styled.div`
 `;
 
 const ProfileEdit = () => {
-  console.log('hi');
-
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API}/member`, {
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3Nzk1NzI1MH0.7dYQK7mwK2YdNS5LjEYTY5P5_76YQoVH1cfes0yI0wqNiGBcIEF2eNjycdyX60VaIYhxMKW_ZBVdsW-AaaNeaw',
-        },
-      })
-      .then((r) => {
-        console.log(r);
+    // 한번 감싸줌
+    const login = async () => {
+      const { data } = await axios.post(`${process.env.REACT_APP_API}/auth/login`, {
+        email: 'ye@test.com',
+        password: '1234',
       });
+      localStorage.setItem('accessToken', data.accessToken);
+      console.log(data.accessToken);
+    };
+
+    login();
+    // axios
+    //   .get(`${process.env.REACT_APP_API}/member`, {
+    //     headers: {
+    //       Authorization:
+    //         'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3Nzk1NzI1MH0.7dYQK7mwK2YdNS5LjEYTY5P5_76YQoVH1cfes0yI0wqNiGBcIEF2eNjycdyX60VaIYhxMKW_ZBVdsW-AaaNeaw',
+    //     },
+    //   })
+    //   .then((r) => {
+    //     console.log(r);
+    //   });
   }, []);
 
   return (
     <Layout size='small'>
-      <Header />
+      <Header onlyTitle />
       <Margin height='98' />
 
       <HeadLine
