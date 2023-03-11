@@ -27,7 +27,6 @@ const font = {
   header: `
     font-family: 'pretendard-bold';
     font-size: 32px;
-    line-height: 38px;
     letter-spacing: 0.105em;
   `,
   semiHeader: `
