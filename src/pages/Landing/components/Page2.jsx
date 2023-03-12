@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography from '../../../component/Typography/Typography';
-import Landing2 from './landing2.png';
+import Landing2 from '../images/landing2.png';
 import Flex from '../../../component/Flex/Flex';
 
 const SliderWrapper = styled.div`
