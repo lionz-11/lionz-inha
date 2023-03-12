@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Flex from '../../../component/Flex/Flex';
 import Typography from '../../../component/Typography/Typography';
-import { ReactComponent as MainBtn1 } from '../svgs/mainBtn1.svg';
-import { ReactComponent as MainBtn2 } from '../svgs/mainBtn2.svg';
-import { ReactComponent as MainBtn3 } from '../svgs/mainBtn3.svg';
+import MainBtn1 from '../images/mainBtn1.png';
+import MainBtn2 from '../images/mainBtn2.png';
+import MainBtn3 from '../images/mainBtn3.png';
 
 const ButtonWrapper = styled(Flex)`
   width: 206px;
@@ -33,19 +33,19 @@ const NewAlert = styled(Typography)`
   top: 42px;
 `;
 
-const StyledMainBtn1 = styled(MainBtn1)`
+const StyledMainBtn1 = styled.img`
   position: relative;
   top: -50px;
   left: 75px;
 `;
 
-const StyledMainBtn2 = styled(MainBtn2)`
+const StyledMainBtn2 = styled.img`
   position: relative;
   top: -40px;
   left: 75px;
 `;
 
-const StyledMainBtn3 = styled(MainBtn3)`
+const StyledMainBtn3 = styled.img`
   position: relative;
   top: -65px;
   left: 65px;
@@ -59,7 +59,7 @@ const Buttons = () => (
       </Typography>
       <Typography buttonText>일정</Typography>
       <NewAlert color='pointRed'>new</NewAlert>
-      <StyledMainBtn1 />
+      <StyledMainBtn1 src={MainBtn1} />
     </StyledButton>
     <StyledButton>
       <Typography sideContentSmall color='darkGray'>
@@ -67,7 +67,7 @@ const Buttons = () => (
       </Typography>
       <Typography buttonText>과제</Typography>
       <NewAlert color='pointRed'>new</NewAlert>
-      <StyledMainBtn2 />
+      <StyledMainBtn2 src={MainBtn2} />
     </StyledButton>
     <StyledButton>
       <Typography sideContentSmall color='darkGray'>
@@ -75,7 +75,7 @@ const Buttons = () => (
       </Typography>
       <Typography buttonText>연락처</Typography>
       <NewAlert color='pointRed'>new</NewAlert>
-      <StyledMainBtn3 />
+      <StyledMainBtn3 src={MainBtn3} />
     </StyledButton>
   </ButtonWrapper>
 );
