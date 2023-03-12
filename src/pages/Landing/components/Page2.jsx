@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography from '../../../component/Typography/Typography';
-import { ReactComponent as Landing2 } from './landing2.svg';
+import Landing2 from './landing2.png';
 import Flex from '../../../component/Flex/Flex';
 
 const SliderWrapper = styled.div`
   width: 920px;
   height: 566px;
   ${(props) => props.theme.flex.flexCenter}
+`;
+
+const ImgWrapper = styled.img`
+  position: relative;
 `;
 
 const TextWrapper = styled(Flex)`
@@ -33,7 +37,7 @@ const Detail = styled(Typography)`
 
 const Page1 = () => (
   <SliderWrapper>
-    <Landing2 style={{ position: 'relative' }} />
+    <ImgWrapper src={Landing2} />
     <TextWrapper flexCenter column>
       <Title>
         공지,

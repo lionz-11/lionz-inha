@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography from '../../../component/Typography/Typography';
-import { ReactComponent as Landing1 } from './landing1.svg';
+import Landing1 from './landing1.png';
 import Flex from '../../../component/Flex/Flex';
 
 const SliderWrapper = styled.div`
@@ -15,6 +15,13 @@ const Hello = styled(Typography)`
   left: 145px;
   font-family: 'pretendard-semibold';
   font-size: 64px;
+`;
+
+const ImgWrapper = styled.img`
+  position: relative;
+  left: 180px;
+  z-index: 2;
+  top: -8px;
 `;
 
 const TextWrapper = styled(Flex)`
@@ -35,7 +42,7 @@ const InhaUniv = styled(Typography)`
 
 const Page1 = () => (
   <SliderWrapper>
-    <Landing1 style={{ position: 'relative', left: '180px', zIndex: '2', top: '-8px' }} />
+    <ImgWrapper src={Landing1} />
     <Hello>HELLO</Hello>
     <TextWrapper flexCenter column justify='center'>
       <Likelion>LIKE LION</Likelion>
