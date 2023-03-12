@@ -5,6 +5,7 @@ import Landing from '../pages/Landing/Landing';
 import HomeworkList from '../pages/HomeworkList/HomeworkList';
 import Main from '../pages/Main/Main';
 import SearchResult from '../pages/SearchResult/SearchResult';
+import Contact from '../pages/Contact/Contact';
 
 const Router = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const Router = () => (
       <Route path='/landing' element={<Landing />} />
       <Route path='/homework-list' element={<HomeworkList />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
+      <Route path='/contact' element={<Contact />} />
     </Routes>
   </BrowserRouter>
 );
