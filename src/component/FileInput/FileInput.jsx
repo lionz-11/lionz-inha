@@ -13,7 +13,7 @@ const Title = styled(Typography)`
 `;
 
 // 왜 id가 없으면 안되는지 모르겠음. id가 없어지면 input이 인식이 안된다.
-const Input = styled.input.attrs({ type: 'file', id: 'file', accept: '.jpeg,.heif,.jpg,.png,.bmp' })`
+const Input = styled.input.attrs({ type: 'file', id: 'file', accept: 'image/*' })`
   display: none;
 `;
 
@@ -22,12 +22,22 @@ const FileInput = () => {
     // console.log('file');
   };
 
+  const uploadImageHandler = () => {
+    console.log('title');
+  };
+
+  const uploadImageButtonClick = () => {
+    console.log('input');
+  };
+
+  // 클릭하면 input, 사진 바뀌면 title
+
   return (
-    <div onClick={handleFilePost}>
+    <div>
       <label htmlFor='file'>
-        <Title>사진 업로드</Title>
+        <Title onChange={uploadImageButtonClick}>사진 업로드</Title>
       </label>
-      <Input />
+      <Input onChange={uploadImageHandler} />
     </div>
   );
 };

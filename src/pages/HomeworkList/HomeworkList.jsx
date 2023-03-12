@@ -76,7 +76,7 @@ const HomeworkList = () => {
   //   const response = await axios.get('https://lionz.kro.kr/member/img/1678277078161null20210221_121622.jpg', {
   //     headers: {
   //       Authorization:
-  //         'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3ODM1ODY2NH0.IT--eH565g4wifxkN7UtrpX2Ck_hmAyrqOnKYrJr1JpGsFSRvfR-yWDCdqXMJpSxJHN9tBUiS6JUS5z4KEYJFw',
+  //         'Bearer ',
   //     },
   //   });
   //   console.log(response.data);

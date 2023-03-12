@@ -12,6 +12,7 @@ const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.skyBlue};
   background-color: ${({ theme }) => theme.colors.white};
   padding: 0px 14px;
+  overflow: hidden;
 `;
 
 const ScrollContact = styled.div`

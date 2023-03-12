@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import FileInput from '../../component/FileInput/FileInput';
 import Layout from '../../component/Layout/Layout';
 import loveLock from './Love Lock.svg';
@@ -12,6 +12,7 @@ import TitleContainer from '../../component/TitleContainer/TitleContainer';
 import Margin from '../../component/Margin/Margin';
 import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
 import Header from '../../component/Header/Header';
+import test from './test.png';
 
 const TwinContainer = styled.div`
   width: 100%;
@@ -21,6 +22,7 @@ const TwinContainer = styled.div`
 
 const ProfileEdit = () => {
   const { welcome } = useParams();
+  // const [image, setImage] = useState();
 
   useEffect(() => {
     // 한번 감싸줘야함. 아래는 임시로 토큰을 얻기 위한 코드
@@ -44,7 +46,8 @@ const ProfileEdit = () => {
 
     const postImage = async () => {
       const formData = new FormData();
-      // formData.append('file', landing);
+      formData.append('file', test.png);
+      formData.append('file2', 'hi');
 
       axios
         .post(`${process.env.REACT_APP_API}/member/img`, formData, {
@@ -55,6 +58,7 @@ const ProfileEdit = () => {
       // console.log(response);
     };
 
+    // login();
     // memberConfig();
 
     // postImage();
@@ -63,7 +67,7 @@ const ProfileEdit = () => {
     //   .get(`${process.env.REACT_APP_API}/member`, {
     //     headers: {
     //       Authorization:
-    //         'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3Nzk1NzI1MH0.7dYQK7mwK2YdNS5LjEYTY5P5_76YQoVH1cfes0yI0wqNiGBcIEF2eNjycdyX60VaIYhxMKW_ZBVdsW-AaaNeaw',
+    //         'Bearer ',
     //     },
     //   })
     //   .then((r) => {
