@@ -140,7 +140,23 @@ const StyledButton = styled.button`
   ${(props) => props.theme.flex.flexCenter};
 `;
 
-const InputBox = ({ input, login, pw, search, mainTitle, link, editPassword, text, detail, homework, alert, placeholder }) => {
+const InputBox = ({
+  onChange,
+  value,
+  input,
+  login,
+  pw,
+  search,
+  mainTitle,
+  link,
+  editPassword,
+  text,
+  detail,
+  homework,
+  alert,
+  placeholder,
+  onKeyUp,
+}) => {
   const textRef = useRef(null);
   const inputRef = useRef(null);
   const [viewPassword, setViewPassword] = useState(true);
@@ -169,6 +185,7 @@ const InputBox = ({ input, login, pw, search, mainTitle, link, editPassword, tex
       {input ? (
         <InputWrapper flexCenter login={login} search={search} mainTitle={mainTitle} link={link} editPassword={editPassword} alert={alert}>
           <Input
+            value={value}
             ref={inputRef}
             login={login}
             pw={pw}
@@ -179,7 +196,8 @@ const InputBox = ({ input, login, pw, search, mainTitle, link, editPassword, tex
             alert={alert}
             placeholder={placeholder}
             type={((editPassword && viewPassword) || pw) && 'password'}
-            onChange={writeText}
+            onChange={onChange}
+            onKeyUp={onKeyUp}
           />
           {editPassword ? (
             <StyledButton onClick={viewClicked}>
@@ -192,7 +210,7 @@ const InputBox = ({ input, login, pw, search, mainTitle, link, editPassword, tex
           ) : (
             ''
           )}
-          {search && inputText ? (
+          {search && value ? (
             <StyledButton onClick={deleteText}>
               <BsFillXCircleFill size='20px' color={theme.colors.lightGray} />
             </StyledButton>
