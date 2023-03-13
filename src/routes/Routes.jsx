@@ -6,6 +6,7 @@ import HomeworkList from '../pages/HomeworkList/HomeworkList';
 import Main from '../pages/Main/Main';
 import SearchResult from '../pages/SearchResult/SearchResult';
 import Contact from '../pages/Contact/Contact';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const Router = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Router = () => (
       <Route path='/homework-list' element={<HomeworkList />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
+      <Route path='/error' element={<ErrorPage/>} />
     </Routes>
   </BrowserRouter>
 );
