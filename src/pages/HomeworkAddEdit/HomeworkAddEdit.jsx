@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import Layout from '../../component/Layout/Layout';
@@ -12,6 +12,7 @@ import Flex from '../../component/Flex/Flex';
 import Typography from '../../component/Typography/Typography';
 import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';
 import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
+import InputDateTime from '../../component/InputDateTime/InputDateTime';
 
 const StyledFlex = styled(Flex)`
   width: 100%;
@@ -22,6 +23,24 @@ const StyledFlex = styled(Flex)`
 const HomeworkAddEdit = () => {
   const { addOrEdit } = useParams();
   const [category, setCategory] = useState('ALL');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    const curTime = new Date().toISOString().slice(11, 16);
+
+    setDate(today);
+    setTime(curTime);
+  }, []);
+
+  const onChangeDate = (e) => {
+    setDate(e.target.value);
+  };
+
+  const onChangeTime = (e) => {
+    setTime(e.target.value);
+  };
 
   return (
     <Layout size='small'>
@@ -64,6 +83,14 @@ const HomeworkAddEdit = () => {
         <Typography pageTitle style={{ fontSize: '32px' }}>
           마감일
         </Typography>
+        <InputDateTime
+          date={date}
+          setDate={setDate}
+          time={time}
+          setTime={setTime}
+          onChangeDate={onChangeDate}
+          onChangeTime={onChangeTime}
+        />
       </StyledFlex>
 
       <Margin height='51' />
