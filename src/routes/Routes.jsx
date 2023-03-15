@@ -7,6 +7,7 @@ import Main from '../pages/Main/Main';
 import SearchResult from '../pages/SearchResult/SearchResult';
 import Contact from '../pages/Contact/Contact';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import HomeworkAddEdit from '../pages/HomeworkAddEdit/HomeworkAddEdit';
 
 const Router = () => (
   <BrowserRouter>
@@ -15,9 +16,10 @@ const Router = () => (
       <Route path='/profile-edit/:welcome' element={<ProfileEdit />} />
       <Route path='/landing' element={<Landing />} />
       <Route path='/homework-list' element={<HomeworkList />} />
+      <Route path='/homework/:addOrEdit' element={<HomeworkAddEdit />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
-      <Route path='/error' element={<ErrorPage/>} />
+      <Route path='/error' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
 );
