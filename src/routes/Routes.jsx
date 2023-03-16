@@ -9,6 +9,7 @@ import Contact from '../pages/Contact/Contact';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import HomeworkAddEdit from '../pages/HomeworkAddEdit/HomeworkAddEdit';
 import NoticeAddEdit from '../pages/NoticeAddEdit/NoticeAddEdit';
+import Schedule from '../pages/Schedule/Schedule';
 
 const Router = () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ const Router = () => (
       <Route path='/notice/:addOrEdit' element={<NoticeAddEdit />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
+      <Route path='/schedule' element={<Schedule />} />
       <Route path='/error' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
