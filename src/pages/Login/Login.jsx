@@ -25,7 +25,7 @@ const StyledRocket = styled.img`
   position: relative;
   bottom: 150px;
   right: 40px;
-`;
+`; 
 
 const StyledArrow = styled(ArrowButton)`
   display: inline;
