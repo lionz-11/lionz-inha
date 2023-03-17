@@ -30,7 +30,7 @@ const StyledRocket = styled.img`
 const StyledArrow = styled(ArrowButton)`
   display: inline;
 `;
-
+ 
 const Container1 = styled.div`
   display: flex;
 `;
