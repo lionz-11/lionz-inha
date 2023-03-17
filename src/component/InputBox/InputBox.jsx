@@ -89,6 +89,7 @@ const types = {
 };
 
 const InputWrapper = styled(Flex)`
+  background-color: white;
   border-radius: 10px;
   border: 1px solid #bfbfbf;
   padding-left: 19px;
