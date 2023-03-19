@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Margin from '../Margin/Margin';
 
 const Width = styled.div`
@@ -9,6 +9,11 @@ const Width = styled.div`
   ${(props) => props.theme.flex.flexCenterColumn};
 
   ${({ size }) => size === 'small' && 'max-width: 852px'};
+  ${({ hiddenOverflow }) =>
+    hiddenOverflow === 'hidden' &&
+    css`
+      overflow: hidden;
+    `};
 `;
 
 const Background = styled.div`
@@ -19,11 +24,11 @@ const Background = styled.div`
   background-color: ${(props) => props.theme.colors.white};
 `;
 
-const Layout = ({ children, size }) => (
+const Layout = ({ children, size, hiddenOverflow }) => (
   <Background>
-    <Width size={size}>
+    <Width size={size} hiddenOverflow={hiddenOverflow}>
       {children}
-      <Margin height='304' />
+      {hiddenOverflow !== 'hidden' && <Margin height='304' />}
     </Width>
   </Background>
 );

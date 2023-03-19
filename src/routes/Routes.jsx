@@ -27,7 +27,7 @@ const Router = () => (
       <Route path='/schedule' element={<Schedule />} />
       <Route path='/login' element={<Login />} />
       <Route path='/homework-info/:homeworkIndex' element={<HomeworkInfo />} />
-      <Route path='*' element={<ErrorPage />} />
+      <Route path='/*' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
 );
