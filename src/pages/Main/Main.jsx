@@ -27,7 +27,7 @@ const BottomWrapper = styled(Flex)`
 `;
 
 const Main = () => (
-  <Layout>
+  <Layout hiddenOverflow='hidden'>
     <Header />
     <Flex
       flexCenter

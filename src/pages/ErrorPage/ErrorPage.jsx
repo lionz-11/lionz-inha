@@ -33,7 +33,7 @@ const ErrorPage = () => {
         </Typography>
         <Margin height='10' />
         <div onClick={() => navigate('/')}>
-          <ArrowButton>홈으로 돌아가기</ArrowButton>
+          <ArrowButton onClick={() => navigate('/')}>홈으로 돌아가기</ArrowButton>
         </div>
       </Flex>
     </Layout>
