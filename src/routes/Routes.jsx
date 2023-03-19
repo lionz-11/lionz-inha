@@ -11,6 +11,7 @@ import HomeworkAddEdit from '../pages/HomeworkAddEdit/HomeworkAddEdit';
 import NoticeAddEdit from '../pages/NoticeAddEdit/NoticeAddEdit';
 import Schedule from '../pages/Schedule/Schedule';
 import Login from '../pages/Login/Login';
+import HomeworkInfo from '../pages/HomeworkInfo/HomeworkInfo';
 
 const Router = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ const Router = () => (
       <Route path='/contact' element={<Contact />} />
       <Route path='/schedule' element={<Schedule />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/homework-info/:homeworkIndex' element={<HomeworkInfo />} />
       <Route path='*' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
