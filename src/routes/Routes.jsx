@@ -10,6 +10,7 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import HomeworkAddEdit from '../pages/HomeworkAddEdit/HomeworkAddEdit';
 import NoticeAddEdit from '../pages/NoticeAddEdit/NoticeAddEdit';
 import Schedule from '../pages/Schedule/Schedule';
+import Login from '../pages/Login/Login';
 
 const Router = () => (
   <BrowserRouter>
@@ -24,6 +25,7 @@ const Router = () => (
       <Route path='/contact' element={<Contact />} />
       <Route path='/schedule' element={<Schedule />} />
       <Route path='/error' element={<ErrorPage />} />
+      <Route path='/login' element={<Login />} />
     </Routes>
   </BrowserRouter>
 );
