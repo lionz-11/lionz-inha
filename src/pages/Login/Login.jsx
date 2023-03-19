@@ -25,12 +25,8 @@ const StyledRocket = styled.img`
   position: relative;
   bottom: 150px;
   right: 40px;
-`; 
-
-const StyledArrow = styled(ArrowButton)`
-  display: inline;
 `;
- 
+
 const Container1 = styled.div`
   display: flex;
 `;
@@ -78,7 +74,7 @@ const Login = () => {
         <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} />
         <Margin height='15' />
         <Container2>
-          <StyledArrow>로그인</StyledArrow>
+          <ArrowButton>로그인</ArrowButton>
         </Container2>
       </StyledContainer>
     </Layout>
