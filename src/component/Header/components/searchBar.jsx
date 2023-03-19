@@ -14,7 +14,6 @@ const Dimmer = styled(motion.div)`
   top: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
   z-index: 1;
   overflow: hidden;
   transition: 0.5s;
