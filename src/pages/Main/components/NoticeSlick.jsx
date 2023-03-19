@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import NoticeBox from './NoticeBox';
@@ -23,6 +24,7 @@ const StyledArrow = styled(ArrowButton)`
 `;
 
 const NoticeSlick = () => {
+  const navigate = useNavigate();
   const dataSet = {
     title: '인하대 멋사 11기 OT 안내',
     contents: '인하대 멋쟁이사자처럼 11기와 함께 하게되신 아기사자 여러분들, 진심으로 환영합니다! ...',
@@ -41,6 +43,10 @@ const NoticeSlick = () => {
     dotsClass: 'dots_custom_main',
   };
 
+  const moveToNotice = () => {
+    navigate('/');
+  };
+
   return (
     <Flex flexCenter column align='flex-end' style={{ marginTop: '30px' }}>
       <StyledSlider {...settings}>
@@ -53,7 +59,7 @@ const NoticeSlick = () => {
         <NoticeBox data={dataSet} />
       </StyledSlider>
       <Margin height='10' />
-      <StyledArrow>공지 전체보기</StyledArrow>
+      <StyledArrow onClick={moveToNotice}>공지 전체보기</StyledArrow>
     </Flex>
   );
 };

@@ -24,8 +24,8 @@ const Router = () => (
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/schedule' element={<Schedule />} />
-      <Route path='/error' element={<ErrorPage />} />
       <Route path='/login' element={<Login />} />
+      <Route path='*' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
 );
