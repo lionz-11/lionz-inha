@@ -9,7 +9,9 @@ import Contact from '../pages/Contact/Contact';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import HomeworkAddEdit from '../pages/HomeworkAddEdit/HomeworkAddEdit';
 import NoticeAddEdit from '../pages/NoticeAddEdit/NoticeAddEdit';
+import Schedule from '../pages/Schedule/Schedule';
 import Login from '../pages/Login/Login';
+import HomeworkInfo from '../pages/HomeworkInfo/HomeworkInfo';
 
 const Router = () => (
   <BrowserRouter>
@@ -22,10 +24,12 @@ const Router = () => (
       <Route path='/notice/:addOrEdit' element={<NoticeAddEdit />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
-      <Route path='/error' element={<ErrorPage />} />
+      <Route path='/schedule' element={<Schedule />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/homework-info/:homeworkIndex' element={<HomeworkInfo />} />
+      <Route path='/*' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
 );
- 
+
 export default Router;

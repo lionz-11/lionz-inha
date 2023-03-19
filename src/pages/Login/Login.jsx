@@ -11,26 +11,26 @@ import ArrowButton from '../../component/ArrowButton/ArrowButton';
 
 const TitleWrapper = styled(Flex)`
   justify-content: center;
-  position:relative;
-  left:100px;
+  position: relative;
+  left: 100px;
 `;
 
 const TextWrapper = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content:left;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 `;
 
 const StyledRocket = styled.img`
   position: relative;
   bottom: 150px;
   right: 40px;
-`; 
+`;
 
 const StyledArrow = styled(ArrowButton)`
   display: inline;
 `;
- 
+
 const Container1 = styled.div`
   display: flex;
 `;

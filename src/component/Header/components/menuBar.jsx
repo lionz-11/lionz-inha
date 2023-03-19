@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Flex from '../../Flex/Flex';
 import Margin from '../../Margin/Margin';
 import MenuButton from './menuButton';
-import { ReactComponent as Menu3D } from '../../../assets/svgs/Menu3D.svg';
+import menu3D from './menu3D.png';
 import Typography from '../../Typography/Typography';
 
 const Dimmer = styled(motion.div)`
@@ -15,7 +15,6 @@ const Dimmer = styled(motion.div)`
   top: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
   z-index: 1;
   overflow: hidden;
   transition: 0.5s;
@@ -75,7 +74,7 @@ const MenuBar = ({ menuButton, menuButtonClicked }) => {
         </Flex>
         <Flex flexCenter>
           <Margin width={103} />
-          <Menu3D />
+          <img alt='menuImage' src={menu3D} />
         </Flex>
         <Margin height={17} />
         <Flex column>
