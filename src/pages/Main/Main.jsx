@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as MainImg } from './svgs/mainImg.svg';
+import MainImg from './images/mainImg.png';
 import Header from '../../component/Header/Header';
 import Layout from '../../component/Layout/Layout';
 import Flex from '../../component/Flex/Flex';
@@ -27,7 +27,7 @@ const BottomWrapper = styled(Flex)`
 `;
 
 const Main = () => (
-  <Layout>
+  <Layout hiddenOverflow='hidden'>
     <Header />
     <Flex
       flexCenter
@@ -47,7 +47,7 @@ const Main = () => (
             <span style={{ color: '#4A90E2' }}>FE 박사자</span>님, 환영합니다.
           </Typography>
         </Flex>
-        <MainImg />
+        <img src={MainImg} alt='mainImage' />
       </TopWrapper>
       <BottomWrapper>
         <NoticeSlick />

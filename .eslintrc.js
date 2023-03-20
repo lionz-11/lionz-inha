@@ -31,5 +31,7 @@ module.exports = {
     'react/jsx-wrap-multilines': 'off',
     'react/jsx-no-constructed-context-values': 'off',
     'no-unused-vars': 'off',
+    'linebreak-style': 0,
+    'no-console':process.env.NODE_ENV==='production'?'error':'off',
   },
 };

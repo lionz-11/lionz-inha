@@ -1,13 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography from '../../../component/Typography/Typography';
-import { ReactComponent as Landing3 } from './landing3.svg';
+import Landing3 from '../images/landing3.png';
 import Flex from '../../../component/Flex/Flex';
 
 const SliderWrapper = styled.div`
   width: 920px;
   height: 566px;
   ${(props) => props.theme.flex.flexCenterColumn}
+`;
+
+const ImgWrapper = styled.img`
+  position: relative;
+  z-index: 2;
+  top: -40px;
 `;
 
 const TextWrapper = styled(Flex)`
@@ -34,7 +40,7 @@ const Detail = styled(Typography)`
 
 const Page3 = () => (
   <SliderWrapper>
-    <Landing3 style={{ position: 'relative', zIndex: '2', top: '-40px' }} />
+    <ImgWrapper src={Landing3} />
     <TextWrapper flexCenter column>
       <Title>모든건 당신의 손 끝에서.</Title>
       <Detail color='darkGray'>
