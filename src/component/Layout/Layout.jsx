@@ -19,6 +19,7 @@ const Width = styled.div`
 const Background = styled.div`
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
   ${(props) => props.theme.flex.flexCenter};
   align-items: flex-start;
   background-color: ${(props) => props.theme.colors.white};

@@ -12,6 +12,7 @@ import LikeAndShare from '../../component/LikeAndShare/LikeAndShare';
 import CountText from '../../component/CountText/CountText';
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import CountTime from '../../component/CountTime/CountTime';
+import TextButton from '../../component/TextButton/TextButton';
 
 const InnerWrapper = styled(Flex)`
   width: 100%;
@@ -86,9 +87,12 @@ const HomeworkInfo = () => {
       <Header />
       <InnerWrapper flexCenter column>
         <Margin height='160' />
-        <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em' }}>
-          {infoArray[0].title}
-        </Typography>
+        <Flex flexCenter justify='space-between' style={{ width: '100%' }}>
+          <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em' }}>
+            {infoArray[0].title}
+          </Typography>
+          {user === 'Admin' && <TextButton haveDelete />}
+        </Flex>
         <Margin height='30' />
         <Typography contentText color='darkGray'>{`${infoArray[0].category} • 마감일 : ${infoArray[0].date}`}</Typography>
         <Margin height='16' />

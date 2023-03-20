@@ -1,4 +1,4 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Slider from 'react-slick';
 import './components/landingSlick.css';
@@ -14,30 +14,51 @@ import Flex from '../../component/Flex/Flex';
 const StyledSlider = styled(Slider)`
   width: 920px;
   height: 566px;
+
+  .slick-prev:before,
+  .slick-next:before {
+    opacity: 0;
+    display: none;
+    // color: ${(props) => props.theme.colors.darkGray};
+  }
 `;
 
 const StyledLeftArrow = styled(BsChevronLeft)`
   font-size: 24px;
+  color: black;
 `;
 
 const StyledRightArrow = styled(BsChevronRight)`
   font-size: 24px;
+  color: black;
 `;
 
 const Landing = () => {
+  const navigate = useNavigate();
+
   const settings = {
     dots: true,
     infinite: false,
     fade: true,
     speed: 500,
-    arrows: false,
+    arrows: true,
     slidesTosShow: 1,
     slidesToScroll: 1,
     dotsClass: 'dots_custom_landing',
+    nextArrow: (
+      <div>
+        <StyledRightArrow />
+      </div>
+    ),
+    prevArrow: (
+      <div>
+        <StyledLeftArrow />
+      </div>
+    ),
   };
 
   return (
-    <Layout>
+    <Layout hiddenOverflow='hidden'>
       <Header onlyTitle />
       <Flex
         flexCenter
@@ -47,15 +68,15 @@ const Landing = () => {
         style={{ width: '100vw', height: 'calc(100vh - 50px)', verticalAlign: 'middle' }}
       >
         <Flex flexCenter>
-          <StyledLeftArrow style={{ cursor: 'pointer' }} />
           <StyledSlider {...settings}>
             <Page1 />
             <Page2 />
             <Page3 />
           </StyledSlider>
-          <StyledRightArrow style={{ cursor: 'pointer' }} />
         </Flex>
-        <ArrowButton>시작하기</ArrowButton>
+        <div onClick={() => navigate('/login')}>
+          <ArrowButton>시작하기</ArrowButton>
+        </div>
       </Flex>
     </Layout>
   );

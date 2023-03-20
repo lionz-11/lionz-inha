@@ -4,7 +4,7 @@ import { BsChevronLeft } from 'react-icons/bs';
 import { motion, AnimatePresence } from 'framer-motion';
 import Flex from '../../Flex/Flex';
 import Margin from '../../Margin/Margin';
-import MenuButton from './menuButton';
+import MenuButton from './MenuButton';
 import menu3D from './menu3D.png';
 import Typography from '../../Typography/Typography';
 
