@@ -10,6 +10,7 @@ import CountText from '../../component/CountText/CountText';
 import TitleSet from '../../component/TitleSet/TitleSet';
 import Header from '../../component/Header/Header';
 import Margin from '../../component/Margin/Margin';
+import Typography from '../../component/Typography/Typography';
 
 const a = [
   {
@@ -87,6 +88,7 @@ const HomeworkList = () => {
   // });
 
   useEffect(() => {
+    // 유저의 파트 정보 얻어오기
     axios
       .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
         headers: {
@@ -97,7 +99,7 @@ const HomeworkList = () => {
         setPart({ ...part, user: r.data.part });
       });
 
-    // 내 과제만 조회
+    // 내 과제만 조회?? 이건 잘 모르겠음
     axios
       .get(`${process.env.REACT_APP_API}/task/${localStorage.getItem('id')}`, {
         headers: {
@@ -154,7 +156,21 @@ const HomeworkList = () => {
 
         <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </HeadLine>
-      <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
+      {temp.length !== 0 ? (
+        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
+      ) : (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>
+            {category === 'ALL' ? '11기 공통 과제는 아직 없습니다.' : `${category} 파트의 과제는 아직 없습니다.`}
+          </Typography>
+          <Margin height='10' />
+
+          <Typography contentText color='darkGray'>
+            다른 파트의 과제를 구경해보세요.
+          </Typography>
+        </>
+      )}
     </Layout>
   );
 };
