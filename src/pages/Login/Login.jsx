@@ -59,28 +59,30 @@ const Login = () => {
   };
 
   return (
-    <Layout>
-      <Header />
-      <Margin height='270' />
-      <TitleWrapper>
-        <Container1>
-          <TextWrapper>
-            <Typography pageTitle>LIKELION</Typography>
-            <Typography pageTitle>INHA UNIV 11기와</Typography>
-            <Typography pageTitle>함께하기</Typography>
-          </TextWrapper>
-          <StyledRocket src={RocketImg} />
-        </Container1>
-      </TitleWrapper>
-      <StyledContainer column>
-        <InputBox input login placeholder='아이디를 입력하세요.' onChange={handleInputId} />
-        <Margin height='24' />
-        <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} />
-        <Margin height='15' />
-        <Container2>
-          <StyledArrow>로그인</StyledArrow>
-        </Container2>
-      </StyledContainer>
+    <Layout hiddenOverflow='hidden'>
+      <Header onlyTitle />
+      <Flex column align='center' justify='center' style={{ width: '100vw', height: 'calc(100vh - 50px)' }}>
+        <Margin height='270' />
+        <TitleWrapper>
+          <Container1>
+            <TextWrapper>
+              <Typography pageTitle>LIKELION</Typography>
+              <Typography pageTitle>INHA UNIV 11기와</Typography>
+              <Typography pageTitle>함께하기</Typography>
+            </TextWrapper>
+            <StyledRocket src={RocketImg} />
+          </Container1>
+        </TitleWrapper>
+        <StyledContainer column>
+          <InputBox input login placeholder='아이디를 입력하세요.' onChange={handleInputId} />
+          <Margin height='24' />
+          <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} />
+          <Margin height='15' />
+          <Container2>
+            <StyledArrow>로그인</StyledArrow>
+          </Container2>
+        </StyledContainer>
+      </Flex>
     </Layout>
   );
 };
