@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import styled from 'styled-components';
 import Typography from '../../component/Typography/Typography';
@@ -47,9 +46,13 @@ const SelectBar = styled.div`
   padding-bottom: 14px;
 `;
 
-const ProfileImage = styled.div`
-  min-height: 29px;
+const ProfileImage = styled.img`
+  /* min-height: 29px;
   min-width: 29px;
+  max-height: 29px;
+  max-width: 29px; */
+  height: 29px;
+  width: 29px;
   border-radius: 29px;
   background-color: pink;
 `;
@@ -79,7 +82,11 @@ const ContactContainer = ({ data, isStaff }) => {
   // true === 내림차순, false === 오름차순
   const [nameSort, setNameSort] = useState(true);
   const [jobSelect, setJobSelect] = useState(0);
-  const [dataList, setDataList] = useState([...data]);
+  const [dataList, setDataList] = useState([]);
+
+  useEffect(() => {
+    setDataList(data);
+  }, [data]);
 
   const nameSortHandler = () => {
     const sorted = nameSort ? dataList.sort((a, b) => b.name.localeCompare(a.name)) : dataList.sort((a, b) => a.name.localeCompare(b.name));
@@ -96,7 +103,7 @@ const ContactContainer = ({ data, isStaff }) => {
       setDataList(data);
       return;
     }
-    setDataList(data.filter(({ job }) => job === jobs[jobNum]));
+    setDataList(data.filter(({ part }) => part === jobs[jobNum]));
   };
 
   return (
@@ -120,15 +127,15 @@ const ContactContainer = ({ data, isStaff }) => {
           <ScrollContact>
             {dataList.map((d, i) => (
               <Contact id={i}>
-                <ProfileImage />
+                <ProfileImage src={d.image?.img_link} />
                 <InternalFragment width='88' bold>
                   {d.name}
                 </InternalFragment>
-                <InternalFragment width='88'>{d.job}</InternalFragment>
-                <InternalFragment width='488'>{d.config}</InternalFragment>
-                <InternalFragment width='115'>{d.phone}</InternalFragment>
-                <InternalFragment width='166'>{d.subject}</InternalFragment>
-                <InternalFragment width='100'>{d.studentId}</InternalFragment>
+                <InternalFragment width='88'>{d.part}</InternalFragment>
+                <InternalFragment width='488'>{d.comment}</InternalFragment>
+                <InternalFragment width='115'>{d.phone_num}</InternalFragment>
+                <InternalFragment width='166'>{d.major}</InternalFragment>
+                <InternalFragment width='100'>{d.student_id}</InternalFragment>
               </Contact>
             ))}
           </ScrollContact>
@@ -137,7 +144,7 @@ const ContactContainer = ({ data, isStaff }) => {
       ) : (
         <Container>
           <SelectBar>
-            <Select margin='83' onClick={nameSortHandler}>
+            <Select margin='84' onClick={nameSortHandler}>
               이름
               <AiFillCaretDown color='#bfbfbf' />
             </Select>
@@ -150,12 +157,12 @@ const ContactContainer = ({ data, isStaff }) => {
           <ScrollContact>
             {dataList.map((d, i) => (
               <Contact id={i}>
-                <ProfileImage />
-                <InternalFragment width='88' bold>
-                  {d.name}
+                <ProfileImage src={d.image?.img_link} />
+                <InternalFragment width='96' bold>
+                  {d.name}박세현
                 </InternalFragment>
-                <InternalFragment width='200'>{d.job}</InternalFragment>
-                <InternalFragment>{d.config}</InternalFragment>
+                <InternalFragment width='210'>{d.part}</InternalFragment>
+                <InternalFragment>{d.comment}</InternalFragment>
               </Contact>
             ))}
           </ScrollContact>
