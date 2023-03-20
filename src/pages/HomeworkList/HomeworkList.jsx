@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
 import Layout from '../../component/Layout/Layout';
@@ -70,7 +71,10 @@ const HeadLine = styled.div`
 
 const HomeworkList = () => {
   const [category, setCategory] = useState('ALL');
-  const [temp, setTemp] = useState(tempData);
+  const [temp, setTemp] = useState([]);
+  const [allOfTask, setAllOfTask] = useState([]);
+  const [part, setPart] = useState({ user: '', selected: '' });
+
   // const handleCategory = () => {};
   // useEffect(async () => {
   //   const response = await axios.get('https://lionz.kro.kr/member/img/1678277078161null20210221_121622.jpg', {
@@ -82,9 +86,44 @@ const HomeworkList = () => {
   //   console.log(response.data);
   // });
 
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        setPart({ ...part, user: r.data.part });
+      });
+
+    // 내 과제만 조회
+    axios
+      .get(`${process.env.REACT_APP_API}/task/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data);
+      });
+
+    // 모든 과제 조회
+    axios
+      .get(`${process.env.REACT_APP_API}/tasknotice`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data.data);
+        setAllOfTask(r.data.data);
+      });
+  }, []);
+
   // 카테고리 정렬
   useEffect(() => {
-    setTemp(tempData.filter(({ tag }) => tag === category));
+    setTemp(allOfTask.filter(({ target }) => target === category));
   }, [category]);
 
   return (
@@ -113,9 +152,9 @@ const HomeworkList = () => {
           subTitle={['해커톤을 위해선 다른 파트의 이해도 중요합니다. 어떤 것들을 만들며 공부하고 있는지 알아볼까요?']}
         />
 
-        <SelectCategoryButton setCategory={setCategory} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </HeadLine>
-      <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox {...data} />} />
+      <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
     </Layout>
   );
 };
