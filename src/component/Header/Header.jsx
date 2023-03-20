@@ -7,13 +7,14 @@ import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
 import MenuBar from './components/MenuBar';
 import SearchBar from './components/SearchBar';
+import Flex from '../Flex/Flex';
+import Margin from '../Margin/Margin';
 
 // onlyTitle 추가.
 // header 사용 시에 onlyTitle 추가하면 상단 아이콘 숨겨짐.
 
 const Container = styled.div`
-  width: 100%;
-  max-width: 1312px;
+  width: 100vw;
   height: 50px;
   background-color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.flex.flexCenter};
@@ -28,8 +29,7 @@ const RightWrapper = styled.div`
   ${(props) => props.theme.flex.flexCenter}
   vertical-align: middle;
   justify-content: space-between;
-  position: absolute;
-  right: 20px;
+  margin-right: 20px;
 `;
 
 const ProfileWrapper = styled.div`
@@ -57,22 +57,25 @@ const Header = ({ onlyTitle }) => {
 
   return (
     <Container>
-      <Typography header style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
-        LIKE LION
-      </Typography>
-      {!onlyTitle && (
-        <>
-          <RightWrapper>
-            <BiSearch size='26px' style={{ cursor: 'pointer', marginTop: '2px' }} onClick={() => searchButtonClicked()} />
-            <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
-            <ProfileWrapper>
-              <BsPersonFill size='31px' color={theme.colors.darkGray} />
-            </ProfileWrapper>
-          </RightWrapper>
-          <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />
-          <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
-        </>
-      )}
+      <Flex justify='space-between' style={{ width: '100%', maxWidth: '1312px' }}>
+        <Margin width='140' />
+        <Typography header style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
+          LIKE LION
+        </Typography>
+        {!onlyTitle && (
+          <>
+            <RightWrapper>
+              <BiSearch size='26px' style={{ cursor: 'pointer', marginTop: '2px' }} onClick={() => searchButtonClicked()} />
+              <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
+              <ProfileWrapper>
+                <BsPersonFill size='31px' color={theme.colors.darkGray} />
+              </ProfileWrapper>
+            </RightWrapper>
+            <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />
+            <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
+          </>
+        )}
+      </Flex>
     </Container>
   );
 };
