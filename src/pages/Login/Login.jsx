@@ -62,7 +62,7 @@ const Login = () => {
     <Layout hiddenOverflow='hidden'>
       <Header onlyTitle />
       <Flex column align='center' justify='center' style={{ width: '100vw', height: 'calc(100vh - 50px)' }}>
-        <Margin height='270' />
+        <Margin height='271' />
         <TitleWrapper>
           <Container1>
             <TextWrapper>
