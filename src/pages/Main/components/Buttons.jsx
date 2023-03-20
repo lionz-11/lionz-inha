@@ -73,7 +73,7 @@ const Buttons = () => {
         <NewAlert color='pointRed'>new</NewAlert>
         <StyledMainBtn2 src={MainBtn2} />
       </StyledButton>
-      <StyledButton>
+      <StyledButton onClick={() => navigate('/contact')}>
         <Typography sideContentSmall color='darkGray'>
           누구더라?
         </Typography>
