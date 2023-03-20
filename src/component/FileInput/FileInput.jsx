@@ -17,7 +17,7 @@ const Input = styled.input.attrs({ type: 'file', id: 'file', accept: 'image/*' }
   display: none;
 `;
 
-const FileInput = () => {
+const FileInput = ({ postImage }) => {
   const handleFilePost = () => {
     // console.log('file');
   };
@@ -37,7 +37,7 @@ const FileInput = () => {
       <label htmlFor='file'>
         <Title onChange={uploadImageButtonClick}>사진 업로드</Title>
       </label>
-      <Input onChange={uploadImageHandler} />
+      <Input onChange={postImage} />
     </div>
   );
 };
