@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import Layout from '../../component/Layout/Layout';
 import Header from '../../component/Header/Header';
@@ -8,6 +10,7 @@ import Flex from '../../component/Flex/Flex';
 import RocketImg from './rocketImg.png';
 import InputBox from '../../component/InputBox/InputBox';
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
+import { Toast } from '../../component/Toast/Toast';
 
 const TitleWrapper = styled(Flex)`
   justify-content: center;
@@ -49,6 +52,7 @@ const StyledContainer = styled(Flex)`
 const Login = () => {
   const [inputId, setInputId] = useState('');
   const [inputPw, setInputPw] = useState('');
+  const navigate = useNavigate();
 
   const handleInputId = (e) => {
     setInputId(e.target.value);
@@ -58,6 +62,25 @@ const Login = () => {
     setInputPw(e.target.value);
   };
 
+  const submit = () => {
+    console.log(inputId, inputPw);
+    axios
+      .post(`${process.env.REACT_APP_API}/auth/login`, {
+        email: inputId,
+        password: inputPw,
+      })
+      .then((r) => {
+        localStorage.setItem('accessToken', r.data.accessToken);
+        localStorage.setItem('id', r.data.id);
+        navigate('/');
+
+        Toast('로그인 성공! 어서오세요.');
+      })
+      .catch((e) => {
+        console.log(e);
+        Toast('아이디, 비밀번호를 확인해주세요.');
+      });
+  };
   return (
     <Layout>
       <Header />
@@ -78,7 +101,7 @@ const Login = () => {
         <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} />
         <Margin height='15' />
         <Container2>
-          <StyledArrow>로그인</StyledArrow>
+          <StyledArrow onClick={submit}>로그인</StyledArrow>
         </Container2>
       </StyledContainer>
     </Layout>
