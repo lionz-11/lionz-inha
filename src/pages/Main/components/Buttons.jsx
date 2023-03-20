@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Flex from '../../../component/Flex/Flex';
 import Typography from '../../../component/Typography/Typography';
@@ -51,33 +52,36 @@ const StyledMainBtn3 = styled.img`
   left: 65px;
 `;
 
-const Buttons = () => (
-  <ButtonWrapper flexCenter column>
-    <StyledButton>
-      <Typography sideContentSmall color='darkGray'>
-        오늘 뭐 하지?
-      </Typography>
-      <Typography buttonText>일정</Typography>
-      <NewAlert color='pointRed'>new</NewAlert>
-      <StyledMainBtn1 src={MainBtn1} />
-    </StyledButton>
-    <StyledButton>
-      <Typography sideContentSmall color='darkGray'>
-        마감이 다가온다..
-      </Typography>
-      <Typography buttonText>과제</Typography>
-      <NewAlert color='pointRed'>new</NewAlert>
-      <StyledMainBtn2 src={MainBtn2} />
-    </StyledButton>
-    <StyledButton>
-      <Typography sideContentSmall color='darkGray'>
-        누구더라?
-      </Typography>
-      <Typography buttonText>연락처</Typography>
-      <NewAlert color='pointRed'>new</NewAlert>
-      <StyledMainBtn3 src={MainBtn3} />
-    </StyledButton>
-  </ButtonWrapper>
-);
+const Buttons = () => {
+  const navigate = useNavigate();
 
+  return (
+    <ButtonWrapper flexCenter column>
+      <StyledButton>
+        <Typography sideContentSmall color='darkGray'>
+          오늘 뭐 하지?
+        </Typography>
+        <Typography buttonText>일정</Typography>
+        <NewAlert color='pointRed'>new</NewAlert>
+        <StyledMainBtn1 src={MainBtn1} />
+      </StyledButton>
+      <StyledButton onClick={() => navigate('/homework-list')}>
+        <Typography sideContentSmall color='darkGray'>
+          마감이 다가온다..
+        </Typography>
+        <Typography buttonText>과제</Typography>
+        <NewAlert color='pointRed'>new</NewAlert>
+        <StyledMainBtn2 src={MainBtn2} />
+      </StyledButton>
+      <StyledButton>
+        <Typography sideContentSmall color='darkGray'>
+          누구더라?
+        </Typography>
+        <Typography buttonText>연락처</Typography>
+        <NewAlert color='pointRed'>new</NewAlert>
+        <StyledMainBtn3 src={MainBtn3} />
+      </StyledButton>
+    </ButtonWrapper>
+  );
+};
 export default Buttons;
