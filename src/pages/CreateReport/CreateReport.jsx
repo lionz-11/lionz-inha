@@ -59,7 +59,6 @@ const CreateReport = () => {
       setRefColor('red');
     } else {
       setRefColor('black');
-      console.log('ok');
     }
   };
 
@@ -71,7 +70,7 @@ const CreateReport = () => {
         <Container style={{ position: 'relative', left: '17px' }}>
           <Flex justify='space-between' style={{ width: '853px' }}>
             <TextWrapper>
-              <Typography pageTitle>과제 작성 페이지입니다.</Typography>
+              <Typography pageTitle>과제 생성 페이지입니다.</Typography>
               <Margin height='7' />
               <Typography contentText color='gray'>아기사자들을 위한 과제 작성 페이지입니다.<br />업로드 전에 검토는 필수!</Typography>
             </TextWrapper>
