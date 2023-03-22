@@ -12,7 +12,6 @@ import Schedule from '../pages/Schedule/Schedule';
 import Login from '../pages/Login/Login';
 import HomeworkInfo from '../pages/HomeworkInfo/HomeworkInfo';
 import NoticeInfo from '../pages/NoticeInfo/NoticeInfo';
-import CreateReport from '../pages/CreateReport/CreateReport';
 import SubmitHomeWork from '../pages/SubmitHomework/SubmitHomeWork';
 
 const Router = () => (
