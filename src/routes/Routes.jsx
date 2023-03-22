@@ -12,6 +12,7 @@ import Schedule from '../pages/Schedule/Schedule';
 import Login from '../pages/Login/Login';
 import HomeworkInfo from '../pages/HomeworkInfo/HomeworkInfo';
 import NoticeInfo from '../pages/NoticeInfo/NoticeInfo';
+import NoticeList from '../pages/NoticeList/NoticeList';
 
 const Router = () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ const Router = () => (
       <Route path='/landing' element={<Landing />} />
       <Route path='/homework-list' element={<HomeworkList />} />
       <Route path='/homework/:addOrEdit' element={<HomeworkAddEdit />} />
+      <Route path='/notice-list' element={<NoticeList />} />
       <Route path='/notice/:addOrEdit' element={<NoticeAddEdit />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
