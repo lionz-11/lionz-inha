@@ -9,8 +9,8 @@ const Container = styled.div`
   padding-right: 20px;
 `;
 
-const ArrowButtonContainer = ({ text }) => (
-  <Container>
+const ArrowButtonContainer = ({ text, onClick }) => (
+  <Container onClick={onClick}>
     <ArrowButton>{text}</ArrowButton>
   </Container>
 );

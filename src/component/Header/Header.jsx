@@ -5,6 +5,8 @@ import { BiSearch, BiMenu } from 'react-icons/bi';
 import { BsPersonFill } from 'react-icons/bs';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
+import MenuBar from './components/menuBar';
+import { Toast } from '../Toast/Toast';
 import MenuBar from './components/MenuBar';
 import SearchBar from './components/SearchBar';
 import Flex from '../Flex/Flex';
@@ -65,7 +67,11 @@ const Header = ({ onlyTitle }) => {
         {!onlyTitle && (
           <>
             <RightWrapper>
-              <BiSearch size='26px' style={{ cursor: 'pointer', marginTop: '2px' }} onClick={() => searchButtonClicked()} />
+              <BiSearch
+                size='26px'
+                style={{ cursor: 'pointer', marginTop: '2px' }}
+                onClick={() => Toast('아직 지원하지 않습니다.. 곧 해올게용')}
+              />
               <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
               <ProfileWrapper>
                 <BsPersonFill size='31px' color={theme.colors.darkGray} />

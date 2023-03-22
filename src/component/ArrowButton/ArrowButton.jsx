@@ -13,8 +13,8 @@ const StyledArrow = styled(BsChevronRight)`
   color: ${(props) => props.theme.colors.blue};
 `;
 
-const ArrowButton = ({ children, small }) => (
-  <Flex flexCenter style={{ cursor: 'pointer' }}>
+const ArrowButton = ({ children, small, onClick }) => (
+  <Flex onClick={onClick} flexCenter style={{ cursor: 'pointer' }}>
     <StyledTypo contentText color='blue' small={small}>
       {children}
     </StyledTypo>

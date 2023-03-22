@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
 import Layout from '../../component/Layout/Layout';
@@ -9,6 +10,7 @@ import CountText from '../../component/CountText/CountText';
 import TitleSet from '../../component/TitleSet/TitleSet';
 import Header from '../../component/Header/Header';
 import Margin from '../../component/Margin/Margin';
+import Typography from '../../component/Typography/Typography';
 
 const a = [
   {
@@ -70,21 +72,60 @@ const HeadLine = styled.div`
 
 const HomeworkList = () => {
   const [category, setCategory] = useState('ALL');
-  const [temp, setTemp] = useState(tempData);
+  const [temp, setTemp] = useState([]);
+  const [allOfTask, setAllOfTask] = useState([]);
+  const [part, setPart] = useState({ user: '', selected: '' });
+
   // const handleCategory = () => {};
   // useEffect(async () => {
   //   const response = await axios.get('https://lionz.kro.kr/member/img/1678277078161null20210221_121622.jpg', {
   //     headers: {
   //       Authorization:
-  //         'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3ODM1ODY2NH0.IT--eH565g4wifxkN7UtrpX2Ck_hmAyrqOnKYrJr1JpGsFSRvfR-yWDCdqXMJpSxJHN9tBUiS6JUS5z4KEYJFw',
+  //         'Bearer ',
   //     },
   //   });
   //   console.log(response.data);
   // });
 
+  useEffect(() => {
+    // 유저의 파트 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        setPart({ ...part, user: r.data.part });
+      });
+
+    // 내 과제만 조회?? 이건 잘 모르겠음
+    axios
+      .get(`${process.env.REACT_APP_API}/task/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data);
+      });
+
+    // 모든 과제 조회
+    axios
+      .get(`${process.env.REACT_APP_API}/tasknotice`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data.data);
+        setAllOfTask(r.data.data);
+      });
+  }, []);
+
   // 카테고리 정렬
   useEffect(() => {
-    setTemp(tempData.filter(({ tag }) => tag === category));
+    setTemp(allOfTask.filter(({ target }) => target === category));
   }, [category]);
 
   return (
@@ -113,9 +154,23 @@ const HomeworkList = () => {
           subTitle={['해커톤을 위해선 다른 파트의 이해도 중요합니다. 어떤 것들을 만들며 공부하고 있는지 알아볼까요?']}
         />
 
-        <SelectCategoryButton setCategory={setCategory} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </HeadLine>
-      <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox {...data} />} />
+      {temp.length !== 0 ? (
+        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
+      ) : (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>
+            {category === 'ALL' ? '11기 공통 과제는 아직 없습니다.' : `${category} 파트의 과제는 아직 없습니다.`}
+          </Typography>
+          <Margin height='10' />
+
+          <Typography contentText color='darkGray'>
+            다른 파트의 과제를 구경해보세요.
+          </Typography>
+        </>
+      )}
     </Layout>
   );
 };

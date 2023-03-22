@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { checkTargetForNewValues, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../assets/theme/Theme';
 import Typography from '../Typography/Typography';
@@ -103,29 +104,45 @@ const Notification = ({ date }) => (
   </Typography>
 );
 
-const Assignment = ({ date, submissionStatus }) => (
-  <>
-    <Typography sideContent color='darkGray'>
-      마감일: {date}
-    </Typography>
-    <Submission submissionStatus={submissionStatus} sideContentBold>
-      {submissionStatus}
-    </Submission>
-  </>
-);
-
-const BarContentBox = (props) => {
-  const { title, tag, date, notification, submissionStatus } = props;
+const Assignment = ({ date, submissionStatus, part, target }) => {
+  const [status, setStatus] = useState('');
+  console.log(part.user, target);
+  useEffect(() => {
+    if (part.user === target && submissionStatus === false) setStatus('미제출');
+    if ((part.user === target && submissionStatus === true) || (target === 'ALL' && submissionStatus === true)) setStatus('제출 완료');
+    if (part.user !== target) setStatus('대상 아님');
+  }, [part.selected, target]);
 
   return (
-    <Box whileHover={theme.animation.box} onClick={props.onClick}>
+    <>
+      <Typography sideContent color='darkGray'>
+        마감일: {date}
+      </Typography>
+      <Submission part={part} target={target} submissionStatus={status} sideContentBold>
+        {status}
+      </Submission>
+    </>
+  );
+};
+
+const BarContentBox = (props) => {
+  const { title, target, deadline, date, notification, isSubmit, part, onClick } = props;
+  console.log('joihihi');
+  return (
+    <Box whileHover={theme.animation.box} onClick={onClick}>
       <LeftBox>
-        <Tag tag={tag} end={props.end}>
-          {tag}
+        <Tag tag={target} end={props.end}>
+          {target}
         </Tag>
         <Title>{title}</Title>
       </LeftBox>
-      <RightBox>{notification ? <Notification date={date} /> : <Assignment date={date} submissionStatus={submissionStatus} />}</RightBox>
+      <RightBox>
+        {notification ? (
+          <Notification date={date} />
+        ) : (
+          <Assignment target={target} part={part} date={deadline} submissionStatus={isSubmit} />
+        )}
+      </RightBox>
     </Box>
   );
 };
