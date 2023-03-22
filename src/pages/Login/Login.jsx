@@ -77,7 +77,6 @@ const Login = () => {
         Toast('로그인 성공! 어서오세요.');
       })
       .catch((e) => {
-        console.log(e);
         Toast('아이디, 비밀번호를 확인해주세요.');
       });
   };
