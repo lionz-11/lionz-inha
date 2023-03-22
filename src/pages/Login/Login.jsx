@@ -63,7 +63,6 @@ const Login = () => {
   };
 
   const submit = () => {
-    console.log(inputId, inputPw);
     axios
       .post(`${process.env.REACT_APP_API}/auth/login`, {
         email: inputId,
@@ -72,9 +71,13 @@ const Login = () => {
       .then((r) => {
         localStorage.setItem('accessToken', r.data.accessToken);
         localStorage.setItem('id', r.data.id);
-        navigate('/');
-
-        Toast('로그인 성공! 어서오세요.');
+        if (r.data.count === '1') {
+          navigate('/profile-edit/1');
+          Toast('첫 방문을 환영합니다. 정보를 입력해주세요.');
+        } else {
+          navigate('/');
+          Toast('로그인 성공! 어서오세요.');
+        }
       })
       .catch((e) => {
         Toast('아이디, 비밀번호를 확인해주세요.');
