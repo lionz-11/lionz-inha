@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Layout from '../../component/Layout/Layout';
 import Header from '../../component/Header/Header';
@@ -11,7 +11,6 @@ import Flex from '../../component/Flex/Flex';
 import Typography from '../../component/Typography/Typography';
 import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
 import CountText from '../../component/CountText/CountText';
-import AssignmentBox from '../../component/AssignmentBox/AssignmentBox';
 import HomeWorkContentContainer from './HomeWorkContentContainer';
 
 const StyledFlex = styled(Flex)`
@@ -39,7 +38,7 @@ const tempData = [
   },
 ];
 
-const SubmitHomeWork = ({ data }) => (
+const SubmitHomeWork = () => (
 
   <Layout size='small'>
     <Header />
