@@ -11,6 +11,7 @@ import ContactContainer from './ContactContainer';
 const Contact = () => {
   const [list, setList] = useState([]);
   const [part, setPart] = useState('');
+  const [authority, setAuthority] = useState('');
 
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
@@ -22,6 +23,7 @@ const Contact = () => {
       })
       .then((r) => {
         setPart(r.data.part);
+        setAuthority(r.data.authority);
       });
 
     // 모든 유저 정보 받아오기
@@ -44,7 +46,7 @@ const Contact = () => {
         mainTitle={['이곳은 연락처 페이지입니다.']}
         subTitle={['11기 여러분들을 환영합니다! 앞으로 모르는 것이 있다면 STAFF를 괴롭히면 됩니다.']}
       />
-      {part === '' ? '로딩중입니다.' : <ContactContainer isStaff={part === 'STAFF'} data={list} />}
+      {part === '' ? '로딩중입니다.' : <ContactContainer isStaff={authority === '"ROLE_ADMIN"'} data={list} />}
     </Layout>
   );
 };

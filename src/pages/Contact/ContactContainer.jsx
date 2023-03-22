@@ -103,7 +103,13 @@ const ContactContainer = ({ data, isStaff }) => {
       setDataList(data);
       return;
     }
-    setDataList(data.filter(({ part }) => part === jobs[jobNum]));
+    setDataList(
+      data.filter(({ part, authority }) => {
+        // 운영진
+        if (part === 'STAFF' && authority === 'ROLE_ADMIN') return true;
+        return part === jobs[jobNum];
+      }),
+    );
   };
 
   return (
@@ -159,7 +165,7 @@ const ContactContainer = ({ data, isStaff }) => {
               <Contact id={i}>
                 <ProfileImage src={d.image?.img_link} />
                 <InternalFragment width='96' bold>
-                  {d.name}박세현
+                  {d.name}
                 </InternalFragment>
                 <InternalFragment width='210'>{d.part}</InternalFragment>
                 <InternalFragment>{d.comment}</InternalFragment>
