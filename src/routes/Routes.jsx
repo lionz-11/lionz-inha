@@ -12,7 +12,7 @@ import Schedule from '../pages/Schedule/Schedule';
 import Login from '../pages/Login/Login';
 import HomeworkInfo from '../pages/HomeworkInfo/HomeworkInfo';
 import NoticeInfo from '../pages/NoticeInfo/NoticeInfo';
-import NoticeList from '../pages/NoticeList/NoticeList';
+import SubmitHomeWork from '../pages/SubmitHomework/SubmitHomeWork';
 
 const Router = () => (
   <BrowserRouter>
@@ -30,6 +30,7 @@ const Router = () => (
       <Route path='/login' element={<Login />} />
       <Route path='/homework-info/:homeworkIndex' element={<HomeworkInfo />} />
       <Route path='/notice-info/:noticeIndex' element={<NoticeInfo />} />
+      <Route path='/homework-submit' element={<SubmitHomeWork />} />
       <Route path='/*' element={<ErrorPage />} />
     </Routes>
   </BrowserRouter>
