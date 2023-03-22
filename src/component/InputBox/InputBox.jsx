@@ -223,7 +223,7 @@ const InputBox = ({
         ''
       )}
       {text ? (
-        <Textarea ref={textRef} detail={detail} homework={homework} onKeyDown={handleResizeHeight} onKeyUp={handleResizeHeight}>
+        <Textarea ref={textRef} detail={detail} homework={homework} onKeyDown={handleResizeHeight} onKeyUp={handleResizeHeight} onChange={onChange}>
           {placeholder}
         </Textarea>
       ) : (

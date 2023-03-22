@@ -92,7 +92,8 @@ const LinkContainer = styled.div`
   align-items: center;
 `;
 
-const AssignmentBox = ({ detail, date, link, name, src }) => {
+const AssignmentBox = ({ data }) => {
+  const { detail, date, link, name, src } = data;
   const [isOpen, setIsOpen] = useState(false);
 
   const openHandler = () => setIsOpen(!isOpen);
@@ -102,7 +103,7 @@ const AssignmentBox = ({ detail, date, link, name, src }) => {
       <ContentTitle>
         <LeftBox>
           <Profile src={src} />
-          <Title>{name}의 과제입니다.adsfasdfsfadfadfasdfasdfasdfasdfsad</Title>
+          <Title>{name}의 과제입니다.</Title>
         </LeftBox>
         <RightBox>
           <Typography sideContent color='darkGray'>
