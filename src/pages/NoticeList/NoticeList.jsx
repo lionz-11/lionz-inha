@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../component/Header/Header';
@@ -21,32 +22,23 @@ const ResultWrapper = styled.div`
 
 const NoticeList = () => {
   const [user, setUser] = useState('Admin');
+  const [noticeData, setNoticeData] = useState();
   const [category, setCategory] = useState('ALL');
 
   const navigate = useNavigate();
 
-  const notice = [
-    {
-      title: '안녕',
-      tag: 'FE',
-      date: '010324',
-    },
-    {
-      title: 'hihihihi',
-      tag: 'BE',
-      date: '010324',
-    },
-    {
-      title: 'hihihihi',
-      tag: 'ALL',
-      date: '010324',
-    },
-    {
-      title: 'hihihihi',
-      tag: 'ALL',
-      date: '010324',
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API}/notice`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data.data);
+        setNoticeData(r.data.data);
+      });
+  }, []);
 
   return (
     <Layout>
@@ -85,7 +77,7 @@ const NoticeList = () => {
 
       <Margin height='20' />
       <ResultWrapper>
-        <BarComponentContainer bars={notice} renderProp={(props) => <BarContentBox {...props} />} />
+        <BarComponentContainer bars={noticeData} renderProp={(props) => <BarContentBox {...props} />} />
       </ResultWrapper>
       <Margin height='20' />
     </Layout>
