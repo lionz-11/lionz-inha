@@ -21,9 +21,12 @@ const ResultWrapper = styled.div`
 `;
 
 const NoticeList = () => {
+  const notification = true;
   const [user, setUser] = useState('Admin');
-  const [noticeData, setNoticeData] = useState();
+  const [notice, setNotice] = useState([]);
+  const [temp, setTemp] = useState([]);
   const [category, setCategory] = useState('ALL');
+  const [part, setPart] = useState({ user: '', selected: '' });
 
   const navigate = useNavigate();
 
@@ -36,9 +39,17 @@ const NoticeList = () => {
       })
       .then((r) => {
         console.log(r.data.data);
-        setNoticeData(r.data.data);
+        setNotice(r.data.data);
+        setTemp(r.data.data);
       });
   }, []);
+
+  useEffect(() => {
+    if (category === 'ALL') setTemp(notice);
+    else {
+      setTemp(notice.filter(({ target }) => target === category));
+    }
+  }, [category]);
 
   return (
     <Layout>
@@ -72,12 +83,12 @@ const NoticeList = () => {
       <Margin height='50' />
       <Flex flexCenter justify='space-between' style={{ width: '100%', marginLeft: '13px' }}>
         <Typography pageTitle>공지사항 목록</Typography>
-        <SelectCategoryButton setCategory={setCategory} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </Flex>
 
       <Margin height='20' />
       <ResultWrapper>
-        <BarComponentContainer bars={noticeData} renderProp={(props) => <BarContentBox {...props} />} />
+        <BarComponentContainer bars={temp} renderProp={(props) => <BarContentBox notification {...props} />} />
       </ResultWrapper>
       <Margin height='20' />
     </Layout>

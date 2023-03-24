@@ -13,6 +13,7 @@ import Login from '../pages/Login/Login';
 import HomeworkInfo from '../pages/HomeworkInfo/HomeworkInfo';
 import NoticeInfo from '../pages/NoticeInfo/NoticeInfo';
 import SubmitHomeWork from '../pages/SubmitHomework/SubmitHomeWork';
+import NoticeList from '../pages/NoticeList/NoticeList';
 
 const Router = () => (
   <BrowserRouter>
