@@ -44,7 +44,7 @@ const NoticeSlick = () => {
   };
 
   const moveToNotice = () => {
-    navigate('/');
+    navigate('/notice-list');
   };
 
   return (
