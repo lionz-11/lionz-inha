@@ -50,6 +50,52 @@ const NoticeAddEdit = () => {
     setNoticeInfo({ ...noticeInfo, explanation: target.value });
   };
 
+  const addNewNotice = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/notice`,
+        {
+          title: noticeInfo.title,
+          explanation: noticeInfo.explanation,
+          target: category,
+          deadlint: 'none',
+          tags: noticeInfo.tag.split(','),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      )
+      .then((r) => {
+        Toast('공지사항 생성이 완료되었습니다.');
+        navigate('/notice-list');
+      });
+  };
+
+  const editNotice = () => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API}/notice/${noticeInfo.id}`,
+        {
+          title: noticeInfo.title,
+          explanation: noticeInfo.explanation,
+          target: category,
+          deadlint: 'none',
+          tags: noticeInfo.tag.split(','),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      )
+      .then((r) => {
+        Toast('공지사항 수정이 완료되었습니다.');
+        navigate('/notice-list');
+      });
+  };
+
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
     axios
@@ -144,8 +190,8 @@ const NoticeAddEdit = () => {
         subTitle={['공지사항 게시글의 내용을 적어주세요.', '카카오톡 단체방에 올릴 내용을 동일하게 기입해주세요.']}
         component={<InputBox text detail value={noticeInfo.explanation} onChange={explanationHandler} />}
       />
-      {addOrEdit === 'add' && <ArrowButtonContainer text='공지 생성 완료하기' />}
-      {addOrEdit === 'edit' && <ArrowButtonContainer text='공지 수정 완료하기' />}
+      {addOrEdit === 'add' && <ArrowButtonContainer text='공지 생성 완료하기' onClick={addNewNotice} />}
+      {addOrEdit === 'edit' && <ArrowButtonContainer text='공지 수정 완료하기' onClick={editNotice} />}
     </Layout>
   );
 };
