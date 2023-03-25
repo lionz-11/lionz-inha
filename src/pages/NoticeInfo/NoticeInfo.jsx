@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import Header from '../../component/Header/Header';
@@ -10,6 +10,7 @@ import Flex from '../../component/Flex/Flex';
 import TagContainer from '../../component/TagContainer/TagContainer';
 import LikeAndShare from '../../component/LikeAndShare/LikeAndShare';
 import TextButton from '../../component/TextButton/TextButton';
+import { Toast } from '../../component/Toast/Toast';
 
 const InnerWrapper = styled(Flex)`
   width: 100%;
@@ -21,7 +22,8 @@ const InnerWrapper = styled(Flex)`
 
 const NoticeInfo = () => {
   const { noticeIndex } = useParams();
-  const [user, setUser] = useState('Admin');
+  const navigate = useNavigate();
+  const [user, setUser] = useState('');
   const [category, setCategory] = useState('ALL');
   const [part, setPart] = useState({ user: '', selected: '' });
   const [noticeInfo, setNoticeInfo] = useState({
@@ -33,6 +35,10 @@ const NoticeInfo = () => {
     target: '',
     title: '',
   });
+
+  const onClickEdit = () => {
+    navigate(`/notice/edit/${noticeIndex}`);
+  };
 
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
@@ -68,7 +74,7 @@ const NoticeInfo = () => {
           <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em' }}>
             {noticeInfo.title}
           </Typography>
-          {user === 'ROLE_ADMIN' && <TextButton haveDelete />}
+          {user === 'ROLE_ADMIN' && <TextButton haveDelete onClickEdit={onClickEdit} onClickDelete={() => Toast('삭제 클릭')} />}
         </Flex>
         <Margin height='30' />
         <Typography contentText color='darkGray'>{`${noticeInfo.target} • 게시일 : ${noticeInfo.date}`}</Typography>

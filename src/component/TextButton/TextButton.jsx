@@ -11,14 +11,14 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const TextButton = ({ haveDelete, children, color, onClick }) => (
+const TextButton = ({ haveDelete, children, color, onClick, onClickEdit, onClickDelete }) => (
   <>
     {haveDelete ? (
       <ButtonContainer>
-        <Typography contentText color='gray'>
+        <Typography contentText color='gray' onClick={onClickEdit}>
           수정
         </Typography>
-        <Typography contentText color='lightRed'>
+        <Typography contentText color='lightRed' onClick={onClickDelete}>
           삭제
         </Typography>
       </ButtonContainer>

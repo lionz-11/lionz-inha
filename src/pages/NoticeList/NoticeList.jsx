@@ -84,7 +84,7 @@ const NoticeList = () => {
                 아기사자를 괴롭히고 싶다면?
               </Typography>
               <Margin height='5' />
-              <div onClick={() => navigate('/notice/add')}>
+              <div onClick={() => navigate('/notice/add/new')}>
                 <ArrowButton>과제 생성하러가기</ArrowButton>
               </div>
             </>
