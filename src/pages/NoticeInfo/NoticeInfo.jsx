@@ -40,6 +40,19 @@ const NoticeInfo = () => {
     navigate(`/notice/edit/${noticeIndex}`);
   };
 
+  const onClickDelete = () => {
+    axios
+      .delete(`${process.env.REACT_APP_API}/notice/${noticeIndex}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        Toast('공지가 삭제되었습니다.');
+        navigate('/notice-list');
+      });
+  };
+
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
     axios
@@ -74,7 +87,7 @@ const NoticeInfo = () => {
           <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em' }}>
             {noticeInfo.title}
           </Typography>
-          {user === 'ROLE_ADMIN' && <TextButton haveDelete onClickEdit={onClickEdit} onClickDelete={() => Toast('삭제 클릭')} />}
+          {user === 'ROLE_ADMIN' && <TextButton haveDelete onClickEdit={onClickEdit} onClickDelete={onClickDelete} />}
         </Flex>
         <Margin height='30' />
         <Typography contentText color='darkGray'>{`${noticeInfo.target} • 게시일 : ${noticeInfo.date}`}</Typography>
