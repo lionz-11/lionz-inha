@@ -21,7 +21,6 @@ const ResultWrapper = styled.div`
 `;
 
 const NoticeList = () => {
-  const notification = true;
   const [user, setUser] = useState('Admin');
   const [notice, setNotice] = useState([]);
   const [temp, setTemp] = useState([]);
@@ -52,15 +51,12 @@ const NoticeList = () => {
       .then((r) => {
         console.log(r.data.data);
         setNotice(r.data.data);
-        setTemp(r.data.data);
+        setTemp(notice.filter(({ target }) => target === category));
       });
   }, []);
 
   useEffect(() => {
-    if (category === 'ALL') setTemp(notice);
-    else {
-      setTemp(notice.filter(({ target }) => target === category));
-    }
+    setTemp(notice.filter(({ target }) => target === category));
   }, [category]);
 
   return (

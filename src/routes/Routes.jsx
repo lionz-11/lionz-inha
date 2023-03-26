@@ -22,7 +22,7 @@ const Router = () => (
       <Route path='/profile-edit/:welcome' element={<ProfileEdit />} />
       <Route path='/landing' element={<Landing />} />
       <Route path='/homework-list' element={<HomeworkList />} />
-      <Route path='/homework/:addOrEdit' element={<HomeworkAddEdit />} />
+      <Route path='/homework/:addOrEdit/:homeworkIndex' element={<HomeworkAddEdit />} />
       <Route path='/notice-list' element={<NoticeList />} />
       <Route path='/notice/:addOrEdit/:noticeIndex' element={<NoticeAddEdit />} />
       <Route path='/search/:keyword' element={<SearchResult />} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../../component/Layout/Layout';
 import Header from '../../component/Header/Header';
 import Margin from '../../component/Margin/Margin';
@@ -13,6 +14,7 @@ import Typography from '../../component/Typography/Typography';
 import SelectCategoryButton from '../../component/SelectCategoryButton/SelectCategoryButton';
 import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
 import InputDateTime from '../../component/InputDateTime/InputDateTime';
+import { Toast } from '../../component/Toast/Toast';
 
 const StyledFlex = styled(Flex)`
   width: 100%;
@@ -22,17 +24,79 @@ const StyledFlex = styled(Flex)`
 
 const HomeworkAddEdit = () => {
   const { addOrEdit } = useParams();
+  const { homeworkIndex } = useParams();
+  const navigate = useNavigate();
   const [category, setCategory] = useState('ALL');
+  const [user, setUser] = useState('');
+  const [part, setPart] = useState({ user: '', selected: '' });
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+  const [homeworkInfo, setHomeworkInfo] = useState({
+    date: '',
+    deadline: '',
+    explanation: '',
+    id: -1,
+    tag: [],
+    target: '',
+    title: '',
+  });
 
   useEffect(() => {
+    // 유저의 파트 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        setPart({ ...part, user: r.data.part });
+        setUser(r.data.authority);
+        if (r.data.authority !== 'ROLE_ADMIN') {
+          Toast('잘못된 접근입니다.');
+          navigate(-1);
+        }
+      });
+
+    // 현재 날짜 설정
     const today = new Date().toISOString().slice(0, 10);
     const curTime = new Date().toISOString().slice(11, 16);
-
     setDate(today);
     setTime(curTime);
+
+    // 수정일 경우, 과제 정보 불러오기
+    if (addOrEdit === 'edit') {
+      axios
+        .get(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((r) => {
+          setHomeworkInfo({ ...r.data, tag: r.data.tag.join(',') });
+          setCategory(r.data.target);
+          setPart({ ...part, selected: r.data.target });
+          setDate(r.data.deadline.slice(0, 10));
+          setTime(r.data.deadline.slice(11, 16));
+        });
+    }
   }, []);
+
+  useEffect(() => {
+    console.log(homeworkInfo);
+  }, [homeworkInfo]);
+
+  const titleHandler = ({ target }) => {
+    setHomeworkInfo({ ...homeworkInfo, title: target.value });
+  };
+
+  const tagHandler = ({ target }) => {
+    setHomeworkInfo({ ...homeworkInfo, tag: target.value });
+  };
+
+  const explanationHandler = ({ target }) => {
+    setHomeworkInfo({ ...homeworkInfo, explanation: target.value });
+  };
 
   const onChangeDate = (e) => {
     setDate(e.target.value);
@@ -67,7 +131,7 @@ const HomeworkAddEdit = () => {
         small
         mainTitle={['제목 작성']}
         subTitle={['과제의 주제를 잘 담고있는 제목으로 만들어 주세요.']}
-        component={<InputBox input mainTitle />}
+        component={<InputBox input mainTitle value={homeworkInfo.title} onChange={titleHandler} />}
       />
 
       <Margin height='71' />
@@ -75,7 +139,7 @@ const HomeworkAddEdit = () => {
         small
         mainTitle={['태그']}
         subTitle={['이번 과제에서 무엇을 배우나요? 주된 키워드를 작성해 주세요.']}
-        component={<InputBox input mainTitle />}
+        component={<InputBox input mainTitle value={homeworkInfo.tag} onChange={tagHandler} />}
       />
 
       <Margin height='68' />
@@ -98,7 +162,7 @@ const HomeworkAddEdit = () => {
         <Typography pageTitle style={{ fontSize: '32px' }}>
           카테고리
         </Typography>
-        <SelectCategoryButton setCategory={setCategory} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </StyledFlex>
 
       <Margin height='59' />
@@ -114,7 +178,7 @@ const HomeworkAddEdit = () => {
         small
         mainTitle={['과제 설명']}
         subTitle={['이 곳에는 단톡방에 과제를 공지할 때 작성한 내용을 적어도 됩니다.', '격려의 말이나 도움을 주는 말을 더해도 되구요.']}
-        component={<InputBox text detail />}
+        component={<InputBox text detail value={homeworkInfo.explanation} onChange={explanationHandler} />}
       />
       {addOrEdit === 'add' && <ArrowButtonContainer text='과제 생성 완료하기' />}
       {addOrEdit === 'edit' && <ArrowButtonContainer text='과제 수정 완료하기' />}
