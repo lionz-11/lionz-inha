@@ -33,29 +33,6 @@ const a = [
   },
 ];
 
-const tempData = [
-  {
-    title: '안녕',
-    tag: 'FE',
-    date: '010324',
-  },
-  {
-    title: 'hihihihi',
-    tag: 'BE',
-    date: '010324',
-  },
-  {
-    title: 'hihihihi',
-    tag: 'ALL',
-    date: '010324',
-  },
-  {
-    title: 'hihihihi',
-    tag: 'ALL',
-    date: '010324',
-  },
-];
-
 const HeadLine = styled.div`
   width: 100%;
   display: flex;
@@ -75,6 +52,7 @@ const HomeworkList = () => {
   const [temp, setTemp] = useState([]);
   const [allOfTask, setAllOfTask] = useState([]);
   const [part, setPart] = useState({ user: '', selected: '' });
+  const [myTask, setMyTask] = useState([]);
 
   // const handleCategory = () => {};
   // useEffect(async () => {
@@ -86,6 +64,11 @@ const HomeworkList = () => {
   //   });
   //   console.log(response.data);
   // });
+
+  // 카테고리 정렬
+  useEffect(() => {
+    setTemp(allOfTask.filter(({ target }) => target === category));
+  }, [category, allOfTask]);
 
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
@@ -99,18 +82,7 @@ const HomeworkList = () => {
         setPart({ ...part, user: r.data.part });
       });
 
-    // 내 과제만 조회?? 이건 잘 모르겠음
-    axios
-      .get(`${process.env.REACT_APP_API}/task/${localStorage.getItem('id')}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      .then((r) => {
-        console.log(r.data);
-      });
-
-    // 모든 과제 조회
+    // 모든 과제 조회 + 나의 과제 조회
     axios
       .get(`${process.env.REACT_APP_API}/tasknotice`, {
         headers: {
@@ -119,14 +91,16 @@ const HomeworkList = () => {
       })
       .then((r) => {
         console.log(r.data.data);
+        setMyTask(r.data.data);
         setAllOfTask(r.data.data);
       });
   }, []);
 
-  // 카테고리 정렬
+  const tete = true;
   useEffect(() => {
-    setTemp(allOfTask.filter(({ target }) => target === category));
-  }, [category]);
+    // 내 과제 길이가 0이 아닐때만 실행
+    setMyTask(myTask.filter(({ target }) => target === 'ALL' || target === part.user));
+  }, [allOfTask, part]);
 
   return (
     <Layout>
@@ -138,9 +112,9 @@ const HomeworkList = () => {
           subTitle={['우리 파트의 과제들이 있네요. 남은 반년동안 열심히 달려봐요! 화이팅(운영진 일동)']}
         />
 
-        <CountText unit='ea' count={a.length} />
+        <CountText unit='ea' count={myTask.length} />
       </HeadLine>
-      <PhotoContentContainer data={a} />
+      <PhotoContentContainer data={myTask} />
 
       {/* <HeadLine
       mainTitle={['다른 파트의 과제도 구경하고 싶다면..']}
@@ -156,20 +130,19 @@ const HomeworkList = () => {
 
         <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </HeadLine>
-      {temp.length !== 0 ? (
-        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
-      ) : (
+      {temp.length === 0 ? (
         <>
           <Margin height='50' />
           <Typography contentTitle>
             {category === 'ALL' ? '11기 공통 과제는 아직 없습니다.' : `${category} 파트의 과제는 아직 없습니다.`}
           </Typography>
           <Margin height='10' />
-
           <Typography contentText color='darkGray'>
             다른 파트의 과제를 구경해보세요.
           </Typography>
         </>
+      ) : (
+        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
       )}
     </Layout>
   );

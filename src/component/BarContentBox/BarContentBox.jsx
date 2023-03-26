@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { checkTargetForNewValues, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -104,9 +105,16 @@ const Notification = ({ date }) => (
   </Typography>
 );
 
+/*
+  target이 한템포 늦게 바뀜, 이유는 모르겠다. 
+  그래서 이것저것 보다가 part 스테이트에 꽤많은 정보를 넣게 됐는데,,
+  유지보수할때 이 파트를 정리하고 나머지 스테이트들도 정리해야할 것 같다.
+  일단 target이 바뀌긴 하니까 의존성 배열에 넣어서 상태를 수정하도록 했다.
+*/
+
 const Assignment = ({ date, submissionStatus, part, target }) => {
   const [status, setStatus] = useState('');
-  console.log(part.user, target);
+
   useEffect(() => {
     if (part.user === target && submissionStatus === false) setStatus('미제출');
     if ((part.user === target && submissionStatus === true) || (target === 'ALL' && submissionStatus === true)) setStatus('제출 완료');
@@ -126,10 +134,21 @@ const Assignment = ({ date, submissionStatus, part, target }) => {
 };
 
 const BarContentBox = (props) => {
-  const { title, target, deadline, date, notification, isSubmit, part, onClick } = props;
-  console.log('joihihi');
+  const { id, title, target, deadline, date, notification, isSubmit, part, onClick } = props;
+  const navigate = useNavigate();
+
+  const moveToPage = (e) => {
+    // 과제 페이지로 이동
+    if (!e.target.notification) {
+      navigate(`/homework-info/${e.target.id}`);
+    } else {
+      // 공지 페이지로 이동
+      navigate(`/notice-info/${e.target.id}`);
+    }
+  };
+
   return (
-    <Box whileHover={theme.animation.box} onClick={onClick}>
+    <Box whileHover={theme.animation.box} id={id} notification={notification} onClick={moveToPage}>
       <LeftBox>
         <Tag tag={target} end={props.end}>
           {target}

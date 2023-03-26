@@ -32,6 +32,7 @@ module.exports = {
     'react/jsx-no-constructed-context-values': 'off',
     'no-unused-vars': 'off',
     'linebreak-style': 0,
-    'no-console':process.env.NODE_ENV==='production'?'error':'off',
+    'no-trailing-spaces': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
 };
