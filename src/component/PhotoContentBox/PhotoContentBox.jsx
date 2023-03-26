@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
@@ -12,6 +13,8 @@ const Box = styled(motion.article)`
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
   cursor: pointer;
+
+  // 365
 `;
 
 // 사진을 넣을 컴포넌트! 임시로 만들어놨다.
@@ -52,30 +55,39 @@ const Separator = styled.div`
 const Title = styled.h2`
   ${(props) => props.theme.font.contentTitle};
   padding-bottom: 1.1rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Contents = styled(Typography)`
   height: 2.3rem;
   overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const PhotoContentBox = ({ data }) => {
-  const { title, contents, writer, date } = data;
+  const navigate = useNavigate();
+  const { title, explanation, target, deadline, id } = data;
 
   return (
-    <Box whileHover={theme.animation.box}>
+    <Box whileHover={theme.animation.box} id={id} onClick={() => navigate(`/homework-info/${id}`)}>
       <Photo>
         <img src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg' alt='img' />
       </Photo>
       <MainContent>
         <Title>{title}</Title>
-        <Contents contentText>{contents}</Contents>
+        <Contents contentText>{explanation}</Contents>
       </MainContent>
       <Separator />
       <SideContent>
-        <Typography contentText>{writer}</Typography>
+        <Typography contentText>{target}</Typography>
         <Typography sideContentSmall color='gray'>
-          {date}
+          {deadline}
         </Typography>
       </SideContent>
     </Box>

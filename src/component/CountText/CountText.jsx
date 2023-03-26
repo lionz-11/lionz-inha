@@ -6,7 +6,7 @@ import Margin from '../Margin/Margin';
 const CountText = ({ unit, count }) => (
   <div style={{ display: 'flex', alignItems: 'end' }}>
     <Typography contentText color='darkGray'>
-      {unit === 'ea' ? '지금까지 제출한 과제' : '현재 제출 인원'}
+      {unit === 'ea' ? '총 과제 개수' : '현재 제출 인원'}
     </Typography>
     <Margin width='13' />
     <Typography header>{count}</Typography>

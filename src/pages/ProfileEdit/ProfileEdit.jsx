@@ -114,24 +114,28 @@ const ProfileEdit = () => {
   };
 
   // 비밀번호 변경, 만약 입력된 것이 없으면 바꾸지 않는다.
+  //
   const changePassword = async () => {
-    if (password !== '') {
-      // const data = await axios.Axios...
-      // return data;
-    }
-    // 아닌 경우에 뭔갈 반환해야하나?
+    const data = await axios.put(
+      `${process.env.REACT_APP_API}/member/password`,
+      {
+        password,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      },
+    );
+    return data;
   };
 
   // 커멘트 바꾸는거
   const changeComment = async () => {
     const data = await axios.put(
-      `${process.env.REACT_APP_API}/member`,
+      `${process.env.REACT_APP_API}/member/comment`,
       {
-        phone_num: null,
-        part: null,
         comment,
-        major: null,
-        student_id: null,
       },
       {
         headers: {
@@ -144,17 +148,29 @@ const ProfileEdit = () => {
 
   // 시작하기 버튼 누르면 커멘트 수정, 비밀번호도 추가해야함.
   const submit = async () => {
-    changeComment()
-      .then(() => changePassword())
-      .then(() => {
-        // 소개, 비밀번호 모두 변경 완료시 실행
-        if (welcome === '1') Toast('환영합니다!');
-        else Toast('정보 수정에 성공했습니다.');
-        navigate('/');
-      })
-      .catch((err) => {
-        console.log('오류가 발생했습니다! 미안합니다..');
-      });
+    // 첫방문이면 꼭 프로필 추가하도록!
+    if (!file && welcome === '1') {
+      Toast('프로필 사진을 추가해주세요.');
+    } else if (password === '' && welcome === '1') {
+      Toast('초기 비밀번호말고 다른 비밀번호로 변경해주세요');
+    } else if (comment === '' && welcome === '1') {
+      Toast('한 줄 소개를 작성해주세요');
+    } else {
+      changeComment()
+        .then(() => {
+          if (password !== '') return changePassword();
+          return true;
+        })
+        .then(() => {
+          // 소개, 비밀번호 모두 변경 완료시 실행
+          if (welcome === '1') Toast('환영합니다!');
+          else Toast('정보 수정에 성공했습니다.');
+          navigate('/');
+        })
+        .catch((err) => {
+          console.log('오류가 발생했습니다! 미안합니다..');
+        });
+    }
   };
 
   return (
