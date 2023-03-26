@@ -52,13 +52,12 @@ const NoticeList = () => {
       .then((r) => {
         console.log(r.data.data);
         setNotice(r.data.data);
-        setTemp(notice.filter(({ target }) => target === category));
       });
   }, []);
 
   useEffect(() => {
     setTemp(notice.filter(({ target }) => target === category));
-  }, [category]);
+  }, [category, notice]);
 
   return (
     <Layout>
