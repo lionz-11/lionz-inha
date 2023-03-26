@@ -122,6 +122,7 @@ const HomeworkAddEdit = () => {
           target: category,
           deadline: `${date} ${time}:00`,
           tags: homeworkInfo.tag.split(','),
+          link: homeworkInfo.link,
         },
         {
           headers: {
@@ -146,6 +147,7 @@ const HomeworkAddEdit = () => {
           target: category,
           deadline: `${date} ${time}:00`,
           tags: homeworkInfo.tag.split(','),
+          link: homeworkInfo.link,
         },
         {
           headers: {
