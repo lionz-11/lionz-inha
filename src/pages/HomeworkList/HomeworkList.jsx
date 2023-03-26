@@ -12,27 +12,6 @@ import Header from '../../component/Header/Header';
 import Margin from '../../component/Margin/Margin';
 import Typography from '../../component/Typography/Typography';
 
-const a = [
-  {
-    title: 'hiㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴ',
-    contents: 'contents',
-    writer: 'writer',
-    date: 'date',
-  },
-  {
-    title: 'hi',
-    contents: 'contenasdfasdasdsadasdfts',
-    writer: 'writer',
-    date: 'date',
-  },
-  {
-    title: 'hi',
-    contents: 'contenasdfasdasdsadasdfts',
-    writer: 'writer',
-    date: 'date',
-  },
-];
-
 const HeadLine = styled.div`
   width: 100%;
   display: flex;
@@ -90,13 +69,11 @@ const HomeworkList = () => {
         },
       })
       .then((r) => {
-        console.log(r.data.data);
         setMyTask(r.data.data);
         setAllOfTask(r.data.data);
       });
   }, []);
 
-  const tete = true;
   useEffect(() => {
     // 내 과제 길이가 0이 아닐때만 실행
     setMyTask(myTask.filter(({ target }) => target === 'ALL' || target === part.user));
