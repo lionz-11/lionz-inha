@@ -3,6 +3,9 @@ import Margin from '../../../component/Margin/Margin';
 import Typography from '../../../component/Typography/Typography';
 import Flex from '../../../component/Flex/Flex';
 import Example from './example.png';
+import ALL from './ALL.png';
+import FE from './FE.png';
+import BE from './BE.png';
 
 // 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(Flex)`
@@ -59,7 +62,9 @@ const Contents = styled(Typography)`
 const NoticeBox = ({ title, explanation, target, date, onClick }) => (
   <Box flexCenter column justify='flex-start' onClick={onClick}>
     <Photo flexCenter>
-      <img src={Example} alt='img' />
+      {target === 'ALL' && <img src={ALL} alt='img' />}
+      {target === 'FE' && <img src={FE} alt='img' />}
+      {target === 'BE' && <img src={BE} alt='img' />}
     </Photo>
     <Margin height='20' />
     <MainContent>
