@@ -56,31 +56,27 @@ const Contents = styled(Typography)`
   overflow: hidden;
 `;
 
-const NoticeBox = ({ data }) => {
-  const { title, contents, writer, date } = data;
-
-  return (
-    <Box flexCenter column justify='flex-start'>
-      <Photo flexCenter>
-        <img src={Example} alt='img' />
-      </Photo>
-      <Margin height='20' />
-      <MainContent>
-        <Title>{title}</Title>
-        <Margin height='11' />
-        <Contents contentText color='darkGray'>
-          {contents}
-        </Contents>
-      </MainContent>
-      <Separator />
-      <SideContent flexCenter>
-        <Typography contentText>{writer}</Typography>
-        <Typography sideContentSmall color='gray'>
-          작성자: {date}
-        </Typography>
-      </SideContent>
-    </Box>
-  );
-};
+const NoticeBox = ({ title, explanation, target, date, onClick }) => (
+  <Box flexCenter column justify='flex-start' onClick={onClick}>
+    <Photo flexCenter>
+      <img src={Example} alt='img' />
+    </Photo>
+    <Margin height='20' />
+    <MainContent>
+      <Title>{title}</Title>
+      <Margin height='11' />
+      <Contents contentText color='darkGray'>
+        {explanation}
+      </Contents>
+    </MainContent>
+    <Separator />
+    <SideContent flexCenter>
+      <Typography contentText>{target}</Typography>
+      <Typography sideContentSmall color='gray'>
+        작성일: {date}
+      </Typography>
+    </SideContent>
+  </Box>
+);
 
 export default NoticeBox;
