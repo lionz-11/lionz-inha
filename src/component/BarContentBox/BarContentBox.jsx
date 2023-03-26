@@ -139,7 +139,7 @@ const BarContentBox = (props) => {
 
   const moveToPage = (e) => {
     // 과제 페이지로 이동
-    if (!e.target.notification) {
+    if (e.target.notification === false) {
       navigate(`/homework-info/${id}`);
     } else {
       // 공지 페이지로 이동
