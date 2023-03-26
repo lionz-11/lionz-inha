@@ -71,7 +71,7 @@ const Login = () => {
       .then((r) => {
         localStorage.setItem('accessToken', r.data.accessToken);
         localStorage.setItem('id', r.data.id);
-        if (r.data.count === '1') {
+        if (r.data.count === 0) {
           navigate('/profile-edit/1');
           Toast('첫 방문을 환영합니다. 정보를 입력해주세요.');
         } else {
