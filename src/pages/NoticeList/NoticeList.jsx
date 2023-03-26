@@ -21,6 +21,7 @@ const ResultWrapper = styled.div`
 `;
 
 const NoticeList = () => {
+  const notification = true;
   const [user, setUser] = useState('Admin');
   const [notice, setNotice] = useState([]);
   const [temp, setTemp] = useState([]);
@@ -96,7 +97,7 @@ const NoticeList = () => {
 
       <Margin height='20' />
       <ResultWrapper>
-        <BarComponentContainer bars={temp} renderProp={(props) => <BarContentBox notification={1} {...props} />} />
+        <BarComponentContainer bars={temp} renderProp={(props) => <BarContentBox noti {...props} />} />
       </ResultWrapper>
       <Margin height='20' />
     </Layout>
