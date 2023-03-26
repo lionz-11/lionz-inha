@@ -106,6 +106,54 @@ const HomeworkAddEdit = () => {
     setTime(e.target.value);
   };
 
+  // 과제 생성
+  const addNewHomework = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/tasknotice`,
+        {
+          title: homeworkInfo.title,
+          explanation: homeworkInfo.explanation,
+          target: category,
+          deadline: `${date} ${time}:00`,
+          tags: homeworkInfo.tag.split(','),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      )
+      .then((r) => {
+        Toast('과제 생성이 완료되었습니다.');
+        navigate('/homework-list');
+      });
+  };
+
+  // 과제 수정
+  const editHomework = () => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API}/tasknotice/${homeworkInfo.id}`,
+        {
+          title: homeworkInfo.title,
+          explanation: homeworkInfo.explanation,
+          target: category,
+          deadline: `${date} ${time}:00`,
+          tags: homeworkInfo.tag.split(','),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      )
+      .then((r) => {
+        Toast('과제 수정이 완료되었습니다.');
+        navigate('/homework-list');
+      });
+  };
+
   return (
     <Layout size='small'>
       <Header />
@@ -180,8 +228,8 @@ const HomeworkAddEdit = () => {
         subTitle={['이 곳에는 단톡방에 과제를 공지할 때 작성한 내용을 적어도 됩니다.', '격려의 말이나 도움을 주는 말을 더해도 되구요.']}
         component={<InputBox text detail value={homeworkInfo.explanation} onChange={explanationHandler} />}
       />
-      {addOrEdit === 'add' && <ArrowButtonContainer text='과제 생성 완료하기' />}
-      {addOrEdit === 'edit' && <ArrowButtonContainer text='과제 수정 완료하기' />}
+      {addOrEdit === 'add' && <ArrowButtonContainer text='과제 생성 완료하기' onClick={addNewHomework} />}
+      {addOrEdit === 'edit' && <ArrowButtonContainer text='과제 수정 완료하기' onClick={editHomework} />}
     </Layout>
   );
 };
