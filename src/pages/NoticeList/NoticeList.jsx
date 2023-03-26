@@ -96,10 +96,7 @@ const NoticeList = () => {
 
       <Margin height='20' />
       <ResultWrapper>
-        <BarComponentContainer
-          bars={temp}
-          renderProp={(props) => <BarContentBox notification {...props} onClick={() => navigate(`/notice-info/${props.id}`)} />}
-        />
+        <BarComponentContainer bars={temp} renderProp={(props) => <BarContentBox notification={1} {...props} />} />
       </ResultWrapper>
       <Margin height='20' />
     </Layout>
