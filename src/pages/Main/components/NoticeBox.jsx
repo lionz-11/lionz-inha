@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Margin from '../../../component/Margin/Margin';
 import Typography from '../../../component/Typography/Typography';
 import Flex from '../../../component/Flex/Flex';
-import Example from './example.png';
 import ALL from './ALL.png';
 import FE from './FE.png';
 import BE from './BE.png';

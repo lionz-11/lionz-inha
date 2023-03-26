@@ -29,7 +29,7 @@ const ProfileButton = styled.button`
 const InfoWrapper = styled.div`
   position: fixed;
   top: 50px;
-  right: -400px;
+  right: max(calc((100vw - 1312px) / 2), 0px);
   width: 320px;
   margin-right: 20px;
   border-radius: 10px;
@@ -38,12 +38,15 @@ const InfoWrapper = styled.div`
   box-shadow: 2px 4px 8px -1px rgba(49, 76, 145, 0.15);
   padding: 0px 22px;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+
   ${(props) =>
     props.isClicked &&
     css`
-      right: max(calc((100vw - 1312px) / 2), 0px);
+      opacity: 100;
+      visibility: visible;
     `};
-
   transition: 0.5s;
 `;
 
