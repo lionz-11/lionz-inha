@@ -33,29 +33,6 @@ const a = [
   },
 ];
 
-const tempData = [
-  {
-    title: '안녕',
-    tag: 'FE',
-    date: '010324',
-  },
-  {
-    title: 'hihihihi',
-    tag: 'BE',
-    date: '010324',
-  },
-  {
-    title: 'hihihihi',
-    tag: 'ALL',
-    date: '010324',
-  },
-  {
-    title: 'hihihihi',
-    tag: 'ALL',
-    date: '010324',
-  },
-];
-
 const HeadLine = styled.div`
   width: 100%;
   display: flex;
@@ -87,6 +64,11 @@ const HomeworkList = () => {
   //   console.log(response.data);
   // });
 
+  // 카테고리 정렬
+  useEffect(() => {
+    setTemp(allOfTask.filter(({ target }) => target === category));
+  }, [category, allOfTask]);
+
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
     axios
@@ -96,6 +78,7 @@ const HomeworkList = () => {
         },
       })
       .then((r) => {
+        console.log(r.data);
         setPart({ ...part, user: r.data.part });
       });
 
@@ -122,11 +105,6 @@ const HomeworkList = () => {
         setAllOfTask(r.data.data);
       });
   }, []);
-
-  // 카테고리 정렬
-  useEffect(() => {
-    setTemp(allOfTask.filter(({ target }) => target === category));
-  }, [category]);
 
   return (
     <Layout>
@@ -156,20 +134,19 @@ const HomeworkList = () => {
 
         <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </HeadLine>
-      {temp.length !== 0 ? (
-        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
-      ) : (
+      {temp.length === 0 ? (
         <>
           <Margin height='50' />
           <Typography contentTitle>
             {category === 'ALL' ? '11기 공통 과제는 아직 없습니다.' : `${category} 파트의 과제는 아직 없습니다.`}
           </Typography>
           <Margin height='10' />
-
           <Typography contentText color='darkGray'>
             다른 파트의 과제를 구경해보세요.
           </Typography>
         </>
+      ) : (
+        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox part={part} {...data} />} />
       )}
     </Layout>
   );
