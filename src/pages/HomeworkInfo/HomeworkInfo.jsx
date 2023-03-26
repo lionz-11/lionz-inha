@@ -14,6 +14,7 @@ import CountText from '../../component/CountText/CountText';
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import CountTime from '../../component/CountTime/CountTime';
 import TextButton from '../../component/TextButton/TextButton';
+import { Toast } from '../../component/Toast/Toast';
 
 const InnerWrapper = styled(Flex)`
   width: 100%;
@@ -46,6 +47,7 @@ const InfoBox = styled.div`
 
 const HomeworkInfo = () => {
   const { homeworkIndex } = useParams();
+  const navigate = useNavigate();
   const [user, setUser] = useState('Admin');
   const [userPart, setUserPart] = useState('');
   const [isComplete, setIsComplete] = useState(true);
@@ -113,6 +115,23 @@ const HomeworkInfo = () => {
     }
   }, [user, userPart, homeworkInfo]);
 
+  const onClickEdit = () => {
+    navigate(`/homework/edit/${homeworkIndex}`);
+  };
+
+  const onClickDelete = () => {
+    axios
+      .delete(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        Toast('과제가 삭제되었습니다.');
+        navigate('/homework-list');
+      });
+  };
+
   return (
     <Layout style={{ textAlign: 'left' }}>
       <Header />
@@ -122,7 +141,7 @@ const HomeworkInfo = () => {
           <Typography header style={{ width: 'calc(100% - 100px)', fontSize: '48px', letterSpacing: '0.04em', textWrap: 'break-word' }}>
             {homeworkInfo.title}
           </Typography>
-          {user === 'ROLE_ADMIN' && <TextButton haveDelete />}
+          {user === 'ROLE_ADMIN' && <TextButton haveDelete onClickEdit={onClickEdit} onClickDelete={onClickDelete} />}
         </Flex>
         <Margin height='30' />
         <Typography contentText color='darkGray'>{`${homeworkInfo.target} • 마감일 : ${homeworkInfo.deadline}`}</Typography>
