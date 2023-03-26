@@ -80,6 +80,7 @@ const jobs = ['ALL', 'BE', 'FE', 'STF'];
 
 const ContactContainer = ({ data, isStaff }) => {
   // true === 내림차순, false === 오름차순
+  console.log(isStaff);
   const [nameSort, setNameSort] = useState(true);
   const [jobSelect, setJobSelect] = useState(0);
   const [dataList, setDataList] = useState([]);
@@ -114,7 +115,7 @@ const ContactContainer = ({ data, isStaff }) => {
 
   return (
     <>
-      {isStaff ? (
+      {isStaff === 'ROLE_ADMIN' ? (
         <Container>
           <SelectBar>
             <Select margin='83' onClick={nameSortHandler}>
