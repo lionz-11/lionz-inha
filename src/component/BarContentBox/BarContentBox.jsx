@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { checkTargetForNewValues, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -113,7 +114,7 @@ const Notification = ({ date }) => (
 
 const Assignment = ({ date, submissionStatus, part, target }) => {
   const [status, setStatus] = useState('');
-  console.log(part.user, target);
+
   useEffect(() => {
     if (part.user === target && submissionStatus === false) setStatus('미제출');
     if ((part.user === target && submissionStatus === true) || (target === 'ALL' && submissionStatus === true)) setStatus('제출 완료');
@@ -133,10 +134,21 @@ const Assignment = ({ date, submissionStatus, part, target }) => {
 };
 
 const BarContentBox = (props) => {
-  const { title, target, deadline, date, notification, isSubmit, part, onClick } = props;
+  const { id, title, target, deadline, date, notification, isSubmit, part, onClick } = props;
+  const navigate = useNavigate();
+
+  const moveToPage = (e) => {
+    // 과제 페이지로 이동
+    if (!e.target.notification) {
+      navigate(`/homework-info/${e.target.id}`);
+    } else {
+      // 공지 페이지로 이동
+      navigate(`/notice-info/${e.target.id}`);
+    }
+  };
 
   return (
-    <Box whileHover={theme.animation.box} onClick={onClick}>
+    <Box whileHover={theme.animation.box} id={id} notification={notification} onClick={moveToPage}>
       <LeftBox>
         <Tag tag={target} end={props.end}>
           {target}
