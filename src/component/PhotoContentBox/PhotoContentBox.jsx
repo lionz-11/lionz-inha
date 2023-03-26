@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
@@ -60,45 +61,33 @@ const Title = styled.h2`
   overflow: hidden;
 `;
 
-/*
+const Contents = styled(Typography)`
+  height: 2.3rem;
+  overflow: hidden;
 
-  // 제목 overflow를 위한 속성
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
-const LeftBox = styled.div`
-  ${(props) => props.theme.flex.flexCenter};
-  justify-content: start;
-  flex-grow: 1;
-
-  // 제목 overflow를 위한 속성
-  overflow: hidden;
-*/
-
-const Contents = styled(Typography)`
-  height: 2.3rem;
-  overflow: hidden;
-`;
-
 const PhotoContentBox = ({ data }) => {
-  const { title, contents, writer, date } = data;
+  const navigate = useNavigate();
+  const { title, explanation, target, deadline, id } = data;
 
   return (
-    <Box whileHover={theme.animation.box}>
+    <Box whileHover={theme.animation.box} id={id} onClick={() => navigate(`/homework-info/${id}`)}>
       <Photo>
         <img src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg' alt='img' />
       </Photo>
       <MainContent>
         <Title>{title}</Title>
-        <Contents contentText>{contents}</Contents>
+        <Contents contentText>{explanation}</Contents>
       </MainContent>
       <Separator />
       <SideContent>
-        <Typography contentText>{writer}</Typography>
+        <Typography contentText>{target}</Typography>
         <Typography sideContentSmall color='gray'>
-          {date}
+          {deadline}
         </Typography>
       </SideContent>
     </Box>
