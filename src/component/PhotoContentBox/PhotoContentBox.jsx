@@ -12,6 +12,8 @@ const Box = styled(motion.article)`
   background-color: ${(props) => props.theme.colors.white};
   overflow: hidden; // 사진이 틀밖으로 나가지 않게한다.
   cursor: pointer;
+
+  // 365
 `;
 
 // 사진을 넣을 컴포넌트! 임시로 만들어놨다.
@@ -52,7 +54,28 @@ const Separator = styled.div`
 const Title = styled.h2`
   ${(props) => props.theme.font.contentTitle};
   padding-bottom: 1.1rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
+
+/*
+
+  // 제목 overflow를 위한 속성
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const LeftBox = styled.div`
+  ${(props) => props.theme.flex.flexCenter};
+  justify-content: start;
+  flex-grow: 1;
+
+  // 제목 overflow를 위한 속성
+  overflow: hidden;
+*/
 
 const Contents = styled(Typography)`
   height: 2.3rem;
