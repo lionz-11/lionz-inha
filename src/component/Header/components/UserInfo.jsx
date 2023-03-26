@@ -83,7 +83,11 @@ const UserInfo = ({ part, name, comment }) => {
           <StyledTextButton onClick={() => navigate('/profile-edit/0')}>수정</StyledTextButton>
         </Flex>
         <Margin height='10' />
-        <Typography sideContentSmall color='darkGray' style={{ width: '100%' }}>
+        <Typography
+          sideContentSmall
+          color='darkGray'
+          style={{ width: '100%', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+        >
           {comment}
         </Typography>
         <Margin height='22' />

@@ -52,10 +52,17 @@ const Separator = styled.hr`
 
 const Title = styled.h2`
   ${(props) => props.theme.font.pageTitle};
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Contents = styled(Typography)`
+  display: block;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const NoticeBox = ({ title, explanation, target, date, onClick }) => (
