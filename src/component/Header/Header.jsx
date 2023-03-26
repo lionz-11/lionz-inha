@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BiSearch, BiMenu } from 'react-icons/bi';
 import { BsPersonFill } from 'react-icons/bs';
 import Typography from '../Typography/Typography';
@@ -39,14 +40,34 @@ const ProfileWrapper = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.theme.colors.lightGray};
   overflow: hidden;
-  padding-top: 4px;
   cursor: pointer;
 `;
 
+const ProfileImg = styled.img`
+  width: 31px;
+  height: 31px;
+  object-fit: cover;
+`;
+
 const Header = ({ onlyTitle }) => {
+  const [profile, setProfile] = useState('');
   const [menuButton, setMenuButton] = useState(false);
   const [searchButton, setSearchButton] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // user 정보 불러오기
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data);
+        setProfile(r.data.image?.img_link);
+      });
+  }, []);
 
   const menuButtonClicked = () => {
     setMenuButton(!menuButton);
@@ -73,7 +94,11 @@ const Header = ({ onlyTitle }) => {
               />
               <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
               <ProfileWrapper>
-                <BsPersonFill size='31px' color={theme.colors.darkGray} />
+                {profile !== '' ? (
+                  <ProfileImg src={profile} />
+                ) : (
+                  <BsPersonFill size='31px' color={theme.colors.darkGray} style={{ marginTop: '4px' }} />
+                )}
               </ProfileWrapper>
             </RightWrapper>
             <MenuBar menuButton={menuButton} menuButtonClicked={menuButtonClicked} />

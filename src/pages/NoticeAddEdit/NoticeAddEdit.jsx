@@ -58,7 +58,7 @@ const NoticeAddEdit = () => {
           title: noticeInfo.title,
           explanation: noticeInfo.explanation,
           target: category,
-          deadlint: 'none',
+          deadline: 'none',
           tags: noticeInfo.tag.split(','),
         },
         {
@@ -81,7 +81,7 @@ const NoticeAddEdit = () => {
           title: noticeInfo.title,
           explanation: noticeInfo.explanation,
           target: category,
-          deadlint: 'none',
+          deadline: 'none',
           tags: noticeInfo.tag.split(','),
         },
         {
@@ -112,6 +112,7 @@ const NoticeAddEdit = () => {
           navigate(-1);
         }
       });
+
     // 공지 내용 얻어오기
     if (addOrEdit === 'edit') {
       axios

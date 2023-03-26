@@ -52,15 +52,12 @@ const NoticeList = () => {
       .then((r) => {
         console.log(r.data.data);
         setNotice(r.data.data);
-        setTemp(r.data.data);
+        setTemp(notice.filter(({ target }) => target === category));
       });
   }, []);
 
   useEffect(() => {
-    if (category === 'ALL') setTemp(notice);
-    else {
-      setTemp(notice.filter(({ target }) => target === category));
-    }
+    setTemp(notice.filter(({ target }) => target === category));
   }, [category]);
 
   return (
@@ -100,10 +97,7 @@ const NoticeList = () => {
 
       <Margin height='20' />
       <ResultWrapper>
-        <BarComponentContainer
-          bars={temp}
-          renderProp={(props) => <BarContentBox notification {...props} onClick={() => navigate(`/notice-info/${props.id}`)} />}
-        />
+        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox notification {...data} />} />
       </ResultWrapper>
       <Margin height='20' />
     </Layout>
