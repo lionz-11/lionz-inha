@@ -134,17 +134,16 @@ const Assignment = ({ date, submissionStatus, part, target }) => {
 };
 
 const BarContentBox = (props) => {
-  const { id, title, target, deadline, date, noti: notification, isSubmit, part } = props;
+  const { id, title, target, deadline, date, notification, isSubmit, part } = props;
   const navigate = useNavigate();
 
   const moveToPage = (e) => {
     // 과제 페이지로 이동
-    console.log(e.target.noti);
-    if (e.target.noti === true) {
-      navigate(`/notice-info/${id}`);
+    if (!notification) {
+      navigate(`/homework-info/${id}`);
     } else {
       // 공지 페이지로 이동
-      navigate(`/homework-info/${id}`);
+      navigate(`/notice-info/${id}`);
     }
   };
 
@@ -153,7 +152,7 @@ const BarContentBox = (props) => {
       {props.id === '' ? (
         <div>로딩중 입니다.</div>
       ) : (
-        <Box whileHover={theme.animation.box} id={id} noti={notification} onClick={moveToPage}>
+        <Box whileHover={theme.animation.box} id={id} notification={notification} onClick={moveToPage}>
           <LeftBox>
             <Tag tag={target} end={props.end}>
               {target}
