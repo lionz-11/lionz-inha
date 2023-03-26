@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import Typography from '../Typography/Typography';
 import Margin from '../Margin/Margin';
 
-const CountTime = ({ day, hour, min }) => {
-  const endTime = new Date('2023-03-26');
+const CountTime = ({ deadline }) => {
   const [restDate, setRestDate] = useState(0);
   const [restHour, setRestHour] = useState(0);
   const [restMinute, setRestMinute] = useState(0);
@@ -11,7 +10,7 @@ const CountTime = ({ day, hour, min }) => {
   useEffect(() => {
     const id = setInterval(() => {
       const curTime = new Date();
-      const diff = endTime - curTime;
+      const diff = new Date(deadline) - curTime;
       if (diff >= 0) {
         setRestDate(Math.floor(diff / (1000 * 60 * 60 * 24)));
         setRestHour(Math.floor((diff / (1000 * 60 * 60)) % 24));
@@ -21,7 +20,7 @@ const CountTime = ({ day, hour, min }) => {
     // 1초마다 실행되는 인터벌을 이용해 1초마다 다시 랜더링 시켜줌
     return () => clearInterval(id);
     // 페이지를 벗어나게되면 반복을 종료해줌
-  }, []);
+  }, [deadline]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
@@ -33,16 +32,19 @@ const CountTime = ({ day, hour, min }) => {
         <Typography header style={{ letterSpacing: '0.01em' }}>
           {restDate}
         </Typography>
+        <Margin width='3' />
         <Typography sideContentBold>일</Typography>
         <Margin width='8' />
         <Typography header style={{ letterSpacing: '0.01em' }}>
           {restHour}
         </Typography>
+        <Margin width='3' />
         <Typography sideContentBold>시간</Typography>
         <Margin width='8' />
         <Typography header style={{ letterSpacing: '0.01em' }}>
           {restMinute}
         </Typography>
+        <Margin width='3' />
         <Typography sideContentBold>분</Typography>
       </div>
     </div>

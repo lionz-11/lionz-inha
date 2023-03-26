@@ -84,7 +84,7 @@ const NoticeInfo = () => {
       <InnerWrapper flexCenter column>
         <Margin height='160' />
         <Flex flexCenter justify='space-between' style={{ width: '100%' }}>
-          <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em' }}>
+          <Typography header style={{ width: 'calc(100% - 100px)', fontSize: '48px', letterSpacing: '0.04em', textWrap: 'break-word' }}>
             {noticeInfo.title}
           </Typography>
           {user === 'ROLE_ADMIN' && <TextButton haveDelete onClickEdit={onClickEdit} onClickDelete={onClickDelete} />}
