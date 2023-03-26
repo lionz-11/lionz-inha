@@ -69,7 +69,6 @@ const HomeworkList = () => {
         },
       })
       .then((r) => {
-        console.log(r.data.data);
         setMyTask(r.data.data);
         setAllOfTask(r.data.data);
       });
