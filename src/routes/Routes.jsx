@@ -24,7 +24,7 @@ const Router = () => (
       <Route path='/homework-list' element={<HomeworkList />} />
       <Route path='/homework/:addOrEdit' element={<HomeworkAddEdit />} />
       <Route path='/notice-list' element={<NoticeList />} />
-      <Route path='/notice/:addOrEdit' element={<NoticeAddEdit />} />
+      <Route path='/notice/:addOrEdit/:noticeIndex' element={<NoticeAddEdit />} />
       <Route path='/search/:keyword' element={<SearchResult />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/schedule' element={<Schedule />} />

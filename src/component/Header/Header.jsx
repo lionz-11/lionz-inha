@@ -58,8 +58,8 @@ const Header = ({ onlyTitle }) => {
 
   return (
     <Container>
-      <Flex justify='space-between' style={{ width: '100%', maxWidth: '1312px' }}>
-        <Margin width='140' />
+      <Flex justify={onlyTitle ? 'center' : 'space-between'} style={{ width: '100%', maxWidth: '1312px' }}>
+        {!onlyTitle && <Margin width='140' />}
         <Typography header style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
           LIKE LION
         </Typography>

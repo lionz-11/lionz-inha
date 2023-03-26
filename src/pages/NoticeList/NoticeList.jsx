@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../component/Header/Header';
@@ -20,33 +21,47 @@ const ResultWrapper = styled.div`
 `;
 
 const NoticeList = () => {
+  const notification = true;
   const [user, setUser] = useState('Admin');
+  const [notice, setNotice] = useState([]);
+  const [temp, setTemp] = useState([]);
   const [category, setCategory] = useState('ALL');
+  const [part, setPart] = useState({ user: '', selected: '' });
 
   const navigate = useNavigate();
 
-  const notice = [
-    {
-      title: '안녕',
-      tag: 'FE',
-      date: '010324',
-    },
-    {
-      title: 'hihihihi',
-      tag: 'BE',
-      date: '010324',
-    },
-    {
-      title: 'hihihihi',
-      tag: 'ALL',
-      date: '010324',
-    },
-    {
-      title: 'hihihihi',
-      tag: 'ALL',
-      date: '010324',
-    },
-  ];
+  useEffect(() => {
+    // 유저의 파트 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        setPart({ ...part, user: r.data.part });
+        setUser(r.data.authority);
+      });
+    // 공지 전체 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/notice`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data.data);
+        setNotice(r.data.data);
+        setTemp(r.data.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (category === 'ALL') setTemp(notice);
+    else {
+      setTemp(notice.filter(({ target }) => target === category));
+    }
+  }, [category]);
 
   return (
     <Layout>
@@ -62,14 +77,14 @@ const NoticeList = () => {
           <Typography contentText color='darkGray'>
             중요한 공지들을 빠뜨리지 않도록 한 눈에 확인해볼 수 있어요.
           </Typography>
-          {user === 'Admin' && (
+          {user === 'ROLE_ADMIN' && (
             <>
               <Margin height='30' />{' '}
               <Typography sideContentSmall color='darkGray'>
                 아기사자를 괴롭히고 싶다면?
               </Typography>
               <Margin height='5' />
-              <div onClick={() => navigate('/')}>
+              <div onClick={() => navigate('/notice/add/new')}>
                 <ArrowButton>과제 생성하러가기</ArrowButton>
               </div>
             </>
@@ -80,12 +95,15 @@ const NoticeList = () => {
       <Margin height='50' />
       <Flex flexCenter justify='space-between' style={{ width: '100%', marginLeft: '13px' }}>
         <Typography pageTitle>공지사항 목록</Typography>
-        <SelectCategoryButton setCategory={setCategory} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </Flex>
 
       <Margin height='20' />
       <ResultWrapper>
-        <BarComponentContainer bars={notice} renderProp={(props) => <BarContentBox {...props} />} />
+        <BarComponentContainer
+          bars={temp}
+          renderProp={(props) => <BarContentBox notification {...props} onClick={() => navigate(`/notice-info/${props.id}`)} />}
+        />
       </ResultWrapper>
       <Margin height='20' />
     </Layout>

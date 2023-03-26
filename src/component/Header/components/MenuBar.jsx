@@ -61,6 +61,18 @@ const MenuBar = ({ menuButton, menuButtonClicked }) => {
     navigate('/profile-edit/0');
   };
 
+  const moveToNotice = () => {
+    navigate('/notice-list');
+  };
+
+  const moveToHomework = () => {
+    navigate('/homework-list');
+  };
+
+  const moveToContact = () => {
+    navigate('/contact');
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -79,9 +91,9 @@ const MenuBar = ({ menuButton, menuButtonClicked }) => {
         <Margin height={17} />
         <Flex column>
           <MenuButton title='내 정보 수정' subTitle='작고 소중한 나의 정보..' onClick={moveToProfileEdit} />
-          <MenuButton title='공지사항' subTitle='재밌는 일 없나?' />
-          <MenuButton title='과제' subTitle='아 맞다 과제!' />
-          <MenuButton title='연락처' subTitle='그 사람.. 누구더라?' />
+          <MenuButton title='공지사항' subTitle='재밌는 일 없나?' onClick={moveToNotice} />
+          <MenuButton title='과제' subTitle='아 맞다 과제!' onClick={moveToHomework} />
+          <MenuButton title='연락처' subTitle='그 사람.. 누구더라?' onClick={moveToContact} />
           <MenuButton title='일정' subTitle='오늘 뭐 하지?' />
         </Flex>
         <InfoBox>
