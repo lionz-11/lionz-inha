@@ -51,8 +51,8 @@ const ProfileImage = styled.img`
   min-width: 29px;
   max-height: 29px;
   max-width: 29px; */
-  height: 29px;
-  width: 29px;
+  min-height: 29px;
+  min-width: 29px;
   border-radius: 29px;
   background-color: pink;
 `;
@@ -86,7 +86,23 @@ const ContactContainer = ({ data, isStaff }) => {
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
-    setDataList(data);
+    console.log(data);
+    setDataList(
+      data.map((d) => {
+        const part = d.authority === 'ROLE_ADMIN' ? 'STAFF' : d.part;
+        const image = d.image?.img_link;
+
+        return {
+          name: d.name,
+          part,
+          comment: d.comment,
+          phone_num: d.phone_num,
+          major: d.major,
+          student_id: d.student_id,
+          image,
+        };
+      }),
+    );
   }, [data]);
 
   const nameSortHandler = () => {
@@ -99,7 +115,7 @@ const ContactContainer = ({ data, isStaff }) => {
   const jobSelectHandler = () => {
     const jobNum = (jobSelect + 1) % 4; // 정렬해야할 것
     setJobSelect(jobNum);
-    console.log(jobs[jobNum]);
+
     if (jobNum === 0) {
       setDataList(data);
       return;
@@ -134,7 +150,7 @@ const ContactContainer = ({ data, isStaff }) => {
           <ScrollContact>
             {dataList.map((d, i) => (
               <Contact id={i}>
-                <ProfileImage src={d.image?.img_link} />
+                <ProfileImage src={d.image} />
                 <InternalFragment width='88' bold>
                   {d.name}
                 </InternalFragment>
