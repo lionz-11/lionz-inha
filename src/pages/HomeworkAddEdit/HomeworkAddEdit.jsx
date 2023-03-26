@@ -39,6 +39,7 @@ const HomeworkAddEdit = () => {
     tag: [],
     target: '',
     title: '',
+    link: '',
   });
 
   useEffect(() => {
@@ -92,6 +93,10 @@ const HomeworkAddEdit = () => {
 
   const tagHandler = ({ target }) => {
     setHomeworkInfo({ ...homeworkInfo, tag: target.value });
+  };
+
+  const linkHandler = ({ target }) => {
+    setHomeworkInfo({ ...homeworkInfo, link: target.value });
   };
 
   const explanationHandler = ({ target }) => {
@@ -218,7 +223,7 @@ const HomeworkAddEdit = () => {
         small
         mainTitle={['과제 참고 링크']}
         subTitle={['깃허브 링크 또는 그 외 참고 링크를 넣어주세요. 하나만요..']}
-        component={<InputBox input mainTitle />}
+        component={<InputBox input mainTitle value={homeworkInfo.link} onChange={linkHandler} />}
       />
 
       <Margin height='89' />

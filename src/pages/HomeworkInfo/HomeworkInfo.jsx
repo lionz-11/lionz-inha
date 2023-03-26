@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 import { AiFillGithub } from 'react-icons/ai';
 import styled from 'styled-components';
 import Header from '../../component/Header/Header';
@@ -46,18 +47,21 @@ const InfoBox = styled.div`
 const HomeworkInfo = () => {
   const { homeworkIndex } = useParams();
   const [user, setUser] = useState('Admin');
+  const [userPart, setUserPart] = useState('');
   const [isComplete, setIsComplete] = useState(true);
   const [infoButtonText, setInfoButtonText] = useState('');
   const [subInfoButtonText, setSubInfoButtonText] = useState('');
 
-  const infoArray = useState({
-    title: 'React Hooks를 배워보기!',
-    category: 'FE',
-    date: 'qwdqwd',
-    gitUrl: 'https://github.com/pakxe/lionz-fe',
-    completed: 8,
-    tag: ['React', 'React Router', 'Styled-component'],
-    text: '(여기엔 카톡에 공지할때 쓰는 내용을 복붙해서 넣으면 좋습니다~, 과제에 대한 간략한 안내, 설명, 팁같은걸 넣어도 좋구요 리드미에는 과제에 대한 설명만 쓰도록 합시다!) 이번 과제는 서버와 통신하기 위한 도구인 useEffect에 대해서 배워봅시다. 지금 잘 배워둬야 나중에 해커톤에서 잘 쓸 수 있습니다~!! 어려운게 당연하므로 열심히 해봅시다 마감일은 03월 24일 18시 까지입니다.',
+  const [homeworkInfo, setHomeworkInfo] = useState({
+    date: '',
+    deadline: '',
+    explanation: '',
+    id: -1,
+    tag: [],
+    target: '',
+    title: '',
+    isSubmit: false,
+    url: '',
   });
 
   // 조금 복잡합니다. 아래와 같은 순서로 판단합니다.
@@ -68,11 +72,38 @@ const HomeworkInfo = () => {
   // 해당 과제 파트가 아닌 유저일 경우 과제 구경하러 가기
 
   useEffect(() => {
-    if (user === 'Admin') {
+    // 유저의 파트 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        setUser(r.data.authority);
+        setUserPart(r.data.part);
+      });
+
+    // 과제 정보 불러오기
+    axios
+      .get(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data);
+        setHomeworkInfo({ ...r.data });
+      });
+  }, []);
+
+  useEffect(() => {
+    // 파트별 텍스트 구분
+    if (user === 'ROLE_ADMIN') {
       setSubInfoButtonText('운영진 이시네요');
       setInfoButtonText('아기사자 과제 구경하러가기');
-    } else if (infoArray[0].category === 'FE') {
-      if (isComplete) {
+    } else if (homeworkInfo.target === userPart) {
+      if (homeworkInfo.isSubmit) {
         setSubInfoButtonText('이미 제출했다면?');
         setInfoButtonText('과제 구경하러가기');
       } else setInfoButtonText('과제 제출하러가기');
@@ -80,7 +111,7 @@ const HomeworkInfo = () => {
       setSubInfoButtonText('제출 대상이 아니라면');
       setInfoButtonText('과제 구경하러가기');
     }
-  }, []);
+  }, [user, userPart, homeworkInfo]);
 
   return (
     <Layout style={{ textAlign: 'left' }}>
@@ -88,29 +119,29 @@ const HomeworkInfo = () => {
       <InnerWrapper flexCenter column>
         <Margin height='160' />
         <Flex flexCenter justify='space-between' style={{ width: '100%' }}>
-          <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em' }}>
-            {infoArray[0].title}
+          <Typography header style={{ width: 'calc(100% - 100px)', fontSize: '48px', letterSpacing: '0.04em', textWrap: 'break-word' }}>
+            {homeworkInfo.title}
           </Typography>
-          {user === 'Admin' && <TextButton haveDelete />}
+          {user === 'ROLE_ADMIN' && <TextButton haveDelete />}
         </Flex>
         <Margin height='30' />
-        <Typography contentText color='darkGray'>{`${infoArray[0].category} • 마감일 : ${infoArray[0].date}`}</Typography>
+        <Typography contentText color='darkGray'>{`${homeworkInfo.target} • 마감일 : ${homeworkInfo.deadline}`}</Typography>
         <Margin height='16' />
         <Flex flexCenter justify='space-between' style={{ width: '100%' }}>
-          <TagContainer tag={infoArray[0].tag} />
+          <TagContainer tag={homeworkInfo.tag} />
           <LikeAndShare />
         </Flex>
 
         <Margin height='28' />
         <LinkContainer>
           <AiFillGithub size='30' style={{ marginRight: '20px' }} />
-          <Link href={infoArray[0].gitUrl}>{infoArray[0].gitUrl}</Link>
+          <Link href={homeworkInfo.link}>{homeworkInfo.link}</Link>
         </LinkContainer>
 
         <Margin height='28' />
         <InfoBox>
-          <CountTime day={3} hour={12} min={50} />
-          <CountText unit='ea' count={infoArray[0].completed} />
+          <CountTime deadline={homeworkInfo.deadline} />
+          <CountText unit='ea' count={homeworkInfo.completed} />
 
           <Flex flexCenter column align='end'>
             {subInfoButtonText !== '' && (
@@ -123,7 +154,7 @@ const HomeworkInfo = () => {
         </InfoBox>
 
         <Margin height='69' />
-        <Typography contentText>{infoArray[0].text}</Typography>
+        <Typography contentText>{homeworkInfo.explanation}</Typography>
       </InnerWrapper>
     </Layout>
   );
