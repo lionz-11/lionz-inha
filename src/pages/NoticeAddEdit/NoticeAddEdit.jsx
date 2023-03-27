@@ -58,7 +58,7 @@ const NoticeAddEdit = () => {
           title: noticeInfo.title,
           explanation: noticeInfo.explanation,
           target: category,
-          deadline: 'none',
+          deadline: `${new Date().toISOString().slice(0, 10)} ${new Date().toISOString().slice(11, 16)}:00`,
           tags: noticeInfo.tag.split(','),
         },
         {
@@ -81,7 +81,7 @@ const NoticeAddEdit = () => {
           title: noticeInfo.title,
           explanation: noticeInfo.explanation,
           target: category,
-          deadline: 'none',
+          deadline: `${new Date().toISOString().slice(0, 10)} ${new Date().toISOString().slice(11, 16)}:00`,
           tags: noticeInfo.tag.split(','),
         },
         {

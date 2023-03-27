@@ -15,6 +15,7 @@ import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import CountTime from '../../component/CountTime/CountTime';
 import TextButton from '../../component/TextButton/TextButton';
 import { Toast } from '../../component/Toast/Toast';
+import PopupModal from '../../component/PopupModal/PopupModal';
 
 const InnerWrapper = styled(Flex)`
   width: 100%;
@@ -53,6 +54,8 @@ const HomeworkInfo = () => {
   const [isComplete, setIsComplete] = useState(true);
   const [infoButtonText, setInfoButtonText] = useState('');
   const [subInfoButtonText, setSubInfoButtonText] = useState('');
+  // 모달 확인창 관련 state
+  const [modalActive, setModalActive] = useState(false);
 
   const [homeworkInfo, setHomeworkInfo] = useState({
     date: '',
@@ -120,6 +123,22 @@ const HomeworkInfo = () => {
   };
 
   const onClickDelete = () => {
+    /*
+    axios
+      .delete(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        Toast('과제가 삭제되었습니다.');
+        navigate('/homework-list');
+      });
+      */
+    setModalActive(true);
+  };
+
+  const deleteFunction = () => {
     axios
       .delete(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
         headers: {
@@ -175,6 +194,14 @@ const HomeworkInfo = () => {
         <Margin height='69' />
         <Typography contentText>{homeworkInfo.explanation}</Typography>
       </InnerWrapper>
+      <PopupModal
+        modalActive={modalActive}
+        setModalActive={() => setModalActive(false)}
+        mainTitle='경고'
+        subTitle='과제 삭제 시, 관련된 과제 제출물도 삭제됩니다. 삭제를 진행하시겠습니까?'
+        approve={deleteFunction}
+        approveComment='삭제하기'
+      />
     </Layout>
   );
 };
