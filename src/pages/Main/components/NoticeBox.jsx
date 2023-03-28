@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import Margin from '../../../component/Margin/Margin';
 import Typography from '../../../component/Typography/Typography';
 import Flex from '../../../component/Flex/Flex';
-import Example from './example.png';
+import ALL from './ALL.png';
+import FE from './FE.png';
+import BE from './BE.png';
 
 // 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(Flex)`
@@ -50,37 +52,42 @@ const Separator = styled.hr`
 
 const Title = styled.h2`
   ${(props) => props.theme.font.pageTitle};
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Contents = styled(Typography)`
+  display: block;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
-const NoticeBox = ({ data }) => {
-  const { title, contents, writer, date } = data;
-
-  return (
-    <Box flexCenter column justify='flex-start'>
-      <Photo flexCenter>
-        <img src={Example} alt='img' />
-      </Photo>
-      <Margin height='20' />
-      <MainContent>
-        <Title>{title}</Title>
-        <Margin height='11' />
-        <Contents contentText color='darkGray'>
-          {contents}
-        </Contents>
-      </MainContent>
-      <Separator />
-      <SideContent flexCenter>
-        <Typography contentText>{writer}</Typography>
-        <Typography sideContentSmall color='gray'>
-          작성자: {date}
-        </Typography>
-      </SideContent>
-    </Box>
-  );
-};
+const NoticeBox = ({ title, explanation, target, date, onClick }) => (
+  <Box flexCenter column justify='flex-start' onClick={onClick}>
+    <Photo flexCenter>
+      {target === 'ALL' && <img src={ALL} alt='img' />}
+      {target === 'FE' && <img src={FE} alt='img' />}
+      {target === 'BE' && <img src={BE} alt='img' />}
+    </Photo>
+    <Margin height='20' />
+    <MainContent>
+      <Title>{title}</Title>
+      <Margin height='11' />
+      <Contents contentText color='darkGray'>
+        {explanation}
+      </Contents>
+    </MainContent>
+    <Separator />
+    <SideContent flexCenter>
+      <Typography contentText>{target}</Typography>
+      <Typography sideContentSmall color='gray'>
+        작성일: {date}
+      </Typography>
+    </SideContent>
+  </Box>
+);
 
 export default NoticeBox;

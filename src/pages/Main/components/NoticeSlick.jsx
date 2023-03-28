@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Slider from 'react-slick';
@@ -25,12 +26,29 @@ const StyledArrow = styled(ArrowButton)`
 
 const NoticeSlick = () => {
   const navigate = useNavigate();
-  const dataSet = {
-    title: '인하대 멋사 11기 OT 안내',
-    contents: '인하대 멋쟁이사자처럼 11기와 함께 하게되신 아기사자 여러분들, 진심으로 환영합니다! ...',
-    writer: 'FE',
-    date: '2001년 03월 24일',
-  };
+  const [noticeList, setNoticeList] = useState([
+    {
+      title: '',
+      explanation: '',
+      date: '',
+      target: '',
+      id: '',
+    },
+  ]);
+
+  useEffect(() => {
+    // 공지 리스트 불러오기
+    axios
+      .get(`${process.env.REACT_APP_API}/notice`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data.data);
+        setNoticeList(r.data.data.sort((a, b) => new Date(b.date) - new Date(a.date)));
+      });
+  }, []);
 
   const settings = {
     dots: true,
@@ -41,6 +59,8 @@ const NoticeSlick = () => {
     slidesTosShow: 2,
     slidesToScroll: 1,
     dotsClass: 'dots_custom_main',
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   const moveToNotice = () => {
@@ -50,13 +70,16 @@ const NoticeSlick = () => {
   return (
     <Flex flexCenter column align='flex-end' style={{ marginTop: '30px' }}>
       <StyledSlider {...settings}>
-        <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
-        <NoticeBox data={dataSet} />
+        {noticeList.map((data) => (
+          <NoticeBox
+            onClick={() => navigate(`/notice-info/${data.id}`)}
+            key={data.id}
+            title={data.title}
+            explanation={data.explanation}
+            target={data.target}
+            date={data.date}
+          />
+        ))}
       </StyledSlider>
       <Margin height='10' />
       <StyledArrow onClick={moveToNotice}>공지 전체보기</StyledArrow>

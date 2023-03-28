@@ -11,6 +11,7 @@ import MenuBar from './components/MenuBar';
 import SearchBar from './components/SearchBar';
 import Flex from '../Flex/Flex';
 import Margin from '../Margin/Margin';
+import UserInfo from './components/UserInfo';
 
 // onlyTitle 추가.
 // header 사용 시에 onlyTitle 추가하면 상단 아이콘 숨겨짐.
@@ -51,6 +52,10 @@ const ProfileImg = styled.img`
 
 const Header = ({ onlyTitle }) => {
   const [profile, setProfile] = useState('');
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+  const [part, setPart] = useState('');
+  const [comment, setComment] = useState('');
   const [menuButton, setMenuButton] = useState(false);
   const [searchButton, setSearchButton] = useState(false);
   const navigate = useNavigate();
@@ -66,6 +71,10 @@ const Header = ({ onlyTitle }) => {
       .then((r) => {
         console.log(r.data);
         setProfile(r.data.image?.img_link);
+        setId(r.data.id);
+        setName(r.data.name);
+        setPart(r.data.part);
+        setComment(r.data.comment);
       });
   }, []);
 
@@ -105,6 +114,7 @@ const Header = ({ onlyTitle }) => {
             <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
           </>
         )}
+        <UserInfo id={id} name={name} part={part} comment={comment} />
       </Flex>
     </Container>
   );
