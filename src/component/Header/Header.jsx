@@ -62,20 +62,26 @@ const Header = ({ onlyTitle }) => {
 
   useEffect(() => {
     // user 정보 불러오기
-    axios
-      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      .then((r) => {
-        console.log(r.data);
-        setProfile(r.data.image?.img_link);
-        setId(r.data.id);
-        setName(r.data.name);
-        setPart(r.data.part);
-        setComment(r.data.comment);
-      });
+    if (!onlyTitle) {
+      axios
+        .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((r) => {
+          console.log(r.data);
+          setProfile(r.data.image?.img_link);
+          setId(r.data.id);
+          setName(r.data.name);
+          setPart(r.data.part);
+          setComment(r.data.comment);
+        })
+        .catch((e) => {
+          Toast('로그인 페이지로 이동합니다.');
+          navigate('/login');
+        });
+    }
   }, []);
 
   const menuButtonClicked = () => {
