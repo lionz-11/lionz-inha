@@ -84,6 +84,12 @@ const Header = ({ onlyTitle }) => {
     }
   }, []);
 
+  const titleClicked = () => {
+    if (!onlyTitle) {
+      navigate('/');
+    }
+  };
+
   const menuButtonClicked = () => {
     setMenuButton(!menuButton);
   };
@@ -96,7 +102,7 @@ const Header = ({ onlyTitle }) => {
     <Container>
       <Flex justify={onlyTitle ? 'center' : 'space-between'} style={{ width: '100%', maxWidth: '1312px' }}>
         {!onlyTitle && <Margin width='140' />}
-        <Typography header style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
+        <Typography header style={{ cursor: 'pointer' }} onClick={titleClicked}>
           LIKE LION
         </Typography>
         {!onlyTitle && (
