@@ -87,7 +87,7 @@ const NoticeList = () => {
               </Typography>
               <Margin height='5' />
               <div onClick={() => navigate('/notice/add/new')}>
-                <ArrowButton>과제 생성하러가기</ArrowButton>
+                <ArrowButton>공지 생성하러가기</ArrowButton>
               </div>
             </>
           )}
