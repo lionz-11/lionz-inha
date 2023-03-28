@@ -70,6 +70,9 @@ const NoticeAddEdit = () => {
       .then((r) => {
         Toast('공지사항 생성이 완료되었습니다.');
         navigate('/notice-list');
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   };
 
@@ -93,6 +96,9 @@ const NoticeAddEdit = () => {
       .then((r) => {
         Toast('공지사항 수정이 완료되었습니다.');
         navigate('/notice-list');
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   };
 
@@ -111,6 +117,9 @@ const NoticeAddEdit = () => {
           Toast('잘못된 접근입니다.');
           navigate(-1);
         }
+      })
+      .catch((e) => {
+        navigate('/error');
       });
 
     // 공지 내용 얻어오기
@@ -126,6 +135,9 @@ const NoticeAddEdit = () => {
           setNoticeInfo({ ...r.data, tag: r.data.tag.join(',') });
           setCategory(r.data.target);
           setPart({ ...part, selected: r.data.target });
+        })
+        .catch((e) => {
+          navigate('/error');
         });
     }
   }, []);

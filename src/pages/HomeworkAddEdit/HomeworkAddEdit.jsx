@@ -55,8 +55,11 @@ const HomeworkAddEdit = () => {
         setUser(r.data.authority);
         if (r.data.authority !== 'ROLE_ADMIN') {
           Toast('잘못된 접근입니다.');
-          navigate(-1);
+          navigate('/error');
         }
+      })
+      .catch((e) => {
+        navigate('/error');
       });
 
     // 현재 날짜 설정
@@ -79,6 +82,9 @@ const HomeworkAddEdit = () => {
           setPart({ ...part, selected: r.data.target });
           setDate(r.data.deadline.slice(0, 10));
           setTime(r.data.deadline.slice(11, 16));
+        })
+        .catch((e) => {
+          navigate('/error');
         });
     }
   }, []);

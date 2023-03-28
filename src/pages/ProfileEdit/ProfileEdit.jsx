@@ -57,6 +57,9 @@ const ProfileEdit = () => {
           setComment(r.data.comment);
           setProfile(r.data.image?.img_link);
           if (welcome === '1') Toast('첫 방문을 환영합니다. 정보를 입력해주세요.');
+        })
+        .catch((e) => {
+          navigate('/error');
         });
     }
   }, []);

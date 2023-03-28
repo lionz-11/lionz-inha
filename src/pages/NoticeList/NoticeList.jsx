@@ -41,6 +41,9 @@ const NoticeList = () => {
       .then((r) => {
         setPart({ ...part, user: r.data.part });
         setUser(r.data.authority);
+      })
+      .catch((e) => {
+        navigate('/error');
       });
     // 공지 전체 얻어오기
     axios
@@ -52,6 +55,9 @@ const NoticeList = () => {
       .then((r) => {
         console.log(r.data.data);
         setNotice(r.data.data);
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   }, []);
 

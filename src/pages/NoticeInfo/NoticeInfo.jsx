@@ -58,6 +58,9 @@ const NoticeInfo = () => {
       .then((r) => {
         Toast('공지가 삭제되었습니다.');
         navigate('/notice-list');
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   };
 
@@ -72,6 +75,9 @@ const NoticeInfo = () => {
       .then((r) => {
         setPart({ ...part, user: r.data.part });
         setUser(r.data.authority);
+      })
+      .catch((e) => {
+        navigate('/error');
       });
     // 공지 내용 얻어오기
     axios
@@ -83,6 +89,9 @@ const NoticeInfo = () => {
       .then((r) => {
         console.log(r.data);
         setNoticeInfo(r.data);
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   }, []);
 

@@ -87,6 +87,9 @@ const HomeworkInfo = () => {
       .then((r) => {
         setUser(r.data.authority);
         setUserPart(r.data.part);
+      })
+      .catch((e) => {
+        navigate('/error');
       });
 
     // 과제 정보 불러오기
@@ -99,6 +102,9 @@ const HomeworkInfo = () => {
       .then((r) => {
         console.log(r.data);
         setHomeworkInfo({ ...r.data });
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   }, []);
 
@@ -136,6 +142,9 @@ const HomeworkInfo = () => {
       .then((r) => {
         Toast('과제가 삭제되었습니다.');
         navigate('/homework-list');
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   };
 
