@@ -72,6 +72,7 @@ const Login = () => {
       .then((r) => {
         localStorage.setItem('accessToken', r.data.accessToken);
         localStorage.setItem('id', r.data.id);
+        localStorage.setItem('loginCount', r.data.count);
         if (r.data.count === 0) {
           navigate('/landing');
         } else {

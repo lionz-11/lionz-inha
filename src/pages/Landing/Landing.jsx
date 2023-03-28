@@ -10,6 +10,7 @@ import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import Flex from '../../component/Flex/Flex';
+import { Toast } from '../../component/Toast/Toast';
 
 const StyledSlider = styled(Slider)`
   width: 920px;
@@ -57,6 +58,10 @@ const Landing = () => {
     ),
   };
 
+  const moveToProfileEdit = () => {
+    navigate('/profile-edit/1');
+  };
+
   return (
     <Layout hiddenOverflow='hidden'>
       <Header onlyTitle />
@@ -74,7 +79,7 @@ const Landing = () => {
             <Page3 />
           </StyledSlider>
         </Flex>
-        <div onClick={() => navigate('/login')}>
+        <div onClick={moveToProfileEdit}>
           <ArrowButton>시작하기</ArrowButton>
         </div>
       </Flex>
