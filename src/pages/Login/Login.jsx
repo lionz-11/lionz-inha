@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -50,6 +50,7 @@ const StyledContainer = styled(Flex)`
 `;
 
 const Login = () => {
+  const textRef = useRef(null);
   const [inputId, setInputId] = useState('');
   const [inputPw, setInputPw] = useState('');
   const navigate = useNavigate();
@@ -72,8 +73,7 @@ const Login = () => {
         localStorage.setItem('accessToken', r.data.accessToken);
         localStorage.setItem('id', r.data.id);
         if (r.data.count === 0) {
-          navigate('/profile-edit/1');
-          Toast('첫 방문을 환영합니다. 정보를 입력해주세요.');
+          navigate('/landing');
         } else {
           navigate('/');
           Toast('로그인 성공! 어서오세요.');
@@ -83,6 +83,13 @@ const Login = () => {
         Toast('아이디, 비밀번호를 확인해주세요.');
       });
   };
+
+  const checkEnter = (e) => {
+    if (e.key === 'Enter') {
+      submit();
+    }
+  };
+
   return (
     <Layout hiddenOverflow='hidden'>
       <Header onlyTitle />
@@ -99,9 +106,9 @@ const Login = () => {
           </Container1>
         </TitleWrapper>
         <StyledContainer column>
-          <InputBox input login placeholder='아이디를 입력하세요.' onChange={handleInputId} />
+          <InputBox input login placeholder='아이디를 입력하세요.' onChange={handleInputId} onKeyPress={checkEnter} />
           <Margin height='24' />
-          <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} />
+          <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} onKeyPress={checkEnter} />
           <Margin height='15' />
           <Container2>
             <StyledArrow onClick={submit}>로그인</StyledArrow>

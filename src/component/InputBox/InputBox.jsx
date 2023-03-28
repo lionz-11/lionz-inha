@@ -157,6 +157,7 @@ const InputBox = ({
   alert,
   placeholder,
   onKeyUp,
+  onKeyPress,
 }) => {
   const textRef = useRef(null);
   const inputRef = useRef(null);
@@ -199,6 +200,7 @@ const InputBox = ({
             type={((editPassword && viewPassword) || pw) && 'password'}
             onChange={onChange}
             onKeyUp={onKeyUp}
+            onKeyPress={onKeyPress}
           />
           {editPassword ? (
             <StyledButton onClick={viewClicked}>
