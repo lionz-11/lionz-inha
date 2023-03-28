@@ -53,8 +53,8 @@ const NoticeSlick = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
-    fade: true,
+    speed: 750,
+    fade: false,
     arrows: false,
     slidesTosShow: 2,
     slidesToScroll: 1,
@@ -70,14 +70,14 @@ const NoticeSlick = () => {
   return (
     <Flex flexCenter column align='flex-end' style={{ marginTop: '30px' }}>
       <StyledSlider {...settings}>
-        {noticeList.map((data) => (
+        {noticeList.slice(0, 6).map((notice) => (
           <NoticeBox
-            onClick={() => navigate(`/notice-info/${data.id}`)}
-            key={data.id}
-            title={data.title}
-            explanation={data.explanation}
-            target={data.target}
-            date={data.date}
+            id={notice.id}
+            key={notice.id}
+            title={notice.title}
+            explanation={notice.explanation}
+            target={notice.target}
+            date={notice.date}
           />
         ))}
       </StyledSlider>
