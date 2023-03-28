@@ -45,9 +45,6 @@ const Main = () => {
         console.log(r.data);
         setName(r.data.name);
         setPart(r.data.part);
-      })
-      .catch((e) => {
-        navigate('/error');
       });
   }, []);
 

@@ -223,7 +223,7 @@ const HomeworkAddEdit = () => {
         <Typography pageTitle style={{ fontSize: '32px' }}>
           카테고리
         </Typography>
-        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} existing={category} />
       </StyledFlex>
 
       <Margin height='59' />

@@ -27,9 +27,6 @@ const Contact = () => {
         setPart(r.data.part);
         setAuthority(r.data.authority);
         console.log(r.data.authority);
-      })
-      .catch((e) => {
-        navigate('/error');
       });
 
     // 모든 유저 정보 받아오기
@@ -41,9 +38,6 @@ const Contact = () => {
       })
       .then((r) => {
         setList(r.data.data);
-      })
-      .catch((e) => {
-        navigate('/error');
       });
   }, []);
 
