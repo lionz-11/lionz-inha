@@ -123,18 +123,6 @@ const HomeworkInfo = () => {
   };
 
   const onClickDelete = () => {
-    /*
-    axios
-      .delete(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      .then((r) => {
-        Toast('과제가 삭제되었습니다.');
-        navigate('/homework-list');
-      });
-      */
     setModalActive(true);
   };
 
