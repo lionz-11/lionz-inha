@@ -76,6 +76,20 @@ const Header = ({ onlyTitle }) => {
           setName(r.data.name);
           setPart(r.data.part);
           setComment(r.data.comment);
+
+          // 토큰 유지시간 10분 이하일 경우, 재발급
+          if (r.data.accessTokenExpiresIn <= 10) {
+            axios
+              .post(`${process.env.REACT_APP_API}/auth/reissue`, {
+                accessToken: localStorage.getItem('accessToken'),
+              })
+              .then((result) => {
+                localStorage.setItem('accessToken', result.data.accessToken);
+                localStorage.setItem('id', result.data.id);
+                localStorage.setItem('loginCount', result.data.count);
+                console.log(result);
+              });
+          }
         })
         .catch((e) => {
           Toast('로그인 페이지로 이동합니다.');
