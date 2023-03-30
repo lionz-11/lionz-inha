@@ -40,8 +40,9 @@ const ProfileEdit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(localStorage.getItem('loginCount'));
     // 잘못된 접근 방지 처리
-    if (welcome === '1' && localStorage.getItem('loginCount') !== 0) {
+    if (welcome === 1 && localStorage.getItem('loginCount') !== 0) {
       Toast('잘못된 접근입니다. 메인 화면으로 이동합니다.');
       navigate('/');
     } else {
