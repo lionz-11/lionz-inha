@@ -173,7 +173,9 @@ const HomeworkInfo = () => {
         <Margin height='28' />
         <LinkContainer>
           <AiFillGithub size='30' style={{ marginRight: '20px' }} />
-          <Link href={homeworkInfo.link}>{homeworkInfo.link}</Link>
+          <Link href={homeworkInfo.link} target='_blank' rel='noreferrer'>
+            {homeworkInfo.link}
+          </Link>
         </LinkContainer>
 
         <Margin height='28' />
