@@ -46,7 +46,7 @@ const NoticeSlick = () => {
       })
       .then((r) => {
         console.log(r.data.data);
-        setNoticeList(r.data.data.sort((a, b) => new Date(b.date) - new Date(a.date)));
+        setNoticeList(r.data.data.reverse());
       });
   }, []);
 

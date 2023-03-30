@@ -36,6 +36,8 @@ const NoticeInfo = () => {
     target: '',
     title: '',
   });
+  // eslint-disable-next-line
+  const urlPattern = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
 
   // 모달 확인창 관련 state
   const [modalActive, setModalActive] = useState(false);
@@ -106,7 +108,26 @@ const NoticeInfo = () => {
         </Flex>
 
         <Margin height='69' />
-        <Typography contentText>{noticeInfo.explanation}</Typography>
+        <Typography contentText style={{ lineHeight: '23px' }}>
+          {noticeInfo.explanation.split('(next_line)').map((cur) => (
+            <>
+              {cur
+                .replace(urlPattern, (url) => `<url>${url}<url>`)
+                .split('<url>')
+                .map((text) => {
+                  if (urlPattern.test(text)) {
+                    return (
+                      <a href={text} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
+                        {text}
+                      </a>
+                    );
+                  }
+                  return text;
+                })}
+              <br />
+            </>
+          ))}
+        </Typography>
       </InnerWrapper>
       <PopupModal
         modalActive={modalActive}

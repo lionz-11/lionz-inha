@@ -81,7 +81,7 @@ const NoticeBox = ({ id, title, explanation, target, date }) => {
         <Title>{title}</Title>
         <Margin height='11' />
         <Contents contentText color='darkGray'>
-          {explanation}
+          {explanation.replaceAll('(next_line)', ' ')}
         </Contents>
       </MainContent>
       <Separator />
