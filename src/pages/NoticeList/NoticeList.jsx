@@ -95,10 +95,25 @@ const NoticeList = () => {
       </Flex>
 
       <Margin height='20' />
-      <ResultWrapper>
-        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox notification {...data} />} />
-      </ResultWrapper>
-      <Margin height='20' />
+      {temp.length === 0 ? (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>
+            {category === 'ALL' ? '11기 공통 공지는 아직 없습니다.' : `${category} 파트의 공지는 아직 없습니다.`}
+          </Typography>
+          <Margin height='10' />
+          <Typography contentText color='darkGray'>
+            다른 파트의 공지를 구경해보세요.
+          </Typography>
+        </>
+      ) : (
+        <>
+          <ResultWrapper>
+            <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox notification {...data} />} />
+          </ResultWrapper>
+          <Margin height='20' />
+        </>
+      )}
     </Layout>
   );
 };
