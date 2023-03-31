@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import PhotoContentContainer from '../../component/PhotoContentBox/PhotoContentContainer';
@@ -11,6 +12,8 @@ import TitleSet from '../../component/TitleSet/TitleSet';
 import Header from '../../component/Header/Header';
 import Margin from '../../component/Margin/Margin';
 import Typography from '../../component/Typography/Typography';
+import ArrowButton from '../../component/ArrowButton/ArrowButton';
+import Flex from '../../component/Flex/Flex';
 
 const HeadLine = styled.div`
   width: 100%;
@@ -27,11 +30,13 @@ const HeadLine = styled.div`
 `;
 
 const HomeworkList = () => {
+  const navigate = useNavigate();
   const [category, setCategory] = useState('ALL');
   const [temp, setTemp] = useState([]);
   const [allOfTask, setAllOfTask] = useState([]);
   const [part, setPart] = useState({ user: '', selected: '' });
   const [myTask, setMyTask] = useState([]);
+  const [authority, setAuthority] = useState('');
 
   // const handleCategory = () => {};
   // useEffect(async () => {
@@ -58,6 +63,7 @@ const HomeworkList = () => {
         },
       })
       .then((r) => {
+        setAuthority(r.data.authority);
         setPart({ ...part, user: r.data.part });
       });
 
@@ -89,7 +95,16 @@ const HomeworkList = () => {
           subTitle={['우리 파트의 과제들이 있네요. 남은 반년동안 열심히 달려봐요! 화이팅(운영진 일동)']}
         />
 
-        <CountText unit='ea' count={myTask.length} />
+        {authority === 'ROLE_ADMIN' ? (
+          <Flex flexCenter column align='end'>
+            <Typography sideContentSmall color='darkGray' style={{ marginBottom: '4px' }}>
+              아기사자를 괴롭히고 싶다면?
+            </Typography>
+            <ArrowButton onClick={() => navigate('/homework/add/new')}>과제 생성하러가기</ArrowButton>
+          </Flex>
+        ) : (
+          <CountText unit='ea' count={myTask.length} />
+        )}
       </HeadLine>
       <PhotoContentContainer data={myTask} />
 
