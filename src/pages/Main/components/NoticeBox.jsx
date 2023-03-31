@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import Margin from '../../../component/Margin/Margin';
 import Typography from '../../../component/Typography/Typography';
 import Flex from '../../../component/Flex/Flex';
@@ -65,29 +66,33 @@ const Contents = styled(Typography)`
   text-overflow: ellipsis;
 `;
 
-const NoticeBox = ({ title, explanation, target, date, onClick }) => (
-  <Box flexCenter column justify='flex-start' onClick={onClick}>
-    <Photo flexCenter>
-      {target === 'ALL' && <img src={ALL} alt='img' />}
-      {target === 'FE' && <img src={FE} alt='img' />}
-      {target === 'BE' && <img src={BE} alt='img' />}
-    </Photo>
-    <Margin height='20' />
-    <MainContent>
-      <Title>{title}</Title>
-      <Margin height='11' />
-      <Contents contentText color='darkGray'>
-        {explanation}
-      </Contents>
-    </MainContent>
-    <Separator />
-    <SideContent flexCenter>
-      <Typography contentText>{target}</Typography>
-      <Typography sideContentSmall color='gray'>
-        작성일: {date}
-      </Typography>
-    </SideContent>
-  </Box>
-);
+const NoticeBox = ({ id, title, explanation, target, date }) => {
+  const navigate = useNavigate();
+
+  return (
+    <Box flexCenter column justify='flex-start' onClick={() => navigate(`/notice-info/${id}`)}>
+      <Photo flexCenter>
+        {target === 'ALL' && <img src={ALL} alt='img' />}
+        {target === 'FE' && <img src={FE} alt='img' />}
+        {target === 'BE' && <img src={BE} alt='img' />}
+      </Photo>
+      <Margin height='20' />
+      <MainContent>
+        <Title>{title}</Title>
+        <Margin height='11' />
+        <Contents contentText color='darkGray'>
+          {explanation.replaceAll('(next_line)', ' ')}
+        </Contents>
+      </MainContent>
+      <Separator />
+      <SideContent flexCenter>
+        <Typography contentText>{target}</Typography>
+        <Typography sideContentSmall color='gray'>
+          작성일: {date}
+        </Typography>
+      </SideContent>
+    </Box>
+  );
+};
 
 export default NoticeBox;

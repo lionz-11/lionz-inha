@@ -11,6 +11,7 @@ import TagContainer from '../../component/TagContainer/TagContainer';
 import LikeAndShare from '../../component/LikeAndShare/LikeAndShare';
 import TextButton from '../../component/TextButton/TextButton';
 import { Toast } from '../../component/Toast/Toast';
+import PopupModal from '../../component/PopupModal/PopupModal';
 
 const InnerWrapper = styled(Flex)`
   width: 100%;
@@ -35,12 +36,21 @@ const NoticeInfo = () => {
     target: '',
     title: '',
   });
+  // eslint-disable-next-line
+  const urlPattern = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
+
+  // 모달 확인창 관련 state
+  const [modalActive, setModalActive] = useState(false);
 
   const onClickEdit = () => {
     navigate(`/notice/edit/${noticeIndex}`);
   };
 
   const onClickDelete = () => {
+    setModalActive(true);
+  };
+
+  const deleteFunction = () => {
     axios
       .delete(`${process.env.REACT_APP_API}/notice/${noticeIndex}`, {
         headers: {
@@ -98,8 +108,35 @@ const NoticeInfo = () => {
         </Flex>
 
         <Margin height='69' />
-        <Typography contentText>{noticeInfo.explanation}</Typography>
+        <Typography contentText style={{ lineHeight: '23px' }}>
+          {noticeInfo.explanation.split('(next_line)').map((cur) => (
+            <>
+              {cur
+                .replace(urlPattern, (url) => `<url>${url}<url>`)
+                .split('<url>')
+                .map((text) => {
+                  if (urlPattern.test(text)) {
+                    return (
+                      <a href={text} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
+                        {text}
+                      </a>
+                    );
+                  }
+                  return text;
+                })}
+              <br />
+            </>
+          ))}
+        </Typography>
       </InnerWrapper>
+      <PopupModal
+        modalActive={modalActive}
+        setModalActive={() => setModalActive(false)}
+        mainTitle='경고'
+        subTitle='공지 삭제 시, 되돌릴 수 없습니다. 삭제를 진행하시겠습니까?'
+        approve={deleteFunction}
+        approveComment='삭제하기'
+      />
     </Layout>
   );
 };

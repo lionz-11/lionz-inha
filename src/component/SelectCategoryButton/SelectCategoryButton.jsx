@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Flex from '../Flex/Flex';
 import Typography from '../Typography/Typography';
@@ -16,7 +16,7 @@ const StyledButton = styled.button`
 `;
 
 // state로 버튼 클릭 여부 확인과 컬러 변경
-const SelectCategoryButton = ({ setCategory, part, setPart }) => {
+const SelectCategoryButton = ({ setCategory, part, setPart, existing }) => {
   const [buttonClicked, setButtonClicked] = useState([true, false, false]);
 
   const AllClicked = () => {
@@ -36,6 +36,11 @@ const SelectCategoryButton = ({ setCategory, part, setPart }) => {
     setCategory('BE');
     setPart({ ...part, selected: 'BE' });
   };
+
+  useEffect(() => {
+    if (existing === 'FE') FEClicked();
+    if (existing === 'BE') BEClicked();
+  }, [existing]);
 
   return (
     <Flex flexCenter justify='space-between' style={{ width: '168px' }}>

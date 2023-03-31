@@ -55,7 +55,7 @@ const HomeworkAddEdit = () => {
         setUser(r.data.authority);
         if (r.data.authority !== 'ROLE_ADMIN') {
           Toast('잘못된 접근입니다.');
-          navigate(-1);
+          navigate('/error');
         }
       });
 
@@ -74,7 +74,8 @@ const HomeworkAddEdit = () => {
           },
         })
         .then((r) => {
-          setHomeworkInfo({ ...r.data, tag: r.data.tag.join(',') });
+          const temp = r.data.explanation;
+          setHomeworkInfo({ ...r.data, tag: r.data.tag.join(','), explanation: temp.replaceAll('(next_line)', '\r\n') });
           setCategory(r.data.target);
           setPart({ ...part, selected: r.data.target });
           setDate(r.data.deadline.slice(0, 10));
@@ -113,12 +114,14 @@ const HomeworkAddEdit = () => {
 
   // 과제 생성
   const addNewHomework = () => {
+    const temp = homeworkInfo.explanation;
+
     axios
       .post(
         `${process.env.REACT_APP_API}/tasknotice`,
         {
           title: homeworkInfo.title,
-          explanation: homeworkInfo.explanation,
+          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
           target: category,
           deadline: `${date} ${time}:00`,
           tags: homeworkInfo.tag.split(','),
@@ -138,12 +141,14 @@ const HomeworkAddEdit = () => {
 
   // 과제 수정
   const editHomework = () => {
+    const temp = homeworkInfo.explanation;
+
     axios
       .put(
         `${process.env.REACT_APP_API}/tasknotice/${homeworkInfo.id}`,
         {
           title: homeworkInfo.title,
-          explanation: homeworkInfo.explanation,
+          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
           target: category,
           deadline: `${date} ${time}:00`,
           tags: homeworkInfo.tag.split(','),
@@ -217,7 +222,7 @@ const HomeworkAddEdit = () => {
         <Typography pageTitle style={{ fontSize: '32px' }}>
           카테고리
         </Typography>
-        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} existing={category} />
       </StyledFlex>
 
       <Margin height='59' />

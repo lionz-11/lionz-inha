@@ -51,14 +51,16 @@ const NoticeAddEdit = () => {
   };
 
   const addNewNotice = () => {
+    const temp = noticeInfo.explanation;
+
     axios
       .post(
         `${process.env.REACT_APP_API}/notice`,
         {
           title: noticeInfo.title,
-          explanation: noticeInfo.explanation,
+          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
           target: category,
-          deadline: 'none',
+          deadline: `${new Date().toISOString().slice(0, 10)} ${new Date().toISOString().slice(11, 16)}:00`,
           tags: noticeInfo.tag.split(','),
         },
         {
@@ -74,14 +76,16 @@ const NoticeAddEdit = () => {
   };
 
   const editNotice = () => {
+    const temp = noticeInfo.explanation;
+
     axios
       .put(
         `${process.env.REACT_APP_API}/notice/${noticeInfo.id}`,
         {
           title: noticeInfo.title,
-          explanation: noticeInfo.explanation,
+          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
           target: category,
-          deadline: 'none',
+          deadline: `${new Date().toISOString().slice(0, 10)} ${new Date().toISOString().slice(11, 16)}:00`,
           tags: noticeInfo.tag.split(','),
         },
         {
@@ -109,7 +113,7 @@ const NoticeAddEdit = () => {
         setUser(r.data.authority);
         if (r.data.authority !== 'ROLE_ADMIN') {
           Toast('잘못된 접근입니다.');
-          navigate(-1);
+          navigate('/error');
         }
       });
 
@@ -122,8 +126,9 @@ const NoticeAddEdit = () => {
           },
         })
         .then((r) => {
+          const temp = r.data.explanation;
           console.log(r.data);
-          setNoticeInfo({ ...r.data, tag: r.data.tag.join(',') });
+          setNoticeInfo({ ...r.data, tag: r.data.tag.join(','), explanation: temp.replaceAll('(next_line)', '\r\n') });
           setCategory(r.data.target);
           setPart({ ...part, selected: r.data.target });
         });
@@ -181,7 +186,7 @@ const NoticeAddEdit = () => {
         <Typography pageTitle style={{ fontSize: '32px' }}>
           카테고리
         </Typography>
-        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
+        <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} existing={category} />
       </StyledFlex>
 
       <Margin height='59' />

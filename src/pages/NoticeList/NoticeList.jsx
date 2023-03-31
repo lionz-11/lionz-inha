@@ -51,7 +51,7 @@ const NoticeList = () => {
       })
       .then((r) => {
         console.log(r.data.data);
-        setNotice(r.data.data);
+        setNotice(r.data.data.reverse());
       });
   }, []);
 
@@ -81,7 +81,7 @@ const NoticeList = () => {
               </Typography>
               <Margin height='5' />
               <div onClick={() => navigate('/notice/add/new')}>
-                <ArrowButton>과제 생성하러가기</ArrowButton>
+                <ArrowButton>공지 생성하러가기</ArrowButton>
               </div>
             </>
           )}
@@ -95,10 +95,25 @@ const NoticeList = () => {
       </Flex>
 
       <Margin height='20' />
-      <ResultWrapper>
-        <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox notification {...data} />} />
-      </ResultWrapper>
-      <Margin height='20' />
+      {temp.length === 0 ? (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>
+            {category === 'ALL' ? '11기 공통 공지는 아직 없습니다.' : `${category} 파트의 공지는 아직 없습니다.`}
+          </Typography>
+          <Margin height='10' />
+          <Typography contentText color='darkGray'>
+            다른 파트의 공지를 구경해보세요.
+          </Typography>
+        </>
+      ) : (
+        <>
+          <ResultWrapper>
+            <BarComponentContainer bars={temp} renderProp={(data) => <BarContentBox notification {...data} />} />
+          </ResultWrapper>
+          <Margin height='20' />
+        </>
+      )}
     </Layout>
   );
 };

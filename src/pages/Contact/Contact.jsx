@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../../component/Header/Header';
 import Layout from '../../component/Layout/Layout';
@@ -9,6 +10,7 @@ import contactImage from './contactImage.png';
 import ContactContainer from './ContactContainer';
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [list, setList] = useState([]);
   const [part, setPart] = useState('');
   const [authority, setAuthority] = useState('');

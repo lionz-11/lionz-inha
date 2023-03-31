@@ -15,6 +15,7 @@ import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import CountTime from '../../component/CountTime/CountTime';
 import TextButton from '../../component/TextButton/TextButton';
 import { Toast } from '../../component/Toast/Toast';
+import PopupModal from '../../component/PopupModal/PopupModal';
 
 const InnerWrapper = styled(Flex)`
   width: 100%;
@@ -53,6 +54,11 @@ const HomeworkInfo = () => {
   const [isComplete, setIsComplete] = useState(true);
   const [infoButtonText, setInfoButtonText] = useState('');
   const [subInfoButtonText, setSubInfoButtonText] = useState('');
+  // 모달 확인창 관련 state
+  const [modalActive, setModalActive] = useState(false);
+
+  // eslint-disable-next-line
+  const urlPattern = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
 
   const [homeworkInfo, setHomeworkInfo] = useState({
     date: '',
@@ -84,6 +90,9 @@ const HomeworkInfo = () => {
       .then((r) => {
         setUser(r.data.authority);
         setUserPart(r.data.part);
+      })
+      .catch((e) => {
+        navigate('/error');
       });
 
     // 과제 정보 불러오기
@@ -96,6 +105,9 @@ const HomeworkInfo = () => {
       .then((r) => {
         console.log(r.data);
         setHomeworkInfo({ ...r.data });
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   }, []);
 
@@ -120,6 +132,10 @@ const HomeworkInfo = () => {
   };
 
   const onClickDelete = () => {
+    setModalActive(true);
+  };
+
+  const deleteFunction = () => {
     axios
       .delete(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
         headers: {
@@ -129,6 +145,9 @@ const HomeworkInfo = () => {
       .then((r) => {
         Toast('과제가 삭제되었습니다.');
         navigate('/homework-list');
+      })
+      .catch((e) => {
+        navigate('/error');
       });
   };
 
@@ -154,7 +173,9 @@ const HomeworkInfo = () => {
         <Margin height='28' />
         <LinkContainer>
           <AiFillGithub size='30' style={{ marginRight: '20px' }} />
-          <Link href={homeworkInfo.link}>{homeworkInfo.link}</Link>
+          <Link href={homeworkInfo.link} target='_blank' rel='noreferrer'>
+            {homeworkInfo.link}
+          </Link>
         </LinkContainer>
 
         <Margin height='28' />
@@ -173,8 +194,35 @@ const HomeworkInfo = () => {
         </InfoBox>
 
         <Margin height='69' />
-        <Typography contentText>{homeworkInfo.explanation}</Typography>
+        <Typography contentText>
+          {homeworkInfo.explanation.split('(next_line)').map((cur) => (
+            <>
+              {cur
+                .replace(urlPattern, (url) => `<url>${url}<url>`)
+                .split('<url>')
+                .map((text) => {
+                  if (urlPattern.test(text)) {
+                    return (
+                      <a href={text} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
+                        {text}
+                      </a>
+                    );
+                  }
+                  return text;
+                })}
+              <br />
+            </>
+          ))}
+        </Typography>
       </InnerWrapper>
+      <PopupModal
+        modalActive={modalActive}
+        setModalActive={() => setModalActive(false)}
+        mainTitle='경고'
+        subTitle='과제 삭제 시, 관련된 과제 제출물도 삭제됩니다. 삭제를 진행하시겠습니까?'
+        approve={deleteFunction}
+        approveComment='삭제하기'
+      />
     </Layout>
   );
 };

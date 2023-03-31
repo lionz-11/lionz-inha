@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import MainImg from './images/mainImg.png';
 import Header from '../../component/Header/Header';
@@ -28,6 +29,7 @@ const BottomWrapper = styled(Flex)`
 `;
 
 const Main = () => {
+  const navigate = useNavigate;
   const [name, setName] = useState('');
   const [part, setPart] = useState('');
 

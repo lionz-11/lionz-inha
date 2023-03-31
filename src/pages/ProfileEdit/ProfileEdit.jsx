@@ -40,28 +40,26 @@ const ProfileEdit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 로그인
-    // axios
-    //   .post(`${process.env.REACT_APP_API}/auth/login`, {
-    //     email: 'ye@test.com',
-    //     password: '1234',
-    //   })
-    //   .then((r) => {
-    //     localStorage.setItem('accessToken', r.data.accessToken);
-    //     localStorage.setItem('id', r.data.id);
-    //   });
-
-    // 이미지 불러오기
-    axios
-      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      .then((r) => {
-        setComment(r.data.comment);
-        setProfile(r.data.image?.img_link);
-      });
+    console.log(localStorage.getItem('loginCount'));
+    // 잘못된 접근 방지 처리
+    if (welcome === 1 && localStorage.getItem('loginCount') !== 0) {
+      Toast('잘못된 접근입니다. 메인 화면으로 이동합니다.');
+      navigate('/');
+    } else {
+      // 이미지 불러오기
+      axios
+        .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        })
+        .then((r) => {
+          console.log(r.data);
+          setComment(r.data.comment);
+          setProfile(r.data.image?.img_link);
+          if (welcome === '1') Toast('첫 방문을 환영합니다. 정보를 입력해주세요.');
+        });
+    }
   }, []);
 
   // 이미지 업로드
@@ -226,7 +224,11 @@ const ProfileEdit = () => {
           subTitle={['인스타그램 계정, 블로그 링크 혹은 간단한 한 줄 소개를 적어주세요. ex) 고양이가 세상을 지배한다.']}
           component={<InputBox value={comment} onChange={(e) => setComment(e.target.value)} input mainTitle />}
         />
-        <ArrowButtonContainer onClick={submit} text='멋쟁이 사자처럼 11기 활동 시작하기' />
+        {welcome === '1' ? (
+          <ArrowButtonContainer onClick={submit} text='멋쟁이 사자처럼 11기 활동 시작하기' />
+        ) : (
+          <ArrowButtonContainer onClick={submit} text='프로필 수정 완료하기' />
+        )}
       </Layout>
     </>
   );
