@@ -73,6 +73,18 @@ const SubmitHomeWork = () => {
           setHomeworkInfo({ ...taskInfo[0], explanation: temp.replaceAll('(next_line)', '\r\n') });
         }
       });
+
+    // 유저 과제 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/task/tasknotice/${homeworkIndex}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        console.log(r.data.data);
+        setHomeworkList(r.data.data);
+      });
   };
 
   useEffect(() => {
@@ -88,7 +100,7 @@ const SubmitHomeWork = () => {
         setUserPart(r.data.part);
       });
 
-    // 과제 정보 불러오기
+    // 과제 공지 정보 불러오기
     axios
       .get(`${process.env.REACT_APP_API}/tasknotice/${homeworkIndex}`, {
         headers: {
@@ -99,20 +111,8 @@ const SubmitHomeWork = () => {
         setHomeworkNoticeInfo({ ...r.data });
       });
 
-    // 내가 제출한 과제 얻어오기
+    // 과제 정보 불러오기
     getHomeworkInfo();
-
-    // 유저 과제 정보 얻어오기
-    axios
-      .get(`${process.env.REACT_APP_API}/task/tasknotice/${homeworkIndex}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      .then((r) => {
-        console.log(r.data.data);
-        setHomeworkList(r.data.data.filter((data) => data.tasknotice.id === Number(homeworkIndex)));
-      });
   }, []);
 
   const linkHandler = ({ target }) => {
@@ -253,7 +253,18 @@ const SubmitHomeWork = () => {
         <CountText count={homeworkList.length} />
       </StyledFlex>
       <Margin height='12' />
-      <HomeWorkContentContainer data={homeworkList} />
+      {homeworkList.length === 0 ? (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>제출된 과제가 없습니다.</Typography>
+          <Margin height='10' />
+          <Typography contentText color='darkGray'>
+            가장 먼저 과제를 제출해보세요!
+          </Typography>
+        </>
+      ) : (
+        <HomeWorkContentContainer data={homeworkList} />
+      )}
     </Layout>
   );
 };
