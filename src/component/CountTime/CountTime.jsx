@@ -3,9 +3,10 @@ import Typography from '../Typography/Typography';
 import Margin from '../Margin/Margin';
 
 const CountTime = ({ deadline }) => {
-  const [restDate, setRestDate] = useState(0);
-  const [restHour, setRestHour] = useState(0);
-  const [restMinute, setRestMinute] = useState(0);
+  const [restDate, setRestDate] = useState('-');
+  const [restHour, setRestHour] = useState('-');
+  const [restMinute, setRestMinute] = useState('-');
+  const [isZero, setIsZero] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -22,6 +23,11 @@ const CountTime = ({ deadline }) => {
     // 페이지를 벗어나게되면 반복을 종료해줌
   }, [deadline]);
 
+  useEffect(() => {
+    if (restDate === 0 && restHour === 0 && restMinute === 0) setIsZero(true);
+    else setIsZero(false);
+  }, [restDate, restHour, restMinute]);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
       <Typography contentText color='darkGray'>
@@ -29,23 +35,29 @@ const CountTime = ({ deadline }) => {
       </Typography>
       <Margin height='8' />
       <div style={{ display: 'flex', alignItems: 'end' }}>
-        <Typography header style={{ letterSpacing: '0.01em' }}>
+        <Typography header color={isZero ? 'red' : 'black'} style={{ letterSpacing: '0.01em' }}>
           {restDate}
         </Typography>
         <Margin width='3' />
-        <Typography sideContentBold>일</Typography>
+        <Typography sideContentBold color={isZero ? 'red' : 'black'}>
+          일
+        </Typography>
         <Margin width='8' />
-        <Typography header style={{ letterSpacing: '0.01em' }}>
+        <Typography header color={isZero ? 'red' : 'black'} style={{ letterSpacing: '0.01em' }}>
           {restHour}
         </Typography>
         <Margin width='3' />
-        <Typography sideContentBold>시간</Typography>
+        <Typography sideContentBold color={isZero ? 'red' : 'black'}>
+          시간
+        </Typography>
         <Margin width='8' />
-        <Typography header style={{ letterSpacing: '0.01em' }}>
+        <Typography header color={isZero ? 'red' : 'black'} style={{ letterSpacing: '0.01em' }}>
           {restMinute}
         </Typography>
         <Margin width='3' />
-        <Typography sideContentBold>분</Typography>
+        <Typography sideContentBold color={isZero ? 'red' : 'black'}>
+          분
+        </Typography>
       </div>
     </div>
   );

@@ -51,8 +51,8 @@ const HomeworkInfo = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState('');
   const [userPart, setUserPart] = useState('');
-  const [isComplete, setIsComplete] = useState(true);
   const [infoButtonText, setInfoButtonText] = useState('');
+  const [homeworkList, setHomeworkList] = useState([]);
   const [subInfoButtonText, setSubInfoButtonText] = useState('');
   // 모달 확인창 관련 state
   const [modalActive, setModalActive] = useState(false);
@@ -105,9 +105,18 @@ const HomeworkInfo = () => {
       .then((r) => {
         console.log(r.data);
         setHomeworkInfo({ ...r.data });
+      });
+
+    // 유저 과제 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/task/tasknotice/${homeworkIndex}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
       })
-      .catch((e) => {
-        navigate('/error');
+      .then((r) => {
+        console.log(r.data.data);
+        setHomeworkList(r.data.data);
       });
   }, []);
 
@@ -178,7 +187,7 @@ const HomeworkInfo = () => {
         <Margin height='28' />
         <InfoBox>
           <CountTime deadline={homeworkInfo.deadline} />
-          <CountText unit='ea' count={homeworkInfo.completed} />
+          <CountText unit='ea' count={homeworkList.length} />
 
           <Flex flexCenter column align='end'>
             {subInfoButtonText !== '' && (
