@@ -10,8 +10,8 @@ const Container = styled.div`
 `;
 
 const ArrowButtonContainer = ({ text, onClick }) => (
-  <Container onClick={onClick}>
-    <ArrowButton>{text}</ArrowButton>
+  <Container>
+    <ArrowButton onClick={onClick}>{text}</ArrowButton>
   </Container>
 );
 

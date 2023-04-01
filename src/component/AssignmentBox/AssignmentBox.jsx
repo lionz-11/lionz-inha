@@ -93,7 +93,7 @@ const LinkContainer = styled.div`
 `;
 
 const AssignmentBox = ({ data }) => {
-  const { detail, date, link, name, src } = data;
+  const { explanation, member, link, name, src } = data;
   const [isOpen, setIsOpen] = useState(false);
 
   const openHandler = () => setIsOpen(!isOpen);
@@ -102,23 +102,25 @@ const AssignmentBox = ({ data }) => {
     <Box isOpen={isOpen} onClick={openHandler} whileHover={theme.animation.box}>
       <ContentTitle>
         <LeftBox>
-          <Profile src={src} />
-          <Title>{name}의 과제입니다.</Title>
+          <Profile src={member.image.img_link} />
+          <Title>{member.name}의 과제입니다.</Title>
         </LeftBox>
         <RightBox>
           <Typography sideContent color='darkGray'>
-            {date}
+            qwd
           </Typography>
         </RightBox>
       </ContentTitle>
       <ContentDetail>
-        <Detail>{detail}</Detail>
+        <Detail>{explanation.replaceAll('(next_line)', ' ')}</Detail>
         {/* <Detail>
           안녕ㅁ낭러만오러ㅏㅓㅁㅁㄴㄴㅇㅁㄴㄴㄴㅇㄴㅇㄴㅇㄴㅇㄴㅇㄴ오라멍노람ㄴ안녕ㅁ엄ㅇ놔ㅓㄹ몬어ㅏ로머낭로낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ
         </Detail> */}
         <LinkContainer>
           <AiFillGithub size='30' style={{ marginRight: '20px' }} />
-          <Link href={link}>{link}</Link>
+          <Link href={link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
+            {link}
+          </Link>
         </LinkContainer>
       </ContentDetail>
     </Box>
