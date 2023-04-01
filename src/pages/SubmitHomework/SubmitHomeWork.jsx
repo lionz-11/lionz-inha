@@ -1,4 +1,6 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from '../../component/Layout/Layout';
 import Header from '../../component/Header/Header';
@@ -17,6 +19,7 @@ const StyledFlex = styled(Flex)`
   width: 100%;
   justify-content: space-between;
 `;
+
 const tempData = [
   {
     name: '김사자1',
@@ -38,39 +41,66 @@ const tempData = [
   },
 ];
 
-const SubmitHomeWork = () => (
+const SubmitHomeWork = () => {
+  const { homeworkIndex } = useParams();
+  const navigate = useNavigate();
+  const [user, setUser] = useState('');
+  const [userPart, setUserPart] = useState('');
 
-  <Layout size='small'>
-    <Header />
-    <Margin height='98' />
-    <HeadLine
-      src={homeworkImg}
-      mainTitle={['과제 작성 페이지입니다.']}
-      subTitle={['아기사자들을 위한 과제 작성 페이지입니다.', '업로드 이전에 검토는 필수!']}
-    />
-    <Margin height='59' />
-    <TitleContainer
-      small
-      mainTitle={['과제 설명을 작성해주세요.']}
-      subTitle={['짧게 적어도 됩니다. 자신의 과제를 마음껏 표현해주세요.']}
-      component={<InputBox text homework />}
-    />
-    <Margin height='68' />
-    <TitleContainer
-      small
-      mainTitle={['과제 참고 링크']}
-      subTitle={['깃허브 링크 또는 배포 링크를 첨부하면 됩니다.']}
-      component={<InputBox input link />}
-    />
-    <ArrowButtonContainer text='과제 제출하기' />
-    <Margin height='79' />
-    <StyledFlex>
-      <Typography pageTitle style={{ fontSize: '32px' }}>다른 사람의 과제 구경하기</Typography>
-      <CountText count={tempData.length} />
-    </StyledFlex>
-    <Margin height='12' />
-    <HomeWorkContentContainer data={tempData} />
-  </Layout>
-);
+  useEffect(() => {
+    // 유저의 파트 정보 얻어오기
+    axios
+      .get(`${process.env.REACT_APP_API}/member/${localStorage.getItem('id')}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      })
+      .then((r) => {
+        setUser(r.data.authority);
+        setUserPart(r.data.part);
+      })
+      .catch((e) => {
+        navigate('/error');
+      });
+  }, []);
+
+  return (
+    <Layout size='small'>
+      <Header />
+      <Margin height='98' />
+      <HeadLine
+        src={homeworkImg}
+        mainTitle={['과제 제출 페이지입니다.']}
+        subTitle={['과제물을 제출하기 위한 페이지입니다.', '업로드 이전에 검토는 필수!']}
+      />
+
+      <Margin height='59' />
+      <TitleContainer
+        small
+        mainTitle={['과제 설명을 작성해주세요.']}
+        subTitle={['짧게 적어도 됩니다. 자신의 과제를 마음껏 표현해주세요.']}
+        component={<InputBox text homework />}
+      />
+
+      <Margin height='68' />
+      <TitleContainer
+        small
+        mainTitle={['과제 참고 링크']}
+        subTitle={['깃허브 링크 또는 배포 링크를 첨부하면 됩니다.']}
+        component={<InputBox input link />}
+      />
+      <ArrowButtonContainer text='과제 제출하기' />
+      <Margin height='79' />
+      <StyledFlex>
+        <Typography pageTitle style={{ fontSize: '32px' }}>
+          다른 사람의 과제 구경하기
+        </Typography>
+        <CountText count={tempData.length} />
+      </StyledFlex>
+      <Margin height='12' />
+      <HomeWorkContentContainer data={tempData} />
+    </Layout>
+  );
+};
 
 export default SubmitHomeWork;

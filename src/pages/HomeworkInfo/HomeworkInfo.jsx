@@ -49,7 +49,7 @@ const InfoBox = styled.div`
 const HomeworkInfo = () => {
   const { homeworkIndex } = useParams();
   const navigate = useNavigate();
-  const [user, setUser] = useState('Admin');
+  const [user, setUser] = useState('');
   const [userPart, setUserPart] = useState('');
   const [isComplete, setIsComplete] = useState(true);
   const [infoButtonText, setInfoButtonText] = useState('');
@@ -145,9 +145,6 @@ const HomeworkInfo = () => {
       .then((r) => {
         Toast('과제가 삭제되었습니다.');
         navigate('/homework-list');
-      })
-      .catch((e) => {
-        navigate('/error');
       });
   };
 
@@ -189,7 +186,7 @@ const HomeworkInfo = () => {
                 {subInfoButtonText}
               </Typography>
             )}
-            <ArrowButton>{infoButtonText}</ArrowButton>
+            <ArrowButton onClick={() => navigate(`/homework-submit/${homeworkIndex}`)}>{infoButtonText}</ArrowButton>
           </Flex>
         </InfoBox>
 
