@@ -82,7 +82,6 @@ const SubmitHomeWork = () => {
         },
       })
       .then((r) => {
-        console.log(r.data.data);
         setHomeworkList(r.data.data);
       });
   };
