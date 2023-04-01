@@ -68,7 +68,6 @@ const SubmitHomeWork = () => {
         if (taskInfo.length === 0) setState('NEED_TO_SUBMIT');
         else {
           setState('SUBMITED');
-          console.log(taskInfo);
           const temp = taskInfo[0].explanation;
           setHomeworkInfo({ ...taskInfo[0], explanation: temp.replaceAll('(next_line)', '\r\n') });
         }
