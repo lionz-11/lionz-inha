@@ -3,9 +3,9 @@ import Typography from '../Typography/Typography';
 import Margin from '../Margin/Margin';
 
 const CountTime = ({ deadline }) => {
-  const [restDate, setRestDate] = useState('-');
-  const [restHour, setRestHour] = useState('-');
-  const [restMinute, setRestMinute] = useState('-');
+  const [restDate, setRestDate] = useState(0);
+  const [restHour, setRestHour] = useState(0);
+  const [restMinute, setRestMinute] = useState(0);
   const [isZero, setIsZero] = useState(false);
 
   useEffect(() => {

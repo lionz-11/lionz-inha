@@ -24,7 +24,7 @@ const Box = styled(motion.article)`
   padding: 1.6rem 1.5rem;
   white-space: nowrap;
 
-  ${({ isOpen }) => isOpen && 'height: 210px;'};
+  ${({ $isOpen }) => $isOpen && 'height: 210px;'};
 `;
 
 const Title = styled.h1`
@@ -93,37 +93,39 @@ const LinkContainer = styled.div`
 `;
 
 const AssignmentBox = ({ data }) => {
-  const { explanation, member, link, name, src } = data;
+  const { explanation, member, link } = data;
   const [isOpen, setIsOpen] = useState(false);
 
   const openHandler = () => setIsOpen(!isOpen);
 
   return (
-    <Box isOpen={isOpen} onClick={openHandler} whileHover={theme.animation.box}>
-      <ContentTitle>
-        <LeftBox>
-          <Profile src={member.image.img_link} />
-          <Title>{member.name}의 과제입니다.</Title>
-        </LeftBox>
-        <RightBox>
-          <Typography sideContent color='darkGray'>
-            qwd
-          </Typography>
-        </RightBox>
-      </ContentTitle>
-      <ContentDetail>
-        <Detail>{explanation.replaceAll('(next_line)', ' ')}</Detail>
-        {/* <Detail>
+    <>
+      <Box $isOpen={isOpen} onClick={openHandler} whileHover={theme.animation.box}>
+        <ContentTitle>
+          <LeftBox>
+            <Profile src={member.image.img_link} />
+            <Title>{member.name}의 과제입니다.</Title>
+          </LeftBox>
+          <RightBox>
+            <Typography sideContent color='darkGray'>
+              qwd
+            </Typography>
+          </RightBox>
+        </ContentTitle>
+        <ContentDetail>
+          <Detail>{explanation.replaceAll('(next_line)', ' ')}</Detail>
+          {/* <Detail>
           안녕ㅁ낭러만오러ㅏㅓㅁㅁㄴㄴㅇㅁㄴㄴㄴㅇㄴㅇㄴㅇㄴㅇㄴㅇㄴ오라멍노람ㄴ안녕ㅁ엄ㅇ놔ㅓㄹ몬어ㅏ로머낭로낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ
         </Detail> */}
-        <LinkContainer>
-          <AiFillGithub size='30' style={{ marginRight: '20px' }} />
-          <Link href={link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
-            {link}
-          </Link>
-        </LinkContainer>
-      </ContentDetail>
-    </Box>
+          <LinkContainer>
+            <AiFillGithub size='30' style={{ marginRight: '20px' }} />
+            <Link href={link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
+              {link}
+            </Link>
+          </LinkContainer>
+        </ContentDetail>
+      </Box>
+    </>
   );
 };
 
