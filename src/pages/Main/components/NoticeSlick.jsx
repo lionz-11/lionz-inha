@@ -47,7 +47,6 @@ const NoticeSlick = () => {
         },
       })
       .then((r) => {
-        console.log(r.data.data);
         setNoticeList(r.data.data.reverse());
       });
   }, []);
