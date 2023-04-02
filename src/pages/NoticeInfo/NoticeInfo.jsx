@@ -83,7 +83,6 @@ const NoticeInfo = () => {
         },
       })
       .then((r) => {
-        console.log(r.data);
         setNoticeInfo(r.data);
       });
   }, []);
