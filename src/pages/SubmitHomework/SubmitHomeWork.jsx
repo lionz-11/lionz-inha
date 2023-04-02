@@ -122,15 +122,15 @@ const SubmitHomeWork = () => {
   };
 
   const checkLink = () => {
-    if (homeworkInfo.link.indexOf('https://')) {
-      Toast('https://로 시작하지 않는 잘못된 링크입니다.');
-      return false;
+    if (homeworkInfo.link.includes('https://')) {
+      return true;
     }
-    return true;
+    Toast('https://로 시작하지 않는 잘못된 링크입니다.');
+    return false;
   };
 
   const homeworkSubmit = () => {
-    if (checkLink) {
+    if (checkLink()) {
       const temp = homeworkInfo.explanation;
 
       axios
@@ -155,7 +155,7 @@ const SubmitHomeWork = () => {
   };
 
   const homeworkEdit = () => {
-    if (checkLink) {
+    if (checkLink()) {
       const temp = homeworkInfo.explanation;
 
       axios

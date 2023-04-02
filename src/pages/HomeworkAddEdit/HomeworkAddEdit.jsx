@@ -108,58 +108,70 @@ const HomeworkAddEdit = () => {
     setTime(e.target.value);
   };
 
+  const checkLink = () => {
+    if (homeworkInfo.link.includes('https://')) {
+      return true;
+    }
+    Toast('https://로 시작하지 않는 잘못된 링크입니다.');
+    return false;
+  };
+
   // 과제 생성
   const addNewHomework = () => {
-    const temp = homeworkInfo.explanation;
+    if (checkLink()) {
+      const temp = homeworkInfo.explanation;
 
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/tasknotice`,
-        {
-          title: homeworkInfo.title,
-          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
-          target: category,
-          deadline: `${date} ${time}:00`,
-          tags: homeworkInfo.tag.split(','),
-          link: homeworkInfo.link,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      axios
+        .post(
+          `${process.env.REACT_APP_API}/tasknotice`,
+          {
+            title: homeworkInfo.title,
+            explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
+            target: category,
+            deadline: `${date} ${time}:00`,
+            tags: homeworkInfo.tag.split(','),
+            link: homeworkInfo.link,
           },
-        },
-      )
-      .then((r) => {
-        Toast('과제 생성이 완료되었습니다.');
-        navigate('/homework-list');
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          },
+        )
+        .then((r) => {
+          Toast('과제 생성이 완료되었습니다.');
+          navigate('/homework-list');
+        });
+    }
   };
 
   // 과제 수정
   const editHomework = () => {
-    const temp = homeworkInfo.explanation;
+    if (checkLink()) {
+      const temp = homeworkInfo.explanation;
 
-    axios
-      .put(
-        `${process.env.REACT_APP_API}/tasknotice/${homeworkInfo.id}`,
-        {
-          title: homeworkInfo.title,
-          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
-          target: category,
-          deadline: `${date} ${time}:00`,
-          tags: homeworkInfo.tag.split(','),
-          link: homeworkInfo.link,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      axios
+        .put(
+          `${process.env.REACT_APP_API}/tasknotice/${homeworkInfo.id}`,
+          {
+            title: homeworkInfo.title,
+            explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
+            target: category,
+            deadline: `${date} ${time}:00`,
+            tags: homeworkInfo.tag.split(','),
+            link: homeworkInfo.link,
           },
-        },
-      )
-      .then((r) => {
-        Toast('과제 수정이 완료되었습니다.');
-        navigate('/homework-list');
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          },
+        )
+        .then((r) => {
+          Toast('과제 수정이 완료되었습니다.');
+          navigate('/homework-list');
+        });
+    }
   };
 
   return (
