@@ -23,11 +23,11 @@ const FileInput = ({ postImage }) => {
   };
 
   const uploadImageHandler = () => {
-    console.log('title');
+    // console.log('title');
   };
 
   const uploadImageButtonClick = () => {
-    console.log('input');
+    // console.log('input');
   };
 
   // 클릭하면 input, 사진 바뀌면 title
