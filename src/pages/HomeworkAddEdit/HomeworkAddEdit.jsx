@@ -84,10 +84,6 @@ const HomeworkAddEdit = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(homeworkInfo);
-  }, [homeworkInfo]);
-
   const titleHandler = ({ target }) => {
     setHomeworkInfo({ ...homeworkInfo, title: target.value });
   };
