@@ -207,7 +207,7 @@ const HomeworkInfo = () => {
                 .map((text) => {
                   if (urlPattern.test(text)) {
                     return (
-                      <a href={text} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
+                      <a key={text} href={text} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
                         {text}
                       </a>
                     );
