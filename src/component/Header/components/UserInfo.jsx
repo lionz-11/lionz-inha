@@ -62,10 +62,6 @@ const UserInfo = ({ part, name, comment }) => {
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
 
-  useEffect(() => {
-    console.log(isClicked);
-  }, [isClicked]);
-
   return (
     <>
       <Wrapper isClicked={isClicked} onClick={() => setIsClicked(false)} />

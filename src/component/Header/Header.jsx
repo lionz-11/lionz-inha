@@ -70,7 +70,6 @@ const Header = ({ onlyTitle }) => {
           },
         })
         .then((r) => {
-          console.log(r.data);
           setProfile(r.data.image?.img_link);
           setId(r.data.id);
           setName(r.data.name);
@@ -87,7 +86,6 @@ const Header = ({ onlyTitle }) => {
                 localStorage.setItem('accessToken', result.data.accessToken);
                 localStorage.setItem('id', result.data.id);
                 localStorage.setItem('loginCount', result.data.count);
-                console.log(result);
               });
           }
         })
