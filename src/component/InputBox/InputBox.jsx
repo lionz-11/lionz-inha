@@ -113,6 +113,11 @@ const Input = styled.input`
   }
   ${(props) => props.login && types.loginText};
   ${(props) => props.alert && types.alertText};
+
+  :disabled {
+    background-color: white;
+    color: black;
+  }
 `;
 
 const Textarea = styled.textarea`
@@ -131,6 +136,12 @@ const Textarea = styled.textarea`
   ${(props) => props.detail && types.detail};
   ${(props) => props.homework && types.homework};
   ${(props) => props.alert && types.alert};
+  background-color: white;
+
+  :disabled {
+    background-color: white;
+    color: black;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -158,6 +169,7 @@ const InputBox = ({
   placeholder,
   onKeyUp,
   onKeyPress,
+  disabled,
 }) => {
   const textRef = useRef(null);
   const inputRef = useRef(null);
@@ -201,6 +213,7 @@ const InputBox = ({
             onChange={onChange}
             onKeyUp={onKeyUp}
             onKeyPress={onKeyPress}
+            disabled={disabled}
           />
           {editPassword ? (
             <StyledButton onClick={viewClicked}>
@@ -233,6 +246,7 @@ const InputBox = ({
           onKeyDown={handleResizeHeight}
           onKeyUp={handleResizeHeight}
           onChange={onChange}
+          disabled={disabled}
         >
           {placeholder}
         </Textarea>

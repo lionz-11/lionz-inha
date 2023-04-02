@@ -92,7 +92,7 @@ const Header = ({ onlyTitle }) => {
           }
         })
         .catch((e) => {
-          Toast('로그인 페이지로 이동합니다.');
+          Toast('토큰이 만료되었습니다. 다시 로그인해주세요.');
           navigate('/login');
         });
     }
