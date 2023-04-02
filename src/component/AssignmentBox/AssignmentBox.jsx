@@ -114,9 +114,6 @@ const AssignmentBox = ({ data }) => {
         </ContentTitle>
         <ContentDetail>
           <Detail>{explanation.replaceAll('(next_line)', ' ')}</Detail>
-          {/* <Detail>
-          안녕ㅁ낭러만오러ㅏㅓㅁㅁㄴㄴㅇㅁㄴㄴㄴㅇㄴㅇㄴㅇㄴㅇㄴㅇㄴ오라멍노람ㄴ안녕ㅁ엄ㅇ놔ㅓㄹ몬어ㅏ로머낭로낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ안녕ㅁ낭러만오러ㅏㅓㅁㄴ오라멍노람ㄴ
-        </Detail> */}
           <LinkContainer>
             <AiFillGithub size='30' style={{ marginRight: '20px' }} />
             <Link href={link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
