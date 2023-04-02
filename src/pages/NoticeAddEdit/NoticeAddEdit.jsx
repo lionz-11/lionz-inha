@@ -127,7 +127,6 @@ const NoticeAddEdit = () => {
         })
         .then((r) => {
           const temp = r.data.explanation;
-          console.log(r.data);
           setNoticeInfo({ ...r.data, tag: r.data.tag.join(','), explanation: temp.replaceAll('(next_line)', '\r\n') });
           setCategory(r.data.target);
           setPart({ ...part, selected: r.data.target });
