@@ -52,6 +52,7 @@ const SubmitHomeWork = () => {
     explanation: '',
     target: '',
     link: '',
+    date: '',
     id: -1,
   });
 
@@ -237,7 +238,7 @@ const SubmitHomeWork = () => {
           <TitleContainer
             small
             mainTitle={['나의 제출 상태']}
-            subTitle={['제출 완료된 과제입니다.']}
+            subTitle={`${homeworkInfo.date.slice(0, 10)} ${homeworkInfo.date.slice(11, 16)}에 제출 완료된 과제입니다.`}
             component={<InputBox text homework disabled value={homeworkInfo.explanation} />}
           />
           <Margin height='11' />

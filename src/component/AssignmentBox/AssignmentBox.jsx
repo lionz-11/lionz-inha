@@ -93,7 +93,7 @@ const LinkContainer = styled.div`
 `;
 
 const AssignmentBox = ({ data }) => {
-  const { explanation, member, link } = data;
+  const { explanation, member, link, date } = data;
   const [isOpen, setIsOpen] = useState(false);
 
   const openHandler = () => setIsOpen(!isOpen);
@@ -108,7 +108,7 @@ const AssignmentBox = ({ data }) => {
           </LeftBox>
           <RightBox>
             <Typography sideContent color='darkGray'>
-              qwd
+              {`${date.slice(0, 10)} ${date.slice(11, 16)}`}
             </Typography>
           </RightBox>
         </ContentTitle>
