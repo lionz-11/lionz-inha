@@ -103,7 +103,6 @@ const HomeworkInfo = () => {
         },
       })
       .then((r) => {
-        console.log(r.data);
         setHomeworkInfo({ ...r.data });
       });
 
@@ -115,7 +114,6 @@ const HomeworkInfo = () => {
         },
       })
       .then((r) => {
-        console.log(r.data.data);
         setHomeworkList(r.data.data);
       });
   }, []);
