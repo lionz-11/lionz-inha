@@ -40,7 +40,6 @@ const ProfileEdit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(localStorage.getItem('loginCount'));
     // 잘못된 접근 방지 처리
     if (welcome === 1 && localStorage.getItem('loginCount') !== 0) {
       Toast('잘못된 접근입니다. 메인 화면으로 이동합니다.');
@@ -54,7 +53,6 @@ const ProfileEdit = () => {
           },
         })
         .then((r) => {
-          console.log(r.data);
           setComment(r.data.comment);
           setProfile(r.data.image?.img_link);
           if (welcome === '1') Toast('첫 방문을 환영합니다. 정보를 입력해주세요.');

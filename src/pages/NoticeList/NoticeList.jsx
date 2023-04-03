@@ -50,7 +50,6 @@ const NoticeList = () => {
         },
       })
       .then((r) => {
-        console.log(r.data.data);
         setNotice(r.data.data.reverse());
       });
   }, []);

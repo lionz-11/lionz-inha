@@ -52,6 +52,7 @@ const SubmitHomeWork = () => {
     explanation: '',
     target: '',
     link: '',
+    date: '',
     id: -1,
   });
 
@@ -121,50 +122,62 @@ const SubmitHomeWork = () => {
     setHomeworkInfo({ ...homeworkInfo, explanation: target.value });
   };
 
-  const homeworkSubmit = () => {
-    const temp = homeworkInfo.explanation;
+  const checkLink = () => {
+    if (homeworkInfo.link.includes('https://')) {
+      return true;
+    }
+    Toast('https://로 시작하지 않는 잘못된 링크입니다.');
+    return false;
+  };
 
-    axios
-      .post(
-        `${process.env.REACT_APP_API}/task`,
-        {
-          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
-          link: homeworkInfo.link,
-          tasknotice_id: homeworkNoticeInfo.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+  const homeworkSubmit = () => {
+    if (checkLink()) {
+      const temp = homeworkInfo.explanation;
+
+      axios
+        .post(
+          `${process.env.REACT_APP_API}/task`,
+          {
+            explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
+            link: homeworkInfo.link,
+            tasknotice_id: homeworkNoticeInfo.id,
           },
-        },
-      )
-      .then((r) => {
-        Toast('과제 제출이 완료되었습니다.');
-        setState('SUBMITED');
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          },
+        )
+        .then((r) => {
+          Toast('과제 제출이 완료되었습니다.');
+          setState('SUBMITED');
+        });
+    }
   };
 
   const homeworkEdit = () => {
-    const temp = homeworkInfo.explanation;
+    if (checkLink()) {
+      const temp = homeworkInfo.explanation;
 
-    axios
-      .put(
-        `${process.env.REACT_APP_API}/task/${homeworkInfo.id}`,
-        {
-          explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
-          link: homeworkInfo.link,
-          tasknotice_id: homeworkNoticeInfo.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      axios
+        .put(
+          `${process.env.REACT_APP_API}/task/${homeworkInfo.id}`,
+          {
+            explanation: temp.replace(/(?:\r\n|\r|\n)/g, '(next_line)'),
+            link: homeworkInfo.link,
+            tasknotice_id: homeworkNoticeInfo.id,
           },
-        },
-      )
-      .then((r) => {
-        Toast('과제 수정이 완료되었습니다.');
-        getHomeworkInfo();
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          },
+        )
+        .then((r) => {
+          Toast('과제 수정이 완료되었습니다.');
+          getHomeworkInfo();
+        });
+    }
   };
 
   return (
@@ -225,7 +238,7 @@ const SubmitHomeWork = () => {
           <TitleContainer
             small
             mainTitle={['나의 제출 상태']}
-            subTitle={['제출 완료된 과제입니다.']}
+            subTitle={`${homeworkInfo.date.slice(0, 10)} ${homeworkInfo.date.slice(11, 16)}에 제출 완료된 과제입니다.`}
             component={<InputBox text homework disabled value={homeworkInfo.explanation} />}
           />
           <Margin height='11' />
