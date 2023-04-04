@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../../component/Header/Header';
 import Layout from '../../component/Layout/Layout';
+import Typography from '../../component/Typography/Typography';
 import TitleSet from '../../component/TitleSet/TitleSet';
 import Margin from '../../component/Margin/Margin';
 import HeadLine from '../../component/HeadLine/HeadLine';
@@ -26,7 +27,6 @@ const Contact = () => {
       .then((r) => {
         setPart(r.data.part);
         setAuthority(r.data.authority);
-        console.log(r.data.authority);
       });
 
     // 모든 유저 정보 받아오기
@@ -49,7 +49,18 @@ const Contact = () => {
         mainTitle={['이곳은 연락처 페이지입니다.']}
         subTitle={['11기 여러분들을 환영합니다! 앞으로 모르는 것이 있다면 STAFF를 괴롭히면 됩니다.']}
       />
-      {authority === '' ? '로딩중입니다.' : <ContactContainer isStaff={authority} data={list} />}
+      {authority === '' ? (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>로딩중입니다.</Typography>
+          <Margin height='10' />
+          <Typography contentText color='darkGray'>
+            잠시만 기다려주세요.
+          </Typography>
+        </>
+      ) : (
+        <ContactContainer isStaff={authority} data={list} />
+      )}
     </Layout>
   );
 };
