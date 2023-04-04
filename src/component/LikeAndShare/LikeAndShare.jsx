@@ -60,7 +60,7 @@ const LikeAndShare = ({ like, setLike }) => {
   };
 
   return (
-    <Container onClick={() => handleCopyClipBoard(`${process.env.BASE_URL}${location.pathname}`)}>
+    <Container onClick={() => handleCopyClipBoard(`${process.env.REACT_APP_BASEURL}${location.pathname}`)}>
       <LikeWrapper>
         <Typography sideContentSmall style={{ width: '100%' }}>
           공유하기

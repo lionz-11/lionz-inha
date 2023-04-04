@@ -94,7 +94,13 @@ const MenuBar = ({ menuButton, menuButtonClicked }) => {
           <MenuButton title='공지사항' subTitle='재밌는 일 없나?' onClick={moveToNotice} />
           <MenuButton title='과제' subTitle='아 맞다 과제!' onClick={moveToHomework} />
           <MenuButton title='연락처' subTitle='그 사람.. 누구더라?' onClick={moveToContact} />
-          <MenuButton title='일정' subTitle='오늘 뭐 하지?' />
+          <a
+            href='https://calendar.google.com/calendar/u/0?cid=YWM1N2ZiNWM1MmQ4MGNjNDkyMDEzNGQ5YTg5ZjU1ZGZhMjk3MzQ2MjczZTFhNmE2OThhYzdhYjZjZmJkYWZhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <MenuButton title='일정' subTitle='오늘 뭐 하지?' />
+          </a>
         </Flex>
         <InfoBox>
           <a href='https://www.instagram.com/likelion_inha/'>
