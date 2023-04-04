@@ -14,9 +14,7 @@ const TitleWrapper = styled.div`
 const Schedule = () => {
   const [currentCategory, setCurrentCategory] = useState('');
 
-  useEffect(() => {
-    console.log(currentCategory);
-  }, [currentCategory]);
+  useEffect(() => {}, [currentCategory]);
 
   return (
     <Layout>
