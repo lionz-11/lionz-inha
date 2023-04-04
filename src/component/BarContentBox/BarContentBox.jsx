@@ -116,9 +116,9 @@ const Assignment = ({ date, submissionStatus, part, target }) => {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    if (part.user === target && submissionStatus === false) setStatus('미제출');
-    if ((part.user === target && submissionStatus === true) || (target === 'ALL' && submissionStatus === true)) setStatus('제출 완료');
     if (part.user !== target) setStatus('대상 아님');
+    if ((part.user === target && submissionStatus === false) || (target === 'ALL' && submissionStatus === false)) setStatus('미제출');
+    if ((part.user === target && submissionStatus === true) || (target === 'ALL' && submissionStatus === true)) setStatus('제출 완료');
   }, [part.selected, target]);
 
   return (
