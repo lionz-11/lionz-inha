@@ -9,7 +9,6 @@
 - React
 - Styled Components
 - React Router
-- 추후에 추가로 작성
 
 ## Branch Strategy
 
