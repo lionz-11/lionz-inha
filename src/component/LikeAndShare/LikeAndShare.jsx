@@ -51,10 +51,8 @@ const LikeAndShare = ({ like, setLike }) => {
   const location = useLocation();
 
   const handleCopyClipBoard = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      Toast('클립보드에 링크가 복사되었어요.');
-    } catch (err) {}
+    await navigator.clipboard.writeText(text);
+    Toast('클립보드에 링크가 복사되었어요.');
   };
 
   return (

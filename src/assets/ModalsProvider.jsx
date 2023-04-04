@@ -9,11 +9,7 @@ const ModalsProvider = ({ children }) => {
    * @param Component : 열고싶은 모달 컴포넌트
    * @param props : 모달 컴포넌트로 넘겨줄 props
    */
-  const open = (Component, props) => {
-    setOpenedModals((modals) => {
-      return [...modals, { Component, props }];
-    });
-  };
+  const open = (Component, props) => setOpenedModals((modals) => [...modals, { Component, props }]);
 
   const close = (Component) => {
     setOpenedModals((modals) => modals.filter((modal) => modal.Component !== Component));
