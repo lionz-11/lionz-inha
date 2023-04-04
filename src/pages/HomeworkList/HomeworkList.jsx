@@ -76,7 +76,7 @@ const HomeworkList = () => {
       })
       .then((r) => {
         setMyTask(r.data.data);
-        setAllOfTask(r.data.data);
+        setAllOfTask(r.data.data.reverse());
       });
   }, []);
 
@@ -106,7 +106,19 @@ const HomeworkList = () => {
           <CountText unit='ea' count={myTask.length} />
         )}
       </HeadLine>
-      <PhotoContentContainer data={myTask} />
+
+      {myTask.length === 0 ? (
+        <>
+          <Margin height='50' />
+          <Typography contentTitle>부여된 과제가 존재하지 않아요.</Typography>
+          <Margin height='10' />
+          <Typography contentText color='darkGray'>
+            아래서 다른 파트의 과제를 구경해보세요.
+          </Typography>
+        </>
+      ) : (
+        <PhotoContentContainer data={myTask} />
+      )}
 
       {/* <HeadLine
       mainTitle={['다른 파트의 과제도 구경하고 싶다면..']}

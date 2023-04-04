@@ -2,15 +2,20 @@ import styled from 'styled-components';
 import PhotoContentBox from './PhotoContentBox';
 
 const List = styled.div`
-  width: 100%;
+  width: calc(100% + 20px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  padding: 10px;
   gap: 2rem;
+  overflow-x: scroll;
+  overflow-y: visible;
 
-  @media (max-width: 930px) {
-    flex-wrap: wrap;
+  ::-webkit-scrollbar {
+    display: none;
   }
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
 `;
 
 const PhotoContentContainer = ({ data }) => (
