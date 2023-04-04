@@ -88,7 +88,7 @@ const NoticeInfo = () => {
   }, []);
 
   return (
-    <Layout style={{ textAlign: 'left' }}>
+    <Layout style={{ textAlign: 'left', wordBreak: 'break-all' }}>
       <Header />
       <InnerWrapper flexCenter column>
         <Margin height='160' />

@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
+import ALL from '../../pages/Main/components/ALL.png';
+import FE from '../../pages/Main/components/FE.png';
+import BE from '../../pages/Main/components/BE.png';
 
 // 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(motion.article)`
@@ -77,11 +80,13 @@ const PhotoContentBox = ({ data }) => {
   return (
     <Box whileHover={theme.animation.box} id={id} onClick={() => navigate(`/homework-info/${id}`)}>
       <Photo>
-        <img src='https://blog.kakaocdn.net/dn/dpxiAT/btqUBv6Fvpn/E8xUMncq7AVuDeOim0LrMk/img.jpg' alt='img' />
+        {target === 'ALL' && <img src={ALL} alt='img' />}
+        {target === 'FE' && <img src={FE} alt='img' />}
+        {target === 'BE' && <img src={BE} alt='img' />}
       </Photo>
       <MainContent>
         <Title>{title}</Title>
-        <Contents contentText>{explanation}</Contents>
+        <Contents contentText>{explanation.replaceAll('(next_line)', ' ')}</Contents>
       </MainContent>
       <Separator />
       <SideContent>

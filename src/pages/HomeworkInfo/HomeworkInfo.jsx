@@ -31,9 +31,11 @@ const LinkContainer = styled.div`
 `;
 
 const Link = styled.a`
+  width: calc(100% - 50px);
   text-decoration: underline;
   color: ${(props) => props.theme.colors.blue};
   ${(props) => props.theme.font.sideContentSmall};
+  word-break: break-all;
 `;
 
 const InfoBox = styled.div`
@@ -156,7 +158,7 @@ const HomeworkInfo = () => {
   };
 
   return (
-    <Layout style={{ textAlign: 'left' }}>
+    <Layout style={{ textAlign: 'left', wordBreak: 'break-all' }}>
       <Header />
       <InnerWrapper flexCenter column>
         <Margin height='160' />

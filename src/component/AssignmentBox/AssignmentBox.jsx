@@ -84,7 +84,11 @@ const Detail = styled.div`
 `;
 
 const Link = styled.a`
-  ${(props) => props.theme.font.sideContentSmall}
+  width: calc(100% - 50px);
+  text-decoration: underline;
+  color: ${(props) => props.theme.colors.blue};
+  ${(props) => props.theme.font.sideContentSmall};
+  word-break: break-all;
 `;
 
 const LinkContainer = styled.div`
