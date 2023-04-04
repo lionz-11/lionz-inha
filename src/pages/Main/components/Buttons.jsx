@@ -57,14 +57,20 @@ const Buttons = () => {
 
   return (
     <ButtonWrapper flexCenter column>
-      <StyledButton>
-        <Typography sideContentSmall color='darkGray'>
-          오늘 뭐 하지?
-        </Typography>
-        <Typography buttonText>일정</Typography>
-        <NewAlert color='pointRed'>new</NewAlert>
-        <StyledMainBtn1 src={MainBtn1} />
-      </StyledButton>
+      <a
+        href='https://calendar.google.com/calendar/u/0?cid=YWM1N2ZiNWM1MmQ4MGNjNDkyMDEzNGQ5YTg5ZjU1ZGZhMjk3MzQ2MjczZTFhNmE2OThhYzdhYjZjZmJkYWZhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t'
+        target='_blank'
+        rel='noreferrer'
+      >
+        <StyledButton>
+          <Typography sideContentSmall color='darkGray'>
+            오늘 뭐 하지?
+          </Typography>
+          <Typography buttonText>일정</Typography>
+          <NewAlert color='pointRed'>new</NewAlert>
+          <StyledMainBtn1 src={MainBtn1} />
+        </StyledButton>
+      </a>
       <StyledButton onClick={() => navigate('/homework-list')}>
         <Typography sideContentSmall color='darkGray'>
           마감이 다가온다..

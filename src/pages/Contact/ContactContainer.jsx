@@ -53,8 +53,11 @@ const ProfileImage = styled.img`
   max-width: 29px; */
   min-height: 29px;
   min-width: 29px;
+  max-width: 29px;
+  max-height: 29px;
   border-radius: 29px;
   background-color: pink;
+  object-fit: cover;
 `;
 
 const InternalFragment = styled(Typography)`
@@ -80,28 +83,29 @@ const jobs = ['ALL', 'BE', 'FE', 'STF'];
 
 const ContactContainer = ({ data, isStaff }) => {
   // true === 내림차순, false === 오름차순
-  console.log(isStaff);
   const [nameSort, setNameSort] = useState(true);
   const [jobSelect, setJobSelect] = useState(0);
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
-    console.log(data);
     setDataList(
-      data.map((d) => {
-        const part = d.authority === 'ROLE_ADMIN' ? 'STAFF' : d.part;
-        const image = d.image?.img_link;
+      data
+        .map((d) => {
+          const part = d.authority === 'ROLE_ADMIN' ? 'STAFF' : d.part;
+          const image = d.image?.img_link;
 
-        return {
-          name: d.name,
-          part,
-          comment: d.comment,
-          phone_num: d.phone_num,
-          major: d.major,
-          student_id: d.student_id,
-          image,
-        };
-      }),
+          return {
+            id: d.id,
+            name: d.name,
+            part,
+            comment: d.comment,
+            phone_num: d.phone_num,
+            major: d.major,
+            student_id: d.student_id,
+            image,
+          };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name)),
     );
   }, [data]);
 
@@ -138,7 +142,7 @@ const ContactContainer = ({ data, isStaff }) => {
               이름
               {nameSort ? <AiFillCaretDown color='#bfbfbf' /> : <AiFillCaretUp color='#bfbfbf' />}
             </Select>
-            <Select margin='54' onClick={jobSelectHandler}>
+            <Select margin='54'>
               {jobs[jobSelect]}
               <AiFillCaretDown color='#bfbfbf' />
             </Select>
@@ -149,7 +153,7 @@ const ContactContainer = ({ data, isStaff }) => {
           </SelectBar>
           <ScrollContact>
             {dataList.map((d, i) => (
-              <Contact id={i}>
+              <Contact id={i} key={d.id}>
                 <ProfileImage src={d.image} />
                 <InternalFragment width='88' bold>
                   {d.name}
@@ -179,7 +183,7 @@ const ContactContainer = ({ data, isStaff }) => {
           </SelectBar>
           <ScrollContact>
             {dataList.map((d, i) => (
-              <Contact id={i}>
+              <Contact id={i} key={d.id}>
                 <ProfileImage src={d.image?.img_link} />
                 <InternalFragment width='96' bold>
                   {d.name}

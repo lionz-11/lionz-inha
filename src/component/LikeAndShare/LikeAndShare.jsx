@@ -22,7 +22,7 @@ const LikeWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 10px;
+  text-align: center;
   background-color: ${theme.colors.veryLightBlue};
   p {
     color: ${theme.colors.blue};
@@ -60,15 +60,23 @@ const LikeAndShare = ({ like, setLike }) => {
   };
 
   return (
-    <Container>
-      <LikeWrapper onClick={setLike}>
-        {like ? <Like>🦁</Like> : <Like>🐾</Like>}
-        <Typography sideContentSmall>324</Typography>
+    <Container onClick={() => handleCopyClipBoard(`${process.env.REACT_APP_BASEURL}${location.pathname}`)}>
+      <LikeWrapper>
+        <Typography sideContentSmall style={{ width: '100%' }}>
+          공유하기
+        </Typography>
       </LikeWrapper>
-      <ShareWrapper onClick={() => handleCopyClipBoard(`localhost:3000${location.pathname}`)}>
+      <ShareWrapper>
         <MdIosShare size='16' color={theme.colors.blue} style={{ marginBottom: '2px' }} />
       </ShareWrapper>
     </Container>
   );
 };
+
+/*
+      <LikeWrapper onClick={setLike}>
+        {like ? <Like>🦁</Like> : <Like>🐾</Like>}
+        <Typography sideContentSmall>324</Typography>
+      </LikeWrapper>
+*/
 export default LikeAndShare;
