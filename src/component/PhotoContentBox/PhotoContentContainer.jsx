@@ -2,10 +2,8 @@ import styled from 'styled-components';
 import PhotoContentBox from './PhotoContentBox';
 
 const List = styled.div`
-  width: calc(100% + 20px);
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  width: calc(100% + 20px);
   padding: 10px;
   gap: 2rem;
   overflow-x: scroll;
