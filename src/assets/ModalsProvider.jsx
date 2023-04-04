@@ -11,7 +11,6 @@ const ModalsProvider = ({ children }) => {
    */
   const open = (Component, props) => {
     setOpenedModals((modals) => {
-      console.log(modals);
       return [...modals, { Component, props }];
     });
   };

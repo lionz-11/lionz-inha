@@ -79,9 +79,7 @@ const ProfileEdit = () => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
-      })
-        .then((r) => console.log(r))
-        .catch((err) => console.log(err));
+      });
     }
 
     // 보낸 이미지가 서버에 제대로 들어갔으니 서버에서 이미지 가져오기
@@ -99,13 +97,11 @@ const ProfileEdit = () => {
 
   // 이미지 삭제
   const deleteImage = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API}/member/img`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
-      })
-      .catch((_) => console.log('오류가 발생했습니다! 미안합니다..'));
+    axios.delete(`${process.env.REACT_APP_API}/member/img`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    });
     setProfile('');
   };
 
@@ -162,9 +158,6 @@ const ProfileEdit = () => {
           if (welcome === '1') Toast('환영합니다!');
           else Toast('정보 수정에 성공했습니다.');
           navigate('/');
-        })
-        .catch((err) => {
-          console.log('오류가 발생했습니다! 미안합니다..');
         });
     }
   };
