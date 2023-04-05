@@ -184,7 +184,7 @@ const ContactContainer = ({ data, isStaff }) => {
           <ScrollContact>
             {dataList.map((d, i) => (
               <Contact id={i} key={d.id}>
-                <ProfileImage src={d.image?.img_link} />
+                <ProfileImage src={d.image} />
                 <InternalFragment width='96' bold>
                   {d.name}
                 </InternalFragment>
