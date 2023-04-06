@@ -3,6 +3,7 @@ import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import styled from 'styled-components';
 import Typography from '../../component/Typography/Typography';
 import Margin from '../../component/Margin/Margin';
+import errorImg from '../../assets/svgs/errorImg.png';
 
 const Container = styled.div`
   width: 100%;
@@ -58,6 +59,7 @@ const ProfileImage = styled.img`
   border-radius: 29px;
   background-color: pink;
   object-fit: cover;
+  border: 1px solid ${(props) => props.theme.colors.lightGray};
 `;
 
 const InternalFragment = styled(Typography)`
@@ -133,6 +135,10 @@ const ContactContainer = ({ data, isStaff }) => {
     );
   };
 
+  const onErrorImg = (e) => {
+    e.target.src = errorImg;
+  };
+
   return (
     <>
       {isStaff === 'ROLE_ADMIN' ? (
@@ -154,7 +160,7 @@ const ContactContainer = ({ data, isStaff }) => {
           <ScrollContact>
             {dataList.map((d, i) => (
               <Contact id={i} key={d.id}>
-                <ProfileImage src={d.image} />
+                <ProfileImage src={d.image} onError={onErrorImg} />
                 <InternalFragment width='88' bold>
                   {d.name}
                 </InternalFragment>
@@ -184,7 +190,7 @@ const ContactContainer = ({ data, isStaff }) => {
           <ScrollContact>
             {dataList.map((d, i) => (
               <Contact id={i} key={d.id}>
-                <ProfileImage src={d.image} />
+                <ProfileImage src={d.image} onError={onErrorImg} />
                 <InternalFragment width='96' bold>
                   {d.name}
                 </InternalFragment>

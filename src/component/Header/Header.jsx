@@ -12,6 +12,7 @@ import SearchBar from './components/SearchBar';
 import Flex from '../Flex/Flex';
 import Margin from '../Margin/Margin';
 import UserInfo from './components/UserInfo';
+import errorImg from '../../assets/svgs/errorImg.png';
 
 // onlyTitle 추가.
 // header 사용 시에 onlyTitle 추가하면 상단 아이콘 숨겨짐.
@@ -110,6 +111,10 @@ const Header = ({ onlyTitle }) => {
     setSearchButton(!searchButton);
   };
 
+  const onErrorImg = (e) => {
+    e.target.src = errorImg;
+  };
+
   return (
     <Container>
       <Flex justify={onlyTitle ? 'center' : 'space-between'} style={{ width: '100%', maxWidth: '1312px' }}>
@@ -128,7 +133,7 @@ const Header = ({ onlyTitle }) => {
               <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
               <ProfileWrapper>
                 {profile !== '' ? (
-                  <ProfileImg src={profile} />
+                  <ProfileImg src={profile} onError={onErrorImg} />
                 ) : (
                   <BsPersonFill size='31px' color={theme.colors.darkGray} style={{ marginTop: '4px' }} />
                 )}
