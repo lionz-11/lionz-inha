@@ -36,8 +36,10 @@ const NoticeInfo = () => {
     target: '',
     title: '',
   });
-  // eslint-disable-next-line
-  const urlPattern = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
+
+  const urlPattern =
+    // eslint-disable-next-line
+    /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=@.~\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=@.~\w]+)*)*/gi;
 
   // 모달 확인창 관련 state
   const [modalActive, setModalActive] = useState(false);
@@ -107,7 +109,7 @@ const NoticeInfo = () => {
         </Flex>
 
         <Margin height='69' />
-        <Typography contentText style={{ lineHeight: '23px' }}>
+        <Typography contentText style={{ lineHeight: '23px', wordBreak: 'break-all' }}>
           {noticeInfo.explanation.split('(next_line)').map((cur) => (
             <>
               {cur

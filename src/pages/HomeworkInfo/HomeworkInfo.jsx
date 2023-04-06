@@ -59,8 +59,9 @@ const HomeworkInfo = () => {
   // 모달 확인창 관련 state
   const [modalActive, setModalActive] = useState(false);
 
-  // eslint-disable-next-line
-  const urlPattern = /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
+  const urlPattern =
+    // eslint-disable-next-line
+    /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=@.~\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=@.~\w]+)*)*/gi;
 
   const [homeworkInfo, setHomeworkInfo] = useState({
     date: '',
@@ -200,7 +201,7 @@ const HomeworkInfo = () => {
         </InfoBox>
 
         <Margin height='69' />
-        <Typography contentText>
+        <Typography contentText style={{ lineHeight: '23px', wordBreak: 'break-all' }}>
           {homeworkInfo.explanation.split('(next_line)').map((cur) => (
             <>
               {cur
