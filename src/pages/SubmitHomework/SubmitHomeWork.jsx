@@ -56,6 +56,22 @@ const SubmitHomeWork = () => {
     id: -1,
   });
 
+  function dateFormat(date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+
+    month = month >= 10 ? month : `0${month}`;
+    day = day >= 10 ? day : `0${day}`;
+    hour = hour >= 10 ? hour : `0${hour}`;
+    minute = minute >= 10 ? minute : `0${minute}`;
+    second = second >= 10 ? second : `0${second}`;
+
+    return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
+  }
+
   const getHomeworkInfo = () => {
     // 내가 제출한 과제 얻어오기
     axios
@@ -70,7 +86,9 @@ const SubmitHomeWork = () => {
         else {
           setState('SUBMITED');
           const temp = taskInfo[0].explanation;
-          setHomeworkInfo({ ...taskInfo[0], explanation: temp.replaceAll('(next_line)', '\r\n') });
+          const curDate = new Date(taskInfo.date);
+          curDate.setHours(curDate.getHours() + 9);
+          setHomeworkInfo({ ...taskInfo[0], explanation: temp.replaceAll('(next_line)', '\r\n'), date: dateFormat(curDate) });
         }
       });
 
@@ -82,7 +100,13 @@ const SubmitHomeWork = () => {
         },
       })
       .then((r) => {
-        setHomeworkList(r.data.data);
+        setHomeworkList(
+          r.data.data.map((cur) => {
+            const curDate = new Date(cur.date);
+            curDate.setHours(curDate.getHours() + 9);
+            return { ...cur, date: dateFormat(curDate) };
+          }),
+        );
       });
   };
 
