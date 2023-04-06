@@ -30,6 +30,22 @@ const NoticeList = () => {
 
   const navigate = useNavigate();
 
+  function dateFormat(date) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+
+    month = month >= 10 ? month : `0${month}`;
+    day = day >= 10 ? day : `0${day}`;
+    hour = hour >= 10 ? hour : `0${hour}`;
+    minute = minute >= 10 ? minute : `0${minute}`;
+    second = second >= 10 ? second : `0${second}`;
+
+    return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
+  }
+
   useEffect(() => {
     // 유저의 파트 정보 얻어오기
     axios
@@ -50,7 +66,13 @@ const NoticeList = () => {
         },
       })
       .then((r) => {
-        setNotice(r.data.data.reverse());
+        setNotice(
+          r.data.data.reverse().map((cur) => {
+            const curDate = new Date(cur.date);
+            curDate.setHours(curDate.getHours() + 9);
+            return { ...cur, date: dateFormat(curDate) };
+          }),
+        );
       });
   }, []);
 
