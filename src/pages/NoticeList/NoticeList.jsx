@@ -13,6 +13,12 @@ import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import BarComponentContainer from '../../component/BarComponentContainer/BarComponentContainer';
 import BarContentBox from '../../component/BarContentBox/BarContentBox';
 
+const StyledImg = styled.img`
+  @media (max-width: 805px) {
+    display: none;
+  }
+`;
+
 const ResultWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -85,14 +91,14 @@ const NoticeList = () => {
       <Header />
       <Margin height='99' />
       <Flex flexCenter justify='space-between' style={{ width: '100%', marginLeft: '13px' }}>
-        <Flex flexCenter column align='baseline'>
+        <Flex flexCenter column align='baseline' style={{ wordBreak: 'keep-all' }}>
           <Typography pageTitle>공지사항 페이지입니다.</Typography>
           <Margin height='9' />
           <Typography contentText color='darkGray'>
-            LIKE LION 11기의 활동과 관련된 다양한 공지사항들이 모여있어요.
+            LIKE LION 11기의 활동과 관련된 공지사항들이 모여있어요.
           </Typography>
           <Typography contentText color='darkGray'>
-            중요한 공지들을 빠뜨리지 않도록 한 눈에 확인해볼 수 있어요.
+            중요한 공지들을 빠뜨리지 않도록 한 눈에 확인해보세요.
           </Typography>
           {user === 'ROLE_ADMIN' && (
             <>
@@ -107,10 +113,10 @@ const NoticeList = () => {
             </>
           )}
         </Flex>
-        <img alt='noticeListImg' src={noticeListImg} />
+        <StyledImg alt='noticeListImg' src={noticeListImg} />
       </Flex>
       <Margin height='50' />
-      <Flex flexCenter justify='space-between' style={{ width: '100%', marginLeft: '13px' }}>
+      <Flex flexCenter justify='space-between' style={{ width: '100%', marginLeft: '13px', flexWrap: 'wrap', gap: '10px' }}>
         <Typography pageTitle>공지사항 목록</Typography>
         <SelectCategoryButton setCategory={setCategory} setPart={setPart} part={part} />
       </Flex>

@@ -13,6 +13,14 @@ import TextButton from '../../component/TextButton/TextButton';
 import { Toast } from '../../component/Toast/Toast';
 import PopupModal from '../../component/PopupModal/PopupModal';
 
+const StyledFlex = styled(Flex)`
+  margin-top: 160px;
+
+  @media (max-width: 805px) {
+    margin-top: 40px;
+  }
+`;
+
 const InnerWrapper = styled(Flex)`
   width: 100%;
   max-width: 852px;
@@ -111,17 +119,16 @@ const NoticeInfo = () => {
     <Layout style={{ textAlign: 'left', wordBreak: 'break-all' }}>
       <Header />
       <InnerWrapper flexCenter column>
-        <Margin height='160' />
-        <Flex flexCenter justify='space-between' style={{ width: '100%' }}>
-          <Typography header style={{ width: 'calc(100% - 100px)', fontSize: '48px', letterSpacing: '0.04em', textWrap: 'break-word' }}>
+        <StyledFlex flexCenter justify='space-between' style={{ width: '100%', flexWrap: 'wrap', gap: '20px' }}>
+          <Typography header style={{ fontSize: '48px', letterSpacing: '0.04em', wordBreak: 'keep-all' }}>
             {noticeInfo.title}
           </Typography>
           {user === 'ROLE_ADMIN' && <TextButton haveDelete onClickEdit={onClickEdit} onClickDelete={onClickDelete} />}
-        </Flex>
+        </StyledFlex>
         <Margin height='30' />
         <Typography contentText color='darkGray'>{`${noticeInfo.target} • 게시일 : ${noticeInfo.date}`}</Typography>
         <Margin height='16' />
-        <Flex flexCenter justify='space-between' style={{ width: '100%' }}>
+        <Flex flexCenter justify='space-between' align='baseline' style={{ width: '100%' }}>
           <TagContainer tag={noticeInfo.tag} />
           <LikeAndShare />
         </Flex>

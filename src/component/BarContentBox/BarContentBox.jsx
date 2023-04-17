@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import theme from '../../assets/theme/Theme';
 import Typography from '../Typography/Typography';
 
+const DateTypography = styled(Typography)`
+  @media (max-width: 805px) {
+    display: none;
+  }
+`;
+
 const Box = styled(motion.article)`
   cursor: pointer;
   margin: 0 10px;
@@ -100,9 +106,9 @@ const Submission = styled(Typography)`
 `;
 
 const Notification = ({ date }) => (
-  <Typography sideContent color='darkGray'>
+  <DateTypography sideContent color='darkGray'>
     작성일: {date}
-  </Typography>
+  </DateTypography>
 );
 
 /*

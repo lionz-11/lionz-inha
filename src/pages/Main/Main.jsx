@@ -23,7 +23,7 @@ const TopWrapper = styled(Flex)`
   padding-left: 21px;
 
   @media (max-width: 805px) {
-    margin-top: 80px;
+    margin-top: 40px;
     margin-bottom: 40px;
     padding-left: 10px;
   }

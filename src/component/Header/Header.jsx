@@ -132,7 +132,7 @@ const Header = ({ onlyTitle }) => {
       <Flex justify={onlyTitle ? 'center' : 'space-between'} style={{ width: '100%', maxWidth: '1312px' }}>
         {!onlyTitle && <StyledMargin width='140' />}
         <TitleTypography header style={{ cursor: 'pointer' }} onClick={titleClicked}>
-          LIKE LION
+          LIONZ
         </TitleTypography>
         {!onlyTitle && (
           <>

@@ -3,7 +3,7 @@ import Flex from '../Flex/Flex';
 import TagBox from './TagBox';
 
 const TagContainer = ({ tag }) => (
-  <Flex flexCenter align='flex-start'>
+  <Flex flexCenter justify='flex-start' style={{ flexWrap: 'wrap', gap: '10px' }}>
     {tag.map((t) => (
       <TagBox key={t}>{t}</TagBox>
     ))}

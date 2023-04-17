@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { MdIosShare } from 'react-icons/md';
 import theme from '../../assets/theme/Theme';
 import Typography from '../Typography/Typography';
+import Margin from '../Margin/Margin';
 import { Toast } from '../Toast/Toast';
 
 const Container = styled.div`
   width: 114px;
   height: 30px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `;
 
@@ -18,7 +18,6 @@ const LikeWrapper = styled.div`
   width: 78px;
   height: 30px;
   border-radius: 50px;
-  margin-left: 3px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,6 +61,7 @@ const LikeAndShare = ({ like, setLike }) => {
           공유하기
         </Typography>
       </LikeWrapper>
+      <Margin width='10' />
       <ShareWrapper>
         <MdIosShare size='16' color={theme.colors.blue} style={{ marginBottom: '2px' }} />
       </ShareWrapper>

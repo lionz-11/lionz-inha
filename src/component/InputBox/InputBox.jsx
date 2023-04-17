@@ -48,7 +48,7 @@ const types = {
     `,
 
   mainTitle: `
-    width: 853px;
+    width: 100%;
     height: 54px;
   `,
 
@@ -63,7 +63,7 @@ const types = {
   `,
 
   detail: `
-    width: 853px;
+    width: 100%;
     min-height: 277px;
   `,
 

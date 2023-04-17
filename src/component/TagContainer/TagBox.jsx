@@ -7,7 +7,6 @@ const TagWrapper = styled.div`
   padding: 0px 18px;
   border-radius: 15px;
   background-color: ${(props) => props.theme.colors.veryLightBlue};
-  margin-right: 16px;
   ${(props) => props.theme.flex.flexCenter}
 `;
 
