@@ -35,7 +35,7 @@ const types = {
     `,
 
   login: `
-      width: 525px;
+      width: 100%;
       height: 69px;
       padding-left: 28px;
       padding-right: 28px;

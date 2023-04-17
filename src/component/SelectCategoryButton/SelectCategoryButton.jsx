@@ -43,7 +43,7 @@ const SelectCategoryButton = ({ setCategory, part, setPart, existing }) => {
   }, [existing]);
 
   return (
-    <Flex flexCenter justify='space-between' style={{ width: '168px' }}>
+    <Flex flexCenter justify='space-between' style={{ width: '168px', paddingRight: '10px' }}>
       <StyledButton onClick={AllClicked} color={buttonClicked[0] ? theme.colors.yellow : undefined}>
         <Typography contentText color={buttonClicked[0] ? 'yellow' : 'lightGray'}>
           ALL

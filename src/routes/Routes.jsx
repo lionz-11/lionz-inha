@@ -18,7 +18,6 @@ import AlertSize from '../component/AlertSize/AlertSize';
 
 const Router = () => (
   <BrowserRouter>
-    <AlertSize />
     <Routes>
       <Route path='/' element={<Main />} />
       <Route path='/profile-edit/:welcome' element={<ProfileEdit />} />
