@@ -7,9 +7,8 @@ import ALL from './ALL.png';
 import FE from './FE.png';
 import BE from './BE.png';
 
-// 캐러셀을 안썼으므로 3개까지만 예쁘게 보임
 const Box = styled(Flex)`
-  width: 582px;
+  width: 100%;
   height: 432px;
   border-radius: 10px;
   ${(props) => props.theme.box}
@@ -19,7 +18,6 @@ const Box = styled(Flex)`
   cursor: pointer;
 `;
 
-// 사진을 넣을 컴포넌트! 임시로 만들어놨다.
 const Photo = styled(Flex)`
   width: 100%;
   height: 250px;
@@ -31,16 +29,25 @@ const Photo = styled(Flex)`
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 `;
 
 const MainContent = styled.div`
   width: 513px;
+
+  @media (max-width: 805px) {
+    width: calc(100% - 80px);
+  }
 `;
 
 const SideContent = styled(Flex)`
   width: 513px;
   justify-content: space-between;
+
+  @media (max-width: 805px) {
+    width: calc(100% - 80px);
+  }
 `;
 
 const Separator = styled.hr`
@@ -49,6 +56,10 @@ const Separator = styled.hr`
   border: 0;
   height: 1px;
   background-color: #e3eaf0;
+
+  @media (max-width: 805px) {
+    width: calc(100% - 80px);
+  }
 `;
 
 const Title = styled.h2`

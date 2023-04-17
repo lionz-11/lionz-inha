@@ -17,6 +17,18 @@ import errorImg from '../../assets/svgs/errorImg.png';
 // onlyTitle 추가.
 // header 사용 시에 onlyTitle 추가하면 상단 아이콘 숨겨짐.
 
+const StyledMargin = styled(Margin)`
+  @media (max-width: 805px) {
+    display: none;
+  }
+`;
+
+const TitleTypography = styled(Typography)`
+  @media (max-width: 805px) {
+    margin-left: 20px;
+  }
+`;
+
 const Container = styled.div`
   width: 100vw;
   height: 50px;
@@ -118,10 +130,10 @@ const Header = ({ onlyTitle }) => {
   return (
     <Container>
       <Flex justify={onlyTitle ? 'center' : 'space-between'} style={{ width: '100%', maxWidth: '1312px' }}>
-        {!onlyTitle && <Margin width='140' />}
-        <Typography header style={{ cursor: 'pointer' }} onClick={titleClicked}>
+        {!onlyTitle && <StyledMargin width='140' />}
+        <TitleTypography header style={{ cursor: 'pointer' }} onClick={titleClicked}>
           LIKE LION
-        </Typography>
+        </TitleTypography>
         {!onlyTitle && (
           <>
             <RightWrapper>

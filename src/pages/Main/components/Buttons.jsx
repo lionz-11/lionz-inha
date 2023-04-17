@@ -11,6 +11,14 @@ const ButtonWrapper = styled(Flex)`
   width: 206px;
   height: 432px;
   justify-content: space-between;
+
+  @media (max-width: 805px) {
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
 `;
 
 const StyledButton = styled.div`
@@ -25,6 +33,11 @@ const StyledButton = styled.div`
   transition: 0.5s;
   overflow: hidden;
   cursor: pointer;
+
+  @media (max-width: 805px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `;
 
 const NewAlert = styled(Typography)`
@@ -38,18 +51,30 @@ const StyledMainBtn1 = styled.img`
   position: relative;
   top: -50px;
   left: 75px;
+
+  @media (max-width: 805px) {
+    left: calc(100% - 120px);
+  }
 `;
 
 const StyledMainBtn2 = styled.img`
   position: relative;
   top: -40px;
   left: 75px;
+
+  @media (max-width: 805px) {
+    left: calc(100% - 120px);
+  }
 `;
 
 const StyledMainBtn3 = styled.img`
   position: relative;
   top: -65px;
   left: 65px;
+
+  @media (max-width: 805px) {
+    left: calc(100% - 120px);
+  }
 `;
 
 const Buttons = () => {
@@ -61,6 +86,7 @@ const Buttons = () => {
         href='https://calendar.google.com/calendar/u/0?cid=YWM1N2ZiNWM1MmQ4MGNjNDkyMDEzNGQ5YTg5ZjU1ZGZhMjk3MzQ2MjczZTFhNmE2OThhYzdhYjZjZmJkYWZhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t'
         target='_blank'
         rel='noreferrer'
+        style={{ width: '100%' }}
       >
         <StyledButton>
           <Typography sideContentSmall color='darkGray'>

@@ -11,6 +11,7 @@ const Width = styled.div`
 
   ${({ size }) => size === 'small' && 'max-width: 852px'};
   ${({ size }) => size === 'login' && 'max-width: 525px'};
+  ${({ size }) => size === 'main' && 'max-width: 805px'};
   ${({ hiddenOverflow }) =>
     hiddenOverflow === 'hidden' &&
     css`
@@ -32,7 +33,7 @@ const Layout = ({ children, size, hiddenOverflow }) => (
   <Background>
     <Width size={size} hiddenOverflow={hiddenOverflow}>
       {children}
-      {hiddenOverflow !== 'hidden' && <Margin height='304' />}
+      {hiddenOverflow !== 'hidden' && <Margin height='200' />}
     </Width>
   </Background>
 );
