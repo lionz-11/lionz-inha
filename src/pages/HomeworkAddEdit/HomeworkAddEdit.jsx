@@ -16,10 +16,28 @@ import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButt
 import InputDateTime from '../../component/InputDateTime/InputDateTime';
 import { Toast } from '../../component/Toast/Toast';
 
+const TopMargin = styled(Margin)`
+  height: 98px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
+const BottomMargin = styled(Margin)`
+  height: 0px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
 const StyledFlex = styled(Flex)`
   width: 100%;
   justify-content: space-between;
   padding-left: 13px;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 const HomeworkAddEdit = () => {
@@ -177,7 +195,7 @@ const HomeworkAddEdit = () => {
   return (
     <Layout size='small'>
       <Header />
-      <Margin height='98' />
+      <TopMargin />
       {addOrEdit === 'add' && (
         <HeadLine
           src={homeworkImg}
@@ -193,6 +211,8 @@ const HomeworkAddEdit = () => {
           subTitle={['아기사자들을 위한 과제 수정 페이지입니다.', '수정했다면 아기사자들이 혼란스러워하지 않도록 재공지해주세요.']}
         />
       )}
+
+      <BottomMargin />
 
       <Margin height='8' />
       <TitleContainer
