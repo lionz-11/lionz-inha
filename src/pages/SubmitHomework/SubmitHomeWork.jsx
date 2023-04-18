@@ -21,13 +21,17 @@ import TextButton from '../../component/TextButton/TextButton';
 const StyledFlex = styled(Flex)`
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 const Link = styled.a`
+  width: calc(100% - 50px);
   ${(props) => props.theme.font.sideContentSmall}
 `;
 
 const LinkContainer = styled.div`
+  width: calc(100% - 60px);
   display: flex;
   align-items: center;
 `;

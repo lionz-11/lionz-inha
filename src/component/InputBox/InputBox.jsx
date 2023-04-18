@@ -53,7 +53,7 @@ const types = {
   `,
 
   link: `
-    width: 853px;
+    width: 100%;
     height: 50px;
   `,
 
@@ -68,7 +68,7 @@ const types = {
   `,
 
   homework: `
-    width: 853px;
+    width: 100%;
     min-height: 120px;
   `,
 
