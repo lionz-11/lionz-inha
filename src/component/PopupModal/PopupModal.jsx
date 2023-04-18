@@ -18,8 +18,7 @@ const Dimmer = styled(motion.div)`
 `;
 
 const ModalWrapper = styled.div`
-  width: 600px;
-  height: 180px;
+  width: calc(min(600px, 100vw - 20px));
   padding: 0px 33px;
   border-radius: 0px 0px 17px 17px;
   overflow: hidden;
@@ -27,7 +26,6 @@ const ModalWrapper = styled.div`
   top: -200px;
   background-color: ${(props) => props.theme.colors.white};
   z-index: 11;
-  white-space: nowrap;
   display: hidden;
   visibility: hidden;
   flex-direction: column;
@@ -58,7 +56,7 @@ const PopupModal = ({ mainTitle, subTitle, approve, approveComment, modalActive,
       <Margin height={20} />
       <Typography pageTitle>{mainTitle} </Typography>
       <Margin height={9} />
-      <Typography contentText color='darkGray'>
+      <Typography contentText color='darkGray' style={{ wordBreak: 'keep-all' }}>
         {subTitle}
       </Typography>
       <Margin height={35} />
@@ -66,6 +64,7 @@ const PopupModal = ({ mainTitle, subTitle, approve, approveComment, modalActive,
         <CancelButton onClick={() => setModalActive(false)}>취소</CancelButton>
         <ArrowButton onClick={approve}>{approveComment}</ArrowButton>
       </Flex>
+      <Margin height={25} />
     </ModalWrapper>
   </>
 );
