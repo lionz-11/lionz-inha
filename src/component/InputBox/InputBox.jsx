@@ -58,7 +58,7 @@ const types = {
   `,
 
   editPassword: `
-    width: 450px;
+    width: 100%;
     height: 54px;
   `,
 
