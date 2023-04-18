@@ -2,7 +2,7 @@ import toast from 'react-simple-toasts';
 import styled from 'styled-components';
 
 const StyledToast = styled.div`
-  width: calc(min(339px, 100% - 20px));
+  width: calc(min(339px, 100vw - 20px));
   height: 47px;
   display: flex;
   align-items: center;
