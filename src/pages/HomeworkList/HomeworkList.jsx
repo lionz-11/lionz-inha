@@ -15,6 +15,21 @@ import Typography from '../../component/Typography/Typography';
 import ArrowButton from '../../component/ArrowButton/ArrowButton';
 import Flex from '../../component/Flex/Flex';
 
+const StyledMargin = styled(Margin)`
+  height: 160px;
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
+const StyledFlex = styled(Flex)`
+  align-items: end;
+
+  @media (max-width: 805px) {
+    align-items: start;
+  }
+`;
+
 const HeadLine = styled.div`
   width: 100%;
   display: flex;
@@ -27,6 +42,8 @@ const HeadLine = styled.div`
   }
 
   padding: 0 20px;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
 const HomeworkList = () => {
@@ -88,7 +105,7 @@ const HomeworkList = () => {
   return (
     <Layout>
       <Header />
-      <Margin height='160' />
+      <StyledMargin />
       <HeadLine>
         <TitleSet
           mainTitle={['나의 과제 목록입니다.']}
@@ -96,12 +113,12 @@ const HomeworkList = () => {
         />
 
         {authority === 'ROLE_ADMIN' ? (
-          <Flex flexCenter column align='end'>
+          <StyledFlex flexCenter column>
             <Typography sideContentSmall color='darkGray' style={{ marginBottom: '4px' }}>
               아기사자를 괴롭히고 싶다면?
             </Typography>
             <ArrowButton onClick={() => navigate('/homework/add/new')}>과제 생성하러가기</ArrowButton>
-          </Flex>
+          </StyledFlex>
         ) : (
           <CountText unit='ea' count={myTask.length} />
         )}

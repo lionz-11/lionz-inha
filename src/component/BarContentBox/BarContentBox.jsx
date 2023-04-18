@@ -103,6 +103,10 @@ const Submission = styled(Typography)`
         return '';
     }
   }};
+
+  @media (max-width: 805px) {
+    display: none;
+  }
 `;
 
 const Notification = ({ date }) => (
@@ -129,9 +133,9 @@ const Assignment = ({ date, submissionStatus, part, target }) => {
 
   return (
     <>
-      <Typography sideContent color='darkGray'>
+      <DateTypography sideContent color='darkGray'>
         마감일: {date}
-      </Typography>
+      </DateTypography>
       <Submission part={part} target={target} submissionStatus={status} sideContentBold>
         {status}
       </Submission>
