@@ -17,7 +17,7 @@ import errorImg from '../../assets/svgs/errorImg.png';
 // onlyTitle 추가.
 // header 사용 시에 onlyTitle 추가하면 상단 아이콘 숨겨짐.
 
-const StyledMargin = styled(Margin)`
+const LeftMargin = styled(Margin)`
   @media (max-width: 805px) {
     display: none;
   }
@@ -27,6 +27,11 @@ const TitleTypography = styled(Typography)`
   @media (max-width: 805px) {
     margin-left: 20px;
   }
+`;
+
+const StyledFlex = styled(Flex)`
+  width: 100%;
+  max-width: 1312px;
 `;
 
 const Container = styled.div`
@@ -129,8 +134,8 @@ const Header = ({ onlyTitle }) => {
 
   return (
     <Container>
-      <Flex justify={onlyTitle ? 'center' : 'space-between'} style={{ width: '100%', maxWidth: '1312px' }}>
-        {!onlyTitle && <StyledMargin width='140' />}
+      <StyledFlex justify={!onlyTitle ? 'space-between' : 'center'}>
+        {!onlyTitle && <LeftMargin width='140' />}
         <TitleTypography header style={{ cursor: 'pointer' }} onClick={titleClicked}>
           LIONZ
         </TitleTypography>
@@ -155,8 +160,8 @@ const Header = ({ onlyTitle }) => {
             <SearchBar searchButton={searchButton} searchButtonClicked={searchButtonClicked} />
           </>
         )}
-        <UserInfo id={id} name={name} part={part} comment={comment} />
-      </Flex>
+        {!onlyTitle && <UserInfo id={id} name={name} part={part} comment={comment} onlyTitle={onlyTitle} />}
+      </StyledFlex>
     </Container>
   );
 };
