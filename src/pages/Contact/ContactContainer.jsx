@@ -22,7 +22,7 @@ const Container = styled.div`
 `;
 
 const ScrollContact = styled.div`
-  width: 100%;
+  width: fit-content;
   height: 535px;
 
   overflow: auto;
