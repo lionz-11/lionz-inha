@@ -35,7 +35,7 @@ const types = {
     `,
 
   login: `
-      width: 525px;
+      width: 100%;
       height: 69px;
       padding-left: 28px;
       padding-right: 28px;
@@ -48,27 +48,27 @@ const types = {
     `,
 
   mainTitle: `
-    width: 853px;
+    width: 100%;
     height: 54px;
   `,
 
   link: `
-    width: 853px;
+    width: 100%;
     height: 50px;
   `,
 
   editPassword: `
-    width: 450px;
+    width: 100%;
     height: 54px;
   `,
 
   detail: `
-    width: 853px;
+    width: 100%;
     min-height: 277px;
   `,
 
   homework: `
-    width: 853px;
+    width: 100%;
     min-height: 120px;
   `,
 

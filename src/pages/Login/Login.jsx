@@ -9,44 +9,24 @@ import Margin from '../../component/Margin/Margin';
 import Flex from '../../component/Flex/Flex';
 import RocketImg from './rocketImg.png';
 import InputBox from '../../component/InputBox/InputBox';
-import ArrowButton from '../../component/ArrowButton/ArrowButton';
+import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
 import { Toast } from '../../component/Toast/Toast';
 
 const TitleWrapper = styled(Flex)`
-  justify-content: center;
-  position: relative;
-  left: 100px;
-`;
-
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 13px;
 `;
 
 const StyledRocket = styled.img`
-  position: relative;
-  bottom: 150px;
-  right: 40px;
-`;
+  position: fixed;
+  top: calc(50% - 226px - 60px);
+  right: calc(50% - 183px - 200px);
+  z-index: 0;
 
-const StyledArrow = styled(ArrowButton)`
-  display: inline;
-`;
-
-const Container1 = styled.div`
-  display: flex;
-`;
-
-const Container2 = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: end;
-`;
-
-const StyledContainer = styled(Flex)`
-  position: relative;
-  bottom: 280px;
+  @media (max-width: 525px) {
+    display: none;
+  }
 `;
 
 const Login = () => {
@@ -92,29 +72,28 @@ const Login = () => {
   };
 
   return (
-    <Layout hiddenOverflow='hidden'>
+    <Layout hiddenOverflow='hidden' size='login'>
       <Header onlyTitle />
-      <Flex column align='center' justify='center' style={{ width: '100vw', height: 'calc(100vh - 50px)' }}>
-        <Margin height='271' />
+      <StyledRocket src={RocketImg} />
+      <Flex column align='center' justify='center' style={{ width: '100%', height: 'calc(100vh - 50px)', zIndex: 2 }}>
         <TitleWrapper>
-          <Container1>
-            <TextWrapper>
-              <Typography pageTitle>LIKELION</Typography>
-              <Typography pageTitle>INHA UNIV 11기와</Typography>
-              <Typography pageTitle>함께하기</Typography>
-            </TextWrapper>
-            <StyledRocket src={RocketImg} />
-          </Container1>
+          <Flex justify='flex-start' align='baseline'>
+            <Typography pageTitle style={{ overflowWrap: 'normal' }}>
+              LIKELION
+              <br />
+              INHA UNIV 11기와
+              <br />
+              함께하기
+            </Typography>
+          </Flex>
         </TitleWrapper>
-        <StyledContainer column>
+        <Margin height='30' />
+        <Flex style={{ width: '100%' }} column>
           <InputBox input login placeholder='아이디를 입력하세요.' onChange={handleInputId} onKeyPress={checkEnter} />
-          <Margin height='24' />
+          <Margin height='20' />
           <InputBox input login pw alert placeholder='비밀번호를 입력하세요.' onChange={handleInputPw} onKeyPress={checkEnter} />
-          <Margin height='15' />
-          <Container2>
-            <StyledArrow onClick={submit}>로그인</StyledArrow>
-          </Container2>
-        </StyledContainer>
+          <ArrowButtonContainer onClick={submit} text='로그인' />
+        </Flex>
       </Flex>
     </Layout>
   );

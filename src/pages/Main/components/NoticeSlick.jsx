@@ -19,6 +19,10 @@ const StyledSlider = styled(Slider)`
   ${(props) => props.theme.box}
   transition: 0.5s;
   background-color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 805px) {
+    width: calc(100vw - 20px);
+  }
 `;
 
 const StyledArrow = styled(ArrowButton)`

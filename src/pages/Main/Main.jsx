@@ -10,21 +10,36 @@ import Margin from '../../component/Margin/Margin';
 import NoticeSlick from './components/NoticeSlick';
 import Buttons from './components/Buttons';
 
+const StyledImg = styled.img`
+  @media (max-width: 805px) {
+    display: none;
+  }
+`;
+
 const TopWrapper = styled(Flex)`
-  width: 805px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  vertical-align: middle;
   padding-left: 21px;
-  position: relative;
-  top: 20px;
+
+  @media (max-width: 805px) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 10px;
+  }
 `;
 
 const BottomWrapper = styled(Flex)`
   width: 805px;
   justify-content: space-between;
   position: relative;
-  top: -140px;
+  top: -200px;
+
+  @media (max-width: 805px) {
+    top: 0;
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const Main = () => {
@@ -46,36 +61,28 @@ const Main = () => {
   }, []);
 
   return (
-    <Layout hiddenOverflow='hidden'>
+    <Layout size='main'>
       <Header />
-      <Flex
-        flexCenter
-        column
-        align='center'
-        justify='center'
-        style={{ width: '100vw', height: 'calc(100vh - 50px)', verticalAlign: 'middle' }}
-      >
-        <TopWrapper flexCenter>
-          <Flex flexCenter column align='flex-start'>
-            <Typography pageTitle style={{ textAlign: 'left' }}>
-              모든건 당신의
-              <br />손 끝에서.
-            </Typography>
-            <Margin height='10' />
-            <Typography sideContent color='darkGray' style={{ textAlign: 'left' }}>
-              <span style={{ color: part === 'FE' ? '#4a90e2' : '#e36675' }}>
-                {part} {name}
-              </span>
-              님, 환영합니다.
-            </Typography>
-          </Flex>
-          <img src={MainImg} alt='mainImage' />
-        </TopWrapper>
-        <BottomWrapper>
-          <NoticeSlick />
-          <Buttons />
-        </BottomWrapper>
-      </Flex>
+      <TopWrapper>
+        <Flex column align='baseline' style={{ width: '100%' }}>
+          <Typography pageTitle style={{ textAlign: 'left' }}>
+            모든건 당신의
+            <br />손 끝에서.
+          </Typography>
+          <Margin height='10' />
+          <Typography sideContent color='darkGray' style={{ textAlign: 'left' }}>
+            <span style={{ color: part === 'FE' ? '#4a90e2' : '#e36675' }}>
+              {part} {name}
+            </span>
+            님, 환영합니다.
+          </Typography>
+        </Flex>
+        <StyledImg src={MainImg} alt='mainImage' />
+      </TopWrapper>
+      <BottomWrapper>
+        <NoticeSlick />
+        <Buttons />
+      </BottomWrapper>
     </Layout>
   );
 };

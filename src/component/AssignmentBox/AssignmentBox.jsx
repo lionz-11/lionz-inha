@@ -6,6 +6,12 @@ import Profile from '../Profile/Profile';
 import Typography from '../Typography/Typography';
 import theme from '../../assets/theme/Theme';
 
+const StyledTypography = styled(Typography)`
+  @media (max-width: 805px) {
+    display: none;
+  }
+`;
+
 const Box = styled(motion.article)`
   // 단순 스타일링
   cursor: pointer;
@@ -22,9 +28,8 @@ const Box = styled(motion.article)`
   align-items: flex-start;
   justify-content: flex-start;
   padding: 1.6rem 1.5rem;
-  white-space: nowrap;
 
-  ${({ $isOpen }) => $isOpen && 'height: 210px;'};
+  ${({ $isOpen }) => $isOpen && 'height: auto;'};
 `;
 
 const Title = styled.h1`
@@ -59,7 +64,10 @@ const ContentTitle = styled.div`
 `;
 
 const ContentDetail = styled.div`
+  width: 100%;
   padding: 2rem 0.2rem;
+  padding-bottom: 1rem;
+  word-break: break-all;
 `;
 
 // const Logo = styled.div`
@@ -70,13 +78,11 @@ const ContentDetail = styled.div`
 //   margin-right: 20px;
 // `;
 
-const Detail = styled.div`
-  height: 30px;
+const Detail = styled(Typography)`
   width: 100%;
   margin-bottom: 24px;
 
   // 여러 줄 말줄임표 Css
-  white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -111,13 +117,13 @@ const AssignmentBox = ({ data }) => {
             <Title>{member.name}의 과제입니다.</Title>
           </LeftBox>
           <RightBox>
-            <Typography sideContent color='darkGray'>
+            <StyledTypography sideContent color='darkGray'>
               {`${date.slice(0, 10)} ${date.slice(11, 16)}`}
-            </Typography>
+            </StyledTypography>
           </RightBox>
         </ContentTitle>
         <ContentDetail>
-          <Detail>{explanation.replaceAll('(next_line)', ' ')}</Detail>
+          <Detail contentText>{explanation.replaceAll('(next_line)', ' ')}</Detail>
           <LinkContainer>
             <AiFillGithub size='30' style={{ marginRight: '20px' }} />
             <Link href={link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>

@@ -10,7 +10,7 @@ const StyledTypo = styled(Typography)`
 `;
 
 const TitleSet = ({ mainTitle, subTitle, small, alert, margin }) => (
-  <Flex flexCenter column align='baseline' margin={margin}>
+  <Flex flexCenter column align='baseline' margin={margin} style={{ wordBreak: 'keep-all' }}>
     {mainTitle.map((m) => (
       <StyledTypo key={m} pageTitle small={small} alert={alert}>
         {m}

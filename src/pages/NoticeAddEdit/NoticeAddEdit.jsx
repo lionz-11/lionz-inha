@@ -15,6 +15,22 @@ import Typography from '../../component/Typography/Typography';
 import ArrowButtonContainer from '../../component/ArrowButtonContainer/ArrowButtonContainer';
 import { Toast } from '../../component/Toast/Toast';
 
+const TopMargin = styled(Margin)`
+  height: 98px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
+const BottomMargin = styled(Margin)`
+  height: 0px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
 const StyledFlex = styled(Flex)`
   width: 100%;
   justify-content: space-between;
@@ -137,7 +153,7 @@ const NoticeAddEdit = () => {
   return (
     <Layout size='small'>
       <Header />
-      <Margin height='98' />
+      <TopMargin />
       {addOrEdit === 'add' && (
         <HeadLine
           src={noticeImg}
@@ -164,6 +180,8 @@ const NoticeAddEdit = () => {
           ]}
         />
       )}
+
+      <BottomMargin />
 
       <TitleContainer
         small

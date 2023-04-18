@@ -16,10 +16,23 @@ import Header from '../../component/Header/Header';
 import test from './test.png';
 import defaultProfile from './defaultProfile.png';
 
+const TopMargin = styled(Margin)`
+  height: 98px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
 const TwinContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 805px) {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
 `;
 
 const ProfileCircle = styled.img`
@@ -167,7 +180,7 @@ const ProfileEdit = () => {
       <Layout size='small'>
         {welcome === '1' ? <Header onlyTitle /> : <Header />}
 
-        <Margin height='98' />
+        <TopMargin />
         {welcome === '1' ? (
           <HeadLine
             src={loveLock}

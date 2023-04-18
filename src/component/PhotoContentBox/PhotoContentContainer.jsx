@@ -3,7 +3,7 @@ import PhotoContentBox from './PhotoContentBox';
 
 const List = styled.div`
   display: flex;
-  width: calc(100% + 20px);
+  width: calc(100%);
   padding: 20px 10px;
   gap: 2rem;
   overflow-x: scroll;

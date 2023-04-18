@@ -18,16 +18,36 @@ import HomeWorkContentContainer from './HomeWorkContentContainer';
 import { Toast } from '../../component/Toast/Toast';
 import TextButton from '../../component/TextButton/TextButton';
 
+const TopMargin = styled(Margin)`
+  height: 98px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
+const BottomMargin = styled(Margin)`
+  height: 0px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
 const StyledFlex = styled(Flex)`
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 const Link = styled.a`
+  width: calc(100% - 50px);
   ${(props) => props.theme.font.sideContentSmall}
 `;
 
 const LinkContainer = styled.div`
+  width: calc(100% - 60px);
   display: flex;
   align-items: center;
 `;
@@ -207,7 +227,7 @@ const SubmitHomeWork = () => {
   return (
     <Layout size='small'>
       <Header />
-      <Margin height='98' />
+      <TopMargin />
       <HeadLine
         src={homeworkImg}
         mainTitle={['과제 제출 페이지입니다.']}

@@ -12,7 +12,13 @@ const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.skyBlue};
   background-color: ${({ theme }) => theme.colors.white};
   padding: 0px 14px;
-  overflow: hidden;
+
+  overflow: auto;
+  -ms-overflow-style: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ScrollContact = styled.div`
@@ -31,12 +37,11 @@ const Contact = styled.div`
   padding: 0 27px;
   display: flex;
   height: 50px;
-  width: 100%;
+  width: fit-content;
   background-color: ${(props) => (props.id % 2 === 0 ? props.theme.colors.backgroundBlue : props.theme.colors.white)};
   border-radius: 10px;
   align-items: center;
   gap: 27px;
-  overflow: hidden;
 `;
 
 const SelectBar = styled.div`
