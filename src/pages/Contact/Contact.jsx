@@ -1,4 +1,5 @@
 import axios from 'axios';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../../component/Header/Header';
@@ -9,6 +10,22 @@ import Margin from '../../component/Margin/Margin';
 import HeadLine from '../../component/HeadLine/HeadLine';
 import contactImage from './contactImage.png';
 import ContactContainer from './ContactContainer';
+
+const TopMargin = styled(Margin)`
+  height: 0px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
+
+const BottomMargin = styled(Margin)`
+  height: 0px;
+
+  @media (max-width: 805px) {
+    height: 40px;
+  }
+`;
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -44,11 +61,13 @@ const Contact = () => {
   return (
     <Layout>
       <Header />
+      <TopMargin />
       <HeadLine
         src={contactImage}
         mainTitle={['이곳은 연락처 페이지입니다.']}
         subTitle={['11기 여러분들을 환영합니다! 앞으로 모르는 것이 있다면 STAFF를 괴롭히면 됩니다.']}
       />
+      <BottomMargin />
       {authority === '' ? (
         <>
           <Margin height='50' />
