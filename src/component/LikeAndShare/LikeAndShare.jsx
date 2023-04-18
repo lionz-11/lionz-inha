@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { MdIosShare } from 'react-icons/md';
+import { CopyToClipboard } from 'react-copy-to-clipboard/src';
 import theme from '../../assets/theme/Theme';
 import Typography from '../Typography/Typography';
 import Margin from '../Margin/Margin';
@@ -49,22 +50,27 @@ const ShareWrapper = styled.div`
 const LikeAndShare = ({ like, setLike }) => {
   const location = useLocation();
 
-  const handleCopyClipBoard = async (text) => {
-    await navigator.clipboard.writeText(text);
-    Toast('클립보드에 링크가 복사되었어요.');
-  };
-
   return (
-    <Container onClick={() => handleCopyClipBoard(`${process.env.REACT_APP_BASEURL}${location.pathname}`)}>
-      <LikeWrapper>
-        <Typography sideContentSmall style={{ width: '100%' }}>
-          공유하기
-        </Typography>
-      </LikeWrapper>
+    <Container>
+      <CopyToClipboard
+        text={`${process.env.REACT_APP_BASEURL}${location.pathname}`}
+        onCopy={() => Toast('클립보드에 링크가 복사되었어요.')}
+      >
+        <LikeWrapper>
+          <Typography sideContentSmall style={{ width: '100%' }}>
+            공유하기
+          </Typography>
+        </LikeWrapper>
+      </CopyToClipboard>
       <Margin width='10' />
-      <ShareWrapper>
-        <MdIosShare size='16' color={theme.colors.blue} style={{ marginBottom: '2px' }} />
-      </ShareWrapper>
+      <CopyToClipboard
+        text={`${process.env.REACT_APP_BASEURL}${location.pathname}`}
+        onCopy={() => Toast('클립보드에 링크가 복사되었어요.')}
+      >
+        <ShareWrapper>
+          <MdIosShare size='16' color={theme.colors.blue} style={{ marginBottom: '2px' }} />
+        </ShareWrapper>
+      </CopyToClipboard>
     </Container>
   );
 };
