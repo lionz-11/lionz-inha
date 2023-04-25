@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Header from '../../component/Header/Header';
 import Layout from '../../component/Layout/Layout';
 import Margin from '../../component/Margin/Margin';
+import theme from '../../assets/theme/Theme';
 import Typography from '../../component/Typography/Typography';
 import Flex from '../../component/Flex/Flex';
 import TagContainer from '../../component/TagContainer/TagContainer';
@@ -187,7 +188,7 @@ const HomeworkInfo = () => {
 
         <Margin height='28' />
         <LinkContainer>
-          <AiFillGithub size='30' style={{ marginRight: '20px' }} />
+          <AiFillGithub size='30' color={theme.colors.black} style={{ marginRight: '20px' }} />
           <Link href={homeworkInfo.link} target='_blank' rel='noreferrer'>
             {homeworkInfo.link}
           </Link>

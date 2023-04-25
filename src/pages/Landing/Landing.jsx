@@ -10,6 +10,7 @@ import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import Flex from '../../component/Flex/Flex';
+import theme from '../../assets/theme/Theme';
 import { Toast } from '../../component/Toast/Toast';
 
 const StyledSlider = styled(Slider)`
@@ -48,12 +49,12 @@ const Landing = () => {
     dotsClass: 'dots_custom_landing',
     nextArrow: (
       <div>
-        <StyledRightArrow />
+        <StyledRightArrow color={theme.colors.black} />
       </div>
     ),
     prevArrow: (
       <div>
-        <StyledLeftArrow />
+        <StyledLeftArrow color={theme.colors.black} />
       </div>
     ),
   };

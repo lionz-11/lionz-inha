@@ -42,6 +42,8 @@ const Title = styled.h1`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const LeftBox = styled.div`
@@ -113,7 +115,7 @@ const AssignmentBox = ({ data }) => {
       <Box $isOpen={isOpen} onClick={openHandler} whileHover={theme.animation.box}>
         <ContentTitle>
           <LeftBox>
-            <Profile src={member.image.img_link} />
+            <Profile src={member.image !== null ? member.image.img_link : ''} />
             <Title>{member.name}의 과제입니다.</Title>
           </LeftBox>
           <RightBox>
@@ -125,7 +127,7 @@ const AssignmentBox = ({ data }) => {
         <ContentDetail>
           <Detail contentText>{explanation.replaceAll('(next_line)', ' ')}</Detail>
           <LinkContainer>
-            <AiFillGithub size='30' style={{ marginRight: '20px' }} />
+            <AiFillGithub size='30' color={theme.colors.black} style={{ marginRight: '20px' }} />
             <Link href={link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
               {link}
             </Link>

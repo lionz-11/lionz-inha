@@ -89,9 +89,9 @@ const types = {
 };
 
 const InputWrapper = styled(Flex)`
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
-  border: 1px solid #bfbfbf;
+  border: 1px solid ${(props) => props.theme.colors.gray};
   padding-left: 19px;
   padding-right: 19px;
   ${(props) => props.login && types.login};
@@ -109,20 +109,22 @@ const Input = styled.input`
   line-height: 19px;
   letter-spacing: 0.04em;
   :placeholder {
-    color: #bfbfbf;
+    color: ${(props) => props.theme.colors.gray};
   }
   ${(props) => props.login && types.loginText};
   ${(props) => props.alert && types.alertText};
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
 
   :disabled {
-    background-color: white;
-    color: black;
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.black};
   }
 `;
 
 const Textarea = styled.textarea`
   border-radius: 10px;
-  border: 1px solid #bfbfbf;
+  border: 1px solid ${(props) => props.theme.colors.gray};
   font-family: 'pretendard-regular';
   font-size: 16px;
   line-height: 19px;
@@ -131,16 +133,17 @@ const Textarea = styled.textarea`
   resize: none;
   overflow: hidden;
   :placeholder {
-    color: #bfbfbf;
+    color: ${(props) => props.theme.colors.gray};
   }
   ${(props) => props.detail && types.detail};
   ${(props) => props.homework && types.homework};
   ${(props) => props.alert && types.alert};
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
 
   :disabled {
-    background-color: white;
-    color: black;
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.black};
   }
 `;
 

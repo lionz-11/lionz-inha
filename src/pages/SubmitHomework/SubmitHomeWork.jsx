@@ -17,6 +17,7 @@ import CountText from '../../component/CountText/CountText';
 import HomeWorkContentContainer from './HomeWorkContentContainer';
 import { Toast } from '../../component/Toast/Toast';
 import TextButton from '../../component/TextButton/TextButton';
+import theme from '../../assets/theme/Theme';
 
 const TopMargin = styled(Margin)`
   height: 98px;
@@ -106,7 +107,7 @@ const SubmitHomeWork = () => {
         else {
           setState('SUBMITED');
           const temp = taskInfo[0].explanation;
-          const curDate = new Date(taskInfo.date);
+          const curDate = new Date(taskInfo[0].date);
           curDate.setHours(curDate.getHours() + 9);
           setHomeworkInfo({ ...taskInfo[0], explanation: temp.replaceAll('(next_line)', '\r\n'), date: dateFormat(curDate) });
         }
@@ -288,7 +289,7 @@ const SubmitHomeWork = () => {
           <Margin height='11' />
           <Flex justify='space-between' style={{ width: '100%', padding: '0px 13px' }}>
             <LinkContainer>
-              <AiFillGithub size='30' style={{ marginRight: '20px' }} />
+              <AiFillGithub size='30' color={theme.colors.black} style={{ marginRight: '20px' }} />
               <Link href={homeworkInfo.link} style={{ color: '#4a90e2' }} target='_blank' rel='noreferrer'>
                 {homeworkInfo.link}
               </Link>

@@ -14,9 +14,8 @@ const MenuButtonWrapper = styled.div`
   ${(props) => props.theme.flex.flexCenterColumn};
   align-items: baseline;
   :hover {
-    border: 1px solid #e3eaf0;
-    box-shadow: 0px 0px 5px 1px #e3eaf0;
-    transition: 0.5s;
+    border: 1px solid ${(props) => props.theme.colors.skyBlue};
+    box-shadow: 2px 4px 8px -1px rgba(49, 76, 145, 0.15);
   }
 `;
 

@@ -64,6 +64,7 @@ const Title = styled.h1`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const LeftBox = styled.div`

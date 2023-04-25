@@ -63,6 +63,7 @@ const Title = styled.h2`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const Contents = styled(Typography)`
