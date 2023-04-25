@@ -2,11 +2,11 @@ const colors =
   window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     ? {
         black: '#ffffff',
-        darkGray: '#7c7c7c',
+        darkGray: '#d9d9d9',
         gray: '#bfbfbf',
-        lightGray: '#d9d9d9',
+        lightGray: '#7c7c7c',
         white: '#202124',
-        skyBlue: '#e3eaf0',
+        skyBlue: '#3c4043',
         red: '#e36675',
         backgroundBlue: '#fafbfd',
         blue: '#4a90e2',
@@ -14,7 +14,7 @@ const colors =
         yellow: '#fad77e',
         darkYellow: '#ecb834',
         pointRed: '#de6775',
-        veryLightBlue: '#F4F7F9',
+        veryLightBlue: '#3c4043',
       }
     : {
         black: '#000000',

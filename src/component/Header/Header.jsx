@@ -144,10 +144,11 @@ const Header = ({ onlyTitle }) => {
             <RightWrapper>
               <BiSearch
                 size='26px'
+                color={theme.colors.black}
                 style={{ cursor: 'pointer', marginTop: '2px' }}
                 onClick={() => Toast('아직 지원하지 않습니다.. 곧 해올게용')}
               />
-              <BiMenu size='29px' style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
+              <BiMenu size='29px' color={theme.colors.black} style={{ cursor: 'pointer' }} onClick={() => menuButtonClicked()} />
               <ProfileWrapper>
                 {profile !== '' ? (
                   <ProfileImg src={profile} onError={onErrorImg} />

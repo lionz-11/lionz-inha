@@ -34,12 +34,11 @@ const InfoWrapper = styled.div`
   margin-right: 20px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.colors.white};
-  border: 1px solid #e3eaf0;
-  box-shadow: 2px 4px 8px -1px rgba(49, 76, 145, 0.15);
   padding: 0px 22px;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
+  ${(props) => props.theme.box};
 
   ${(props) =>
     props.isClicked &&
