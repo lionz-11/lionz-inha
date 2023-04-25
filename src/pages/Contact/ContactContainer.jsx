@@ -151,11 +151,11 @@ const ContactContainer = ({ data, isStaff }) => {
           <SelectBar>
             <Select margin='83' onClick={nameSortHandler}>
               이름
-              {nameSort ? <AiFillCaretDown color='#bfbfbf' /> : <AiFillCaretUp color='#bfbfbf' />}
+              {nameSort ? <AiFillCaretDown color={(props) => props.theme.colors.gray} /> : <AiFillCaretUp color='#bfbfbf' />}
             </Select>
             <Select margin='54'>
               {jobs[jobSelect]}
-              <AiFillCaretDown color='#bfbfbf' />
+              <AiFillCaretDown color={(props) => props.theme.colors.gray} />
             </Select>
             <Select margin='56'>소개</Select>
             <Select margin='455'>연락처</Select>
@@ -184,11 +184,11 @@ const ContactContainer = ({ data, isStaff }) => {
           <SelectBar>
             <Select margin='84' onClick={nameSortHandler}>
               이름
-              <AiFillCaretDown color='#bfbfbf' />
+              <AiFillCaretDown color={(props) => props.theme.colors.gray} />
             </Select>
             <Select margin='62' onClick={jobSelectHandler}>
               {jobs[jobSelect]}
-              <AiFillCaretDown color='#bfbfbf' />
+              <AiFillCaretDown color={(props) => props.theme.colors.gray} />
             </Select>
             <Select margin='177'>소개</Select>
           </SelectBar>
