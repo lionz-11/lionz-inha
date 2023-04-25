@@ -106,7 +106,6 @@ const LinkContainer = styled.div`
 
 const AssignmentBox = ({ data }) => {
   const { explanation, member, link, date } = data;
-  console.log(member);
   const [isOpen, setIsOpen] = useState(false);
 
   const openHandler = () => setIsOpen(!isOpen);
