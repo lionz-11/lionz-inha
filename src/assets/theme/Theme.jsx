@@ -1,19 +1,37 @@
-const colors = {
-  black: '#000000',
-  darkGray: '#7c7c7c',
-  gray: '#bfbfbf',
-  lightGray: '#d9d9d9',
-  white: '#ffffff',
-  skyBlue: '#e3eaf0',
-  red: '#e36675',
-  backgroundBlue: '#fafbfd',
-  blue: '#4a90e2',
-  lightRed: 'rgba(231, 109, 123, 0.8)',
-  yellow: '#fad77e',
-  darkYellow: '#ecb834',
-  pointRed: '#de6775',
-  veryLightBlue: '#F4F7F9',
-};
+const colors =
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? {
+        black: '#ffffff',
+        darkGray: '#7c7c7c',
+        gray: '#bfbfbf',
+        lightGray: '#d9d9d9',
+        white: '#202124',
+        skyBlue: '#e3eaf0',
+        red: '#e36675',
+        backgroundBlue: '#fafbfd',
+        blue: '#4a90e2',
+        lightRed: 'rgba(231, 109, 123, 0.8)',
+        yellow: '#fad77e',
+        darkYellow: '#ecb834',
+        pointRed: '#de6775',
+        veryLightBlue: '#F4F7F9',
+      }
+    : {
+        black: '#000000',
+        darkGray: '#7c7c7c',
+        gray: '#bfbfbf',
+        lightGray: '#d9d9d9',
+        white: '#ffffff',
+        skyBlue: '#e3eaf0',
+        red: '#e36675',
+        backgroundBlue: '#fafbfd',
+        blue: '#4a90e2',
+        lightRed: 'rgba(231, 109, 123, 0.8)',
+        yellow: '#fad77e',
+        darkYellow: '#ecb834',
+        pointRed: '#de6775',
+        veryLightBlue: '#F4F7F9',
+      };
 
 const box = `
   border: 1px solid ${colors.skyBlue};
