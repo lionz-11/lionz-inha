@@ -6,13 +6,16 @@ import Typography from '../Typography/Typography';
 const StyledInput = styled.input`
   width: 150px;
   height: 54px;
-  border: 1px solid #bfbfbf;
+  border: 1px solid ${(props) => props.theme.colors.gray};
   border-radius: 10px;
   text-align: center;
   padding: 10px 0px;
   margin-right: 10px;
   position: relative;
   ${(props) => props.theme.font.sideContent};
+
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
 
   ::-webkit-clear-button,
   ::-webkit-inner-spin-button {
