@@ -70,6 +70,7 @@ const types = {
   homework: `
     width: 100%;
     min-height: 120px;
+    height: auto;
   `,
 
   alert: `
@@ -249,6 +250,7 @@ const InputBox = ({
           onKeyDown={handleResizeHeight}
           onKeyUp={handleResizeHeight}
           onChange={onChange}
+          onFocus={handleResizeHeight}
           disabled={disabled}
         >
           {placeholder}
