@@ -244,7 +244,7 @@ const SubmitHomeWork = () => {
         />
       )}
 
-      {user !== 'ROLE_ADMIN' && userPart !== homeworkNoticeInfo.target && (
+      {user !== 'ROLE_ADMIN' && userPart !== homeworkNoticeInfo.target && homeworkNoticeInfo.target !== 'ALL' && (
         <TitleContainer
           small
           mainTitle={['나의 제출 상태']}
@@ -257,28 +257,30 @@ const SubmitHomeWork = () => {
         />
       )}
 
-      {user !== 'ROLE_ADMIN' && userPart === homeworkNoticeInfo.target && (state === 'NEED_TO_SUBMIT' || state === 'EDIT') && (
-        <>
-          <TitleContainer
-            small
-            mainTitle={['과제 설명을 작성해주세요.']}
-            subTitle={['짧게 적어도 됩니다. 자신의 과제를 마음껏 표현해주세요.']}
-            component={<InputBox text homework value={homeworkInfo.explanation} onChange={explanationHandler} />}
-          />
+      {user !== 'ROLE_ADMIN' &&
+        (userPart === homeworkNoticeInfo.target || homeworkNoticeInfo.target === 'ALL') &&
+        (state === 'NEED_TO_SUBMIT' || state === 'EDIT') && (
+          <>
+            <TitleContainer
+              small
+              mainTitle={['과제 설명을 작성해주세요.']}
+              subTitle={['짧게 적어도 됩니다. 자신의 과제를 마음껏 표현해주세요.']}
+              component={<InputBox text homework value={homeworkInfo.explanation} onChange={explanationHandler} />}
+            />
 
-          <Margin height='68' />
-          <TitleContainer
-            small
-            mainTitle={['과제 참고 링크']}
-            subTitle={['깃허브 링크 또는 배포 링크를 첨부하면 됩니다.']}
-            component={<InputBox input link value={homeworkInfo.link} onChange={linkHandler} />}
-          />
-          {state === 'NEED_TO_SUBMIT' && <ArrowButtonContainer text='과제 제출하기' onClick={homeworkSubmit} />}
-          {state === 'EDIT' && <ArrowButtonContainer text='수정 완료하기' onClick={homeworkEdit} />}
-        </>
-      )}
+            <Margin height='68' />
+            <TitleContainer
+              small
+              mainTitle={['과제 참고 링크']}
+              subTitle={['깃허브 링크 또는 배포 링크를 첨부하면 됩니다.']}
+              component={<InputBox input link value={homeworkInfo.link} onChange={linkHandler} />}
+            />
+            {state === 'NEED_TO_SUBMIT' && <ArrowButtonContainer text='과제 제출하기' onClick={homeworkSubmit} />}
+            {state === 'EDIT' && <ArrowButtonContainer text='수정 완료하기' onClick={homeworkEdit} />}
+          </>
+        )}
 
-      {user !== 'ROLE_ADMIN' && userPart === homeworkNoticeInfo.target && state === 'SUBMITED' && (
+      {user !== 'ROLE_ADMIN' && (userPart === homeworkNoticeInfo.target || homeworkNoticeInfo.target === 'ALL') && state === 'SUBMITED' && (
         <>
           <TitleContainer
             small
